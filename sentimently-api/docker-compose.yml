@@ -1,0 +1,7 @@
+# Optional: only a local mail catcher. The app needs no database, Redis or object store locally.
+services:
+  mailpit:
+    image: axllent/mailpit
+    ports:
+      - "1025:1025"
+      - "8025:8025"

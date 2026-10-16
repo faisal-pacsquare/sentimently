@@ -1,0 +1,367 @@
+[
+  {
+    "id": "sentiment-i-miss-you",
+    "kind": "sentiment",
+    "slug": "i-miss-you",
+    "name": "I miss you",
+    "blurb": "For someone far away",
+    "sortOrder": 1,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "sentiment-thank-you",
+    "kind": "sentiment",
+    "slug": "thank-you",
+    "name": "Thank you",
+    "blurb": "Say it properly",
+    "sortOrder": 2,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "sentiment-im-sorry",
+    "kind": "sentiment",
+    "slug": "im-sorry",
+    "name": "I'm sorry",
+    "blurb": "When words are not enough",
+    "sortOrder": 3,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "sentiment-i-love-you",
+    "kind": "sentiment",
+    "slug": "i-love-you",
+    "name": "I love you",
+    "blurb": "For the one who has your heart",
+    "sortOrder": 4,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "sentiment-congratulations",
+    "kind": "sentiment",
+    "slug": "congratulations",
+    "name": "Congratulations",
+    "blurb": "For wins big and small",
+    "sortOrder": 5,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "sentiment-get-well-soon",
+    "kind": "sentiment",
+    "slug": "get-well-soon",
+    "name": "Get well soon",
+    "blurb": "Comfort for a hard week",
+    "sortOrder": 6,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "sentiment-thinking-of-you",
+    "kind": "sentiment",
+    "slug": "thinking-of-you",
+    "name": "Thinking of you",
+    "blurb": "A little reminder you matter",
+    "sortOrder": 7,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "sentiment-good-luck",
+    "kind": "sentiment",
+    "slug": "good-luck",
+    "name": "Good luck",
+    "blurb": "Before the big day",
+    "sortOrder": 8,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "sentiment-happy-anniversary",
+    "kind": "sentiment",
+    "slug": "happy-anniversary",
+    "name": "Happy anniversary",
+    "blurb": "Years worth celebrating",
+    "sortOrder": 9,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "sentiment-youre-the-best",
+    "kind": "sentiment",
+    "slug": "youre-the-best",
+    "name": "You're the best",
+    "blurb": "For someone who always shows up",
+    "sortOrder": 10,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "sentiment-welcome-baby",
+    "kind": "sentiment",
+    "slug": "welcome-baby",
+    "name": "Welcome, little one",
+    "blurb": "For new parents",
+    "sortOrder": 11,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "sentiment-proud-of-you",
+    "kind": "sentiment",
+    "slug": "proud-of-you",
+    "name": "Proud of you",
+    "blurb": "For every milestone",
+    "sortOrder": 12,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "sentiment-just-because",
+    "kind": "sentiment",
+    "slug": "just-because",
+    "name": "Just because",
+    "blurb": "No reason needed",
+    "sortOrder": 13,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "sentiment-welcome-home",
+    "kind": "sentiment",
+    "slug": "welcome-home",
+    "name": "Welcome home",
+    "blurb": "For a new place or a safe return",
+    "sortOrder": 14,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "occasion-birthday",
+    "kind": "occasion",
+    "slug": "birthday",
+    "name": "Birthday",
+    "sortOrder": 1,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "occasion-eid",
+    "kind": "occasion",
+    "slug": "eid",
+    "name": "Eid",
+    "sortOrder": 2,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "occasion-anniversary",
+    "kind": "occasion",
+    "slug": "anniversary",
+    "name": "Anniversary",
+    "sortOrder": 3,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "occasion-wedding",
+    "kind": "occasion",
+    "slug": "wedding",
+    "name": "Wedding",
+    "sortOrder": 4,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "occasion-new-baby",
+    "kind": "occasion",
+    "slug": "new-baby",
+    "name": "New baby",
+    "sortOrder": 5,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "occasion-graduation",
+    "kind": "occasion",
+    "slug": "graduation",
+    "name": "Graduation",
+    "sortOrder": 6,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "occasion-mothers-day",
+    "kind": "occasion",
+    "slug": "mothers-day",
+    "name": "Mother's Day",
+    "sortOrder": 7,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "occasion-fathers-day",
+    "kind": "occasion",
+    "slug": "fathers-day",
+    "name": "Father's Day",
+    "sortOrder": 8,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "recipient-friend",
+    "kind": "recipient",
+    "slug": "friend",
+    "name": "Friend",
+    "sortOrder": 1,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "recipient-partner",
+    "kind": "recipient",
+    "slug": "partner",
+    "name": "Partner",
+    "sortOrder": 2,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "recipient-parent",
+    "kind": "recipient",
+    "slug": "parent",
+    "name": "Parent",
+    "sortOrder": 3,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "recipient-sibling",
+    "kind": "recipient",
+    "slug": "sibling",
+    "name": "Sibling",
+    "sortOrder": 4,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "recipient-colleague",
+    "kind": "recipient",
+    "slug": "colleague",
+    "name": "Colleague",
+    "sortOrder": 5,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "recipient-child",
+    "kind": "recipient",
+    "slug": "child",
+    "name": "Child",
+    "sortOrder": 6,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "category-home",
+    "kind": "category",
+    "slug": "home",
+    "name": "Home and living",
+    "sortOrder": 1,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "category-jewellery",
+    "kind": "category",
+    "slug": "jewellery",
+    "name": "Jewellery",
+    "sortOrder": 2,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "category-food",
+    "kind": "category",
+    "slug": "food",
+    "name": "Food and sweets",
+    "sortOrder": 3,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "category-flowers",
+    "kind": "category",
+    "slug": "flowers",
+    "name": "Flowers",
+    "sortOrder": 4,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "category-plants",
+    "kind": "category",
+    "slug": "plants",
+    "name": "Plants",
+    "sortOrder": 5,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "category-beauty",
+    "kind": "category",
+    "slug": "beauty",
+    "name": "Beauty and fragrance",
+    "sortOrder": 6,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "category-accessories",
+    "kind": "category",
+    "slug": "accessories",
+    "name": "Accessories",
+    "sortOrder": 7,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "category-stationery",
+    "kind": "category",
+    "slug": "stationery",
+    "name": "Books and stationery",
+    "sortOrder": 8,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "category-tech",
+    "kind": "category",
+    "slug": "tech",
+    "name": "Tech",
+    "sortOrder": 9,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "category-keepsakes",
+    "kind": "category",
+    "slug": "keepsakes",
+    "name": "Keepsakes",
+    "sortOrder": 10,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "category-digital",
+    "kind": "category",
+    "slug": "digital",
+    "name": "Digital gifts",
+    "sortOrder": 11,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  }
+]

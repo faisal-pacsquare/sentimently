@@ -1,0 +1,3 @@
+[
+  { "id": "HELLO10", "code": "HELLO10", "percent": 10, "minOrder": 3000, "firstOrderOnly": true, "isActive": true, "createdAt": "2026-11-02T00:00:00.000Z", "updatedAt": "2026-11-02T00:00:00.000Z" }
+]

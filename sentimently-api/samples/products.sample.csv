@@ -1,0 +1,8 @@
+slug,name,description,price,offerPrice,type,digitalKind,stock,category,sentiments,occasions,recipients,allowedExtras,isMadeToOrder,leadTimeMinDays,leadTimeMaxDays,isPerishable,isActive,imageUrls
+sample-photo-mug,SAMPLE Photo mug,A ceramic mug printed with your favourite photograph and a short message.,"Rs 1,200",999,physical,,25,home,i-miss-you|thank-you,birthday,friend|partner,premium_wrap|keepsake_box,no,,,no,yes,/images/sample-mug.svg
+sample-name-necklace,SAMPLE Cursive name necklace,A silver necklace engraved with a name in cursive. Made to order.,3500,,physical,,0,jewellery,i-miss-you,birthday|eid,partner,premium_wrap|keepsake_box|dried_flower_posy,yes,5,7,no,yes,/images/sample-necklace.svg
+sample-chocolate-box,SAMPLE Chocolate box,A box of hand-made chocolates with a card. Best sent within three days.,1800,,physical,,40,food,thank-you|im-sorry,eid,friend,premium_wrap,no,,,yes,yes,/images/sample-chocolates.svg
+sample-egift-card,SAMPLE E-gift card,A gift card worth Rs 5000 emailed to the person you choose. Valid for 12 months.,5000,,digital,egift,999,digital,thank-you,birthday|eid,friend|partner,,no,,,no,yes,/images/sample-egift.svg
+sample-greeting-card,SAMPLE Animated greeting card,An animated card with your message. Emailed at the time you choose.,500,,digital,greeting,999,digital,i-miss-you|im-sorry,birthday,friend,,no,,,no,yes,/images/sample-greeting.svg
+sample-scented-candle,SAMPLE Scented candle,"Hand-poured, soy wax.
+Burns for about 40 hours.",1500,,physical,,30,home,im-sorry,eid,friend|partner,premium_wrap,no,,,no,yes,/images/sample-candle.svg

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-label="A greeting card">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff0d9"/><stop offset="1" stop-color="#f8d79c"/></linearGradient>
+    <linearGradient id="shine" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+  </defs>
+  <rect width="800" height="800" fill="url(#bg)"/>
+  <ellipse cx="400" cy="660" rx="230" ry="26" fill="#000" opacity=".10"/>
+  
+  <g transform="rotate(-6 400 420)">
+    <rect x="230" y="190" width="340" height="460" rx="20" fill="#fff"/>
+    <rect x="256" y="216" width="288" height="408" rx="12" fill="none" stroke="#e6b86a" stroke-width="4" stroke-dasharray="10 10"/>
+    <path d="M400 440c-68-52-92-86-92-120a50 50 0 0 1 92-26 50 50 0 0 1 92 26c0 34-24 68-92 120z" fill="#c2456b"/>
+    <text x="400" y="540" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="44" fill="#8a5a1a">Thinking</text>
+    <text x="400" y="590" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="44" fill="#8a5a1a">of you</text>
+  </g>
+</svg>

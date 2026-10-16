@@ -1,0 +1,67 @@
+/* Design tokens. Warm ivory paper, deep plum ink, rose and gold accents. All text pairs meet WCAG AA. */
+:root {
+  --ink: #241a2c;
+  --ink-soft: #655a6e;
+  --paper: #fdf8f3;
+  --paper-sunken: #f6ece4;
+  --white: #ffffff;
+
+  --rose: #c43d68;
+  --rose-dark: #9d2c52;
+  --rose-bright: #e0577f;
+  --rose-tint: #fbe6ed;
+  --plum: #2a1633;
+  --plum-2: #3d2150;
+  --plum-tint: #efe6f5;
+  --gold: #c89b3c;
+  --gold-dark: #8a6514;
+  --gold-tint: #faf0d6;
+  --sage: #3a6b55;
+  --sage-tint: #e1f0e7;
+  --amber: #86570f;
+  --amber-tint: #fbefd6;
+  --red: #b3261e;
+  --red-tint: #fbe5e3;
+  --line: #eadfd6;
+  --line-strong: #d9c9bd;
+  --focus: #1f5fbf;
+
+  --grad-rose: linear-gradient(135deg, #cf4770 0%, #a8315a 100%);
+  --grad-warm: linear-gradient(135deg, #fde9ef 0%, #fdf3e3 100%);
+  --grad-plum: linear-gradient(135deg, #3d2150 0%, #2a1633 100%);
+
+  --font-body: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Fraunces Variable', Georgia, 'Times New Roman', serif;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-md: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.625rem;
+  --text-2xl: 2.125rem;
+  --text-3xl: 2.75rem;
+  --text-hero: clamp(2.5rem, 6.4vw, 4.75rem);
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4.5rem;
+  --space-24: 7rem;
+
+  --radius: 0.875rem;
+  --radius-lg: 1.375rem;
+  --radius-xl: 2rem;
+  --radius-pill: 999px;
+  --shadow: 0 1px 2px rgb(42 22 51 / 0.05), 0 8px 24px -8px rgb(42 22 51 / 0.12);
+  --shadow-lift: 0 2px 4px rgb(42 22 51 / 0.06), 0 22px 44px -14px rgb(42 22 51 / 0.28);
+  --shadow-rose: 0 10px 24px -8px rgb(196 61 104 / 0.55);
+
+  --container: 76rem;
+  --tap: 2.75rem; /* 44px minimum touch target */
+  --ease: cubic-bezier(0.22, 0.7, 0.2, 1);
+}

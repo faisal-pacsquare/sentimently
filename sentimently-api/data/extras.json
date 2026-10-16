@@ -1,0 +1,8 @@
+[
+  { "id": "classic_wrap", "name": "Classic wrap", "price": 0, "isActive": true, "createdAt": "2026-11-02T00:00:00.000Z", "updatedAt": "2026-11-02T00:00:00.000Z" },
+  { "id": "premium_wrap", "name": "Premium wrap", "price": 350, "isActive": true, "createdAt": "2026-11-02T00:00:00.000Z", "updatedAt": "2026-11-02T00:00:00.000Z" },
+  { "id": "keepsake_box", "name": "Keepsake box", "price": 750, "isActive": true, "createdAt": "2026-11-02T00:00:00.000Z", "updatedAt": "2026-11-02T00:00:00.000Z" },
+  { "id": "chocolate_box", "name": "Chocolate box", "price": 1200, "isActive": true, "createdAt": "2026-11-02T00:00:00.000Z", "updatedAt": "2026-11-02T00:00:00.000Z" },
+  { "id": "dried_flower_posy", "name": "Dried flower posy", "price": 900, "isActive": true, "createdAt": "2026-11-02T00:00:00.000Z", "updatedAt": "2026-11-02T00:00:00.000Z" },
+  { "id": "express_same_day", "name": "Express same-day dispatch", "price": 600, "isActive": true, "createdAt": "2026-11-02T00:00:00.000Z", "updatedAt": "2026-11-02T00:00:00.000Z" }
+]

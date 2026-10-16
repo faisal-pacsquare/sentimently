@@ -1,0 +1,32 @@
+name: scheduler
+
+# Wakes the shop's background jobs every 10 minutes: scheduled digital gifts, reminders, overdue-refund alerts,
+# expiring gift links. Vercel's free plan only allows a once-a-day cron, which is too slow for a gift that must
+# arrive "at 9:00", so this calls the same endpoint more often.
+#
+# Needs, in the repository settings (Settings > Secrets and variables > Actions):
+#   variable API_URL     e.g. https://sentimently-api.vercel.app   (no trailing slash)
+#   secret   CRON_SECRET the same value as the API's CRON_SECRET
+# With API_URL unset this does nothing.
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  tick:
+    runs-on: ubuntu-latest
+    if: ${{ vars.API_URL != '' }}
+    timeout-minutes: 3
+    steps:
+      - name: Run the due jobs
+        env:
+          API_URL: ${{ vars.API_URL }}
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
+        run: |
+          curl --fail --silent --show-error --max-time 90 --retry 2 --retry-delay 5 \
+            -H "Authorization: Bearer ${CRON_SECRET}" \
+            "${API_URL}/api/v1/internal/scheduler/run"

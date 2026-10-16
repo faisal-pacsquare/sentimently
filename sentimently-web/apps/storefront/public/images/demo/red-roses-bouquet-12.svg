@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-label="Red roses bouquet (12)">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fde4e1"/><stop offset="1" stop-color="#f6b3ab"/></linearGradient>
+    <linearGradient id="sh" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+  </defs>
+  <rect width="800" height="800" fill="url(#bg)"/>
+  <circle cx="650" cy="150" r="120" fill="#fff" opacity=".28"/>
+  <circle cx="120" cy="700" r="90" fill="#fff" opacity=".2"/>
+  <ellipse cx="400" cy="672" rx="220" ry="24" fill="#000" opacity=".1"/>
+  <path d="M330 400l70 250 70-250z" fill="#3f8a63"/>
+  <path d="M290 420l110 240 110-240-110 40z" fill="#ffffff" opacity=".92"/><path d="M290 420l110 240 40-230z" fill="#cf4a3d" opacity=".35"/>
+  <path d="M360 450l-90-60M440 450l90-60" stroke="#3f8a63" stroke-width="14" stroke-linecap="round"/>
+  <circle cx="310" cy="300" r="62" fill="#cf4a3d"/><circle cx="310" cy="300" r="24" fill="#f7d57a"/><circle cx="400" cy="250" r="70" fill="#ffffff"/><circle cx="400" cy="250" r="27" fill="#f7d57a"/><circle cx="490" cy="300" r="62" fill="#cf4a3d"/><circle cx="490" cy="300" r="24" fill="#f7d57a"/><circle cx="350" cy="380" r="56" fill="#ffffff"/><circle cx="350" cy="380" r="21" fill="#f7d57a"/><circle cx="450" cy="385" r="58" fill="#cf4a3d"/><circle cx="450" cy="385" r="22" fill="#f7d57a"/><circle cx="400" cy="340" r="52" fill="#f3a9bf"/><circle cx="400" cy="340" r="20" fill="#f7d57a"/>
+</svg>

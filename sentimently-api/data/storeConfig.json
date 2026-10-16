@@ -1,0 +1,30 @@
+[
+  {
+    "id": "main",
+    "announcement": "Free delivery over Rs 5,000 · Cash on delivery",
+    "freeDeliveryThreshold": 5000,
+    "sameDayCutoffHour": 13,
+    "deliveryRates": {
+      "Karachi": { "fee": 350, "minDays": 0, "maxDays": 0, "sameDay": true },
+      "Lahore": { "fee": 350, "minDays": 0, "maxDays": 0, "sameDay": true },
+      "Islamabad": { "fee": 400, "minDays": 0, "maxDays": 0, "sameDay": true },
+      "Rawalpindi": { "fee": 400, "minDays": 0, "maxDays": 0, "sameDay": true },
+      "Sargodha": { "fee": 550, "minDays": 1, "maxDays": 2, "sameDay": false },
+      "Faisalabad": { "fee": 550, "minDays": 1, "maxDays": 2, "sameDay": false },
+      "Multan": { "fee": 550, "minDays": 1, "maxDays": 2, "sameDay": false },
+      "Peshawar": { "fee": 550, "minDays": 1, "maxDays": 2, "sameDay": false },
+      "Sialkot": { "fee": 550, "minDays": 1, "maxDays": 2, "sameDay": false },
+      "Gujranwala": { "fee": 550, "minDays": 1, "maxDays": 2, "sameDay": false },
+      "Hyderabad": { "fee": 550, "minDays": 1, "maxDays": 2, "sameDay": false },
+      "Quetta": { "fee": 550, "minDays": 1, "maxDays": 2, "sameDay": false }
+    },
+    "restOfPakistan": { "fee": 650, "minDays": 2, "maxDays": 4, "sameDay": false },
+    "digitalFee": 0,
+    "sameDayCapacity": {},
+    "contactPhone": null,
+    "contactEmail": null,
+    "socialLinks": {},
+    "createdAt": "2026-11-02T00:00:00.000Z",
+    "updatedAt": "2026-11-02T00:00:00.000Z"
+  }
+]

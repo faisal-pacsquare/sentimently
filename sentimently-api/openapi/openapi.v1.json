@@ -1,0 +1,3612 @@
+{
+  "components": {
+    "schemas": {
+      "CancelDto": {
+        "properties": {
+          "email": {
+            "format": "email",
+            "maxLength": 254,
+            "type": "string"
+          },
+          "number": {
+            "maxLength": 40,
+            "type": "string"
+          },
+          "reason": {
+            "maxLength": 500,
+            "type": "string"
+          }
+        },
+        "required": [
+          "number",
+          "email"
+        ],
+        "type": "object"
+      },
+      "CheckCodeDto": {
+        "properties": {
+          "code": {
+            "maxLength": 40,
+            "type": "string"
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "type": "object"
+      },
+      "CheckoutDeliveryDto": {
+        "properties": {
+          "address": {
+            "maxLength": 300,
+            "minLength": 10,
+            "type": "string"
+          },
+          "city": {
+            "maxLength": 60,
+            "type": "string"
+          },
+          "country": {
+            "enum": [
+              "PK"
+            ],
+            "type": "string"
+          },
+          "date": {
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+            "type": "string"
+          },
+          "method": {
+            "enum": [
+              "address",
+              "gift_link"
+            ],
+            "type": "string"
+          },
+          "phone": {
+            "maxLength": 30,
+            "minLength": 7,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "CheckoutDto": {
+        "properties": {
+          "contact": {
+            "$ref": "#/components/schemas/ContactInfoDto"
+          },
+          "delivery": {
+            "$ref": "#/components/schemas/CheckoutDeliveryDto"
+          },
+          "lines": {
+            "items": {
+              "$ref": "#/components/schemas/CheckoutLineDto"
+            },
+            "maxItems": 30,
+            "minItems": 1,
+            "type": "array"
+          },
+          "paymentMethod": {
+            "enum": [
+              "cod",
+              "bank_transfer",
+              "card"
+            ],
+            "type": "string"
+          },
+          "promoCode": {
+            "maxLength": 40,
+            "type": "string"
+          }
+        },
+        "required": [
+          "lines",
+          "paymentMethod"
+        ],
+        "type": "object"
+      },
+      "CheckoutLineDto": {
+        "properties": {
+          "digital": {
+            "$ref": "#/components/schemas/DigitalDetailsDto"
+          },
+          "personalisation": {
+            "$ref": "#/components/schemas/PersonalisationDto"
+          },
+          "productId": {
+            "maxLength": 100,
+            "type": "string"
+          },
+          "quantity": {
+            "maximum": 20,
+            "minimum": 1,
+            "type": "number"
+          }
+        },
+        "required": [
+          "productId",
+          "quantity"
+        ],
+        "type": "object"
+      },
+      "ClaimDto": {
+        "properties": {
+          "address": {
+            "maxLength": 300,
+            "minLength": 10,
+            "type": "string"
+          },
+          "name": {
+            "maxLength": 100,
+            "type": "string"
+          },
+          "phone": {
+            "maxLength": 30,
+            "minLength": 7,
+            "type": "string"
+          }
+        },
+        "required": [
+          "address",
+          "phone"
+        ],
+        "type": "object"
+      },
+      "ClaimOrderDto": {
+        "properties": {
+          "email": {
+            "format": "email",
+            "maxLength": 254,
+            "type": "string"
+          },
+          "number": {
+            "maxLength": 40,
+            "type": "string"
+          }
+        },
+        "required": [
+          "number",
+          "email"
+        ],
+        "type": "object"
+      },
+      "CompleteReturnDto": {
+        "properties": {
+          "faulty": {
+            "description": "Goods turned out to be faulty: the delivery fee is refunded too.",
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "ContactDto": {
+        "properties": {
+          "email": {
+            "format": "email",
+            "maxLength": 254,
+            "type": "string"
+          },
+          "message": {
+            "maxLength": 5000,
+            "type": "string"
+          },
+          "name": {
+            "maxLength": 100,
+            "type": "string"
+          },
+          "orderNumber": {
+            "maxLength": 40,
+            "type": "string"
+          },
+          "phone": {
+            "maxLength": 30,
+            "type": "string"
+          },
+          "subject": {
+            "maxLength": 150,
+            "type": "string"
+          },
+          "topic": {
+            "enum": [
+              "order",
+              "delivery",
+              "payment",
+              "personalisation",
+              "bulk_gifting",
+              "other"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "email",
+          "topic",
+          "subject",
+          "message"
+        ],
+        "type": "object"
+      },
+      "ContactInfoDto": {
+        "properties": {
+          "email": {
+            "format": "email",
+            "maxLength": 254,
+            "type": "string"
+          },
+          "name": {
+            "maxLength": 100,
+            "type": "string"
+          },
+          "phone": {
+            "maxLength": 30,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ContactStatusDto": {
+        "properties": {
+          "status": {
+            "enum": [
+              "new",
+              "in_progress",
+              "closed"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "status"
+        ],
+        "type": "object"
+      },
+      "CreateProductDto": {
+        "properties": {
+          "allowedExtras": {
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 10,
+            "type": "array"
+          },
+          "category": {
+            "type": "string"
+          },
+          "description": {
+            "maxLength": 5000,
+            "type": "string"
+          },
+          "digitalKind": {
+            "enum": [
+              "egift",
+              "greeting"
+            ],
+            "type": "string"
+          },
+          "imageUrls": {
+            "items": {
+              "format": "uri",
+              "type": "string"
+            },
+            "maxItems": 10,
+            "type": "array"
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "isMadeToOrder": {
+            "type": "boolean"
+          },
+          "isPerishable": {
+            "type": "boolean"
+          },
+          "leadTimeMaxDays": {
+            "minimum": 0,
+            "type": "number"
+          },
+          "leadTimeMinDays": {
+            "minimum": 0,
+            "type": "number"
+          },
+          "name": {
+            "maxLength": 150,
+            "type": "string"
+          },
+          "occasions": {
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 20,
+            "type": "array"
+          },
+          "offerPrice": {
+            "minimum": 0,
+            "nullable": true,
+            "type": "number"
+          },
+          "price": {
+            "minimum": 0,
+            "type": "number"
+          },
+          "recipients": {
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 20,
+            "type": "array"
+          },
+          "sentiments": {
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 20,
+            "type": "array"
+          },
+          "slug": {
+            "maxLength": 100,
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+            "type": "string"
+          },
+          "stock": {
+            "minimum": 0,
+            "type": "number"
+          },
+          "type": {
+            "enum": [
+              "physical",
+              "digital"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "slug",
+          "name",
+          "description",
+          "price",
+          "type",
+          "stock",
+          "category"
+        ],
+        "type": "object"
+      },
+      "CreatePromoDto": {
+        "properties": {
+          "code": {
+            "pattern": "^[A-Za-z0-9]{3,20}$",
+            "type": "string"
+          },
+          "endsAt": {
+            "nullable": true,
+            "type": "string"
+          },
+          "firstOrderOnly": {
+            "type": "boolean"
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "minOrder": {
+            "minimum": 0,
+            "type": "number"
+          },
+          "percent": {
+            "maximum": 100,
+            "minimum": 1,
+            "type": "number"
+          },
+          "startsAt": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "percent"
+        ],
+        "type": "object"
+      },
+      "CreateReminderDto": {
+        "properties": {
+          "date": {
+            "type": "string"
+          },
+          "label": {
+            "maxLength": 100,
+            "type": "string"
+          },
+          "notifyDaysBefore": {
+            "maximum": 60,
+            "minimum": 0,
+            "type": "number"
+          },
+          "recipientName": {
+            "maxLength": 100,
+            "type": "string"
+          }
+        },
+        "required": [
+          "label",
+          "date"
+        ],
+        "type": "object"
+      },
+      "CreateReviewDto": {
+        "properties": {
+          "rating": {
+            "maximum": 5,
+            "minimum": 1,
+            "type": "number"
+          },
+          "text": {
+            "maxLength": 2000,
+            "type": "string"
+          }
+        },
+        "required": [
+          "rating"
+        ],
+        "type": "object"
+      },
+      "CreateStaffDto": {
+        "properties": {
+          "email": {
+            "format": "email",
+            "maxLength": 254,
+            "type": "string"
+          },
+          "name": {
+            "maxLength": 100,
+            "type": "string"
+          },
+          "password": {
+            "maxLength": 128,
+            "minLength": 12,
+            "type": "string"
+          },
+          "role": {
+            "enum": [
+              "staff",
+              "admin"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "email",
+          "password",
+          "role"
+        ],
+        "type": "object"
+      },
+      "DecisionDto": {
+        "properties": {
+          "decision": {
+            "enum": [
+              "approve",
+              "reject"
+            ],
+            "type": "string"
+          },
+          "note": {
+            "maxLength": 500,
+            "type": "string"
+          },
+          "resolution": {
+            "description": "Damaged goods only: send a replacement or refund in full.",
+            "enum": [
+              "refund",
+              "replacement"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "decision"
+        ],
+        "type": "object"
+      },
+      "DeleteAccountDto": {
+        "properties": {
+          "password": {
+            "description": "Required for accounts that sign in with a password.",
+            "maxLength": 128,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "DeliveryDto": {
+        "properties": {
+          "city": {
+            "maxLength": 60,
+            "type": "string"
+          },
+          "country": {
+            "enum": [
+              "PK"
+            ],
+            "type": "string"
+          },
+          "date": {
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+            "type": "string"
+          },
+          "method": {
+            "enum": [
+              "address",
+              "gift_link"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "DigitalDetailsDto": {
+        "properties": {
+          "message": {
+            "maxLength": 3600,
+            "type": "string"
+          },
+          "recipientEmail": {
+            "format": "email",
+            "maxLength": 254,
+            "type": "string"
+          },
+          "sendAt": {
+            "description": "When to deliver. Leave out to send as soon as the order is paid.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "recipientEmail"
+        ],
+        "type": "object"
+      },
+      "EraseDto": {
+        "properties": {
+          "email": {
+            "format": "email",
+            "maxLength": 254,
+            "type": "string"
+          }
+        },
+        "required": [
+          "email"
+        ],
+        "type": "object"
+      },
+      "ForgotDto": {
+        "properties": {
+          "email": {
+            "format": "email",
+            "maxLength": 254,
+            "type": "string"
+          }
+        },
+        "required": [
+          "email"
+        ],
+        "type": "object"
+      },
+      "GoogleDto": {
+        "properties": {
+          "idToken": {
+            "maxLength": 4096,
+            "type": "string"
+          }
+        },
+        "required": [
+          "idToken"
+        ],
+        "type": "object"
+      },
+      "LoginDto": {
+        "properties": {
+          "email": {
+            "format": "email",
+            "maxLength": 254,
+            "type": "string"
+          },
+          "password": {
+            "maxLength": 128,
+            "type": "string"
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ],
+        "type": "object"
+      },
+      "ModerateReviewDto": {
+        "properties": {
+          "status": {
+            "enum": [
+              "published",
+              "hidden"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "status"
+        ],
+        "type": "object"
+      },
+      "PersonalisationDto": {
+        "properties": {
+          "cardDesign": {
+            "enum": [
+              "classic",
+              "floral",
+              "minimal",
+              "festive"
+            ],
+            "type": "string"
+          },
+          "extras": {
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 6,
+            "type": "array"
+          },
+          "message": {
+            "maxLength": 3600,
+            "type": "string"
+          },
+          "recipientName": {
+            "maxLength": 100,
+            "type": "string"
+          },
+          "relationship": {
+            "enum": [
+              "partner",
+              "spouse",
+              "parent",
+              "child",
+              "sibling",
+              "friend",
+              "colleague",
+              "other"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "recipientName",
+          "relationship",
+          "cardDesign"
+        ],
+        "type": "object"
+      },
+      "QuoteDto": {
+        "properties": {
+          "delivery": {
+            "$ref": "#/components/schemas/DeliveryDto"
+          },
+          "email": {
+            "description": "Lets a guest use a first-gift code: we check whether this email has ordered before.",
+            "format": "email",
+            "type": "string"
+          },
+          "lines": {
+            "items": {
+              "$ref": "#/components/schemas/QuoteLineDto"
+            },
+            "maxItems": 30,
+            "minItems": 1,
+            "type": "array"
+          },
+          "promoCode": {
+            "maxLength": 40,
+            "type": "string"
+          }
+        },
+        "required": [
+          "lines"
+        ],
+        "type": "object"
+      },
+      "QuoteLineDto": {
+        "properties": {
+          "personalisation": {
+            "$ref": "#/components/schemas/PersonalisationDto"
+          },
+          "productId": {
+            "maxLength": 100,
+            "type": "string"
+          },
+          "quantity": {
+            "maximum": 20,
+            "minimum": 1,
+            "type": "number"
+          }
+        },
+        "required": [
+          "productId",
+          "quantity"
+        ],
+        "type": "object"
+      },
+      "RegisterDto": {
+        "properties": {
+          "email": {
+            "format": "email",
+            "maxLength": 254,
+            "type": "string"
+          },
+          "name": {
+            "maxLength": 100,
+            "type": "string"
+          },
+          "password": {
+            "maxLength": 128,
+            "minLength": 8,
+            "type": "string"
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ],
+        "type": "object"
+      },
+      "ResetDto": {
+        "properties": {
+          "password": {
+            "maxLength": 128,
+            "minLength": 8,
+            "type": "string"
+          },
+          "token": {
+            "maxLength": 200,
+            "type": "string"
+          }
+        },
+        "required": [
+          "token",
+          "password"
+        ],
+        "type": "object"
+      },
+      "ReturnRequestDto": {
+        "properties": {
+          "confirmUnused": {
+            "type": "boolean"
+          },
+          "email": {
+            "format": "email",
+            "maxLength": 254,
+            "type": "string"
+          },
+          "kind": {
+            "description": "\"return\": changed my mind (7 days). \"damaged\": arrived damaged (48 hours, photo needed).",
+            "enum": [
+              "return",
+              "damaged"
+            ],
+            "type": "string"
+          },
+          "lines": {
+            "description": "Positions (0, 1, ...) of the order lines to send back. Leave out for every returnable line.",
+            "items": {
+              "minimum": 0,
+              "type": "number"
+            },
+            "maxItems": 30,
+            "type": "array"
+          },
+          "number": {
+            "maxLength": 40,
+            "type": "string"
+          },
+          "photoUrls": {
+            "description": "Links to photos. Uploading files needs an object store, which is not set up yet.",
+            "items": {
+              "format": "uri",
+              "type": "string"
+            },
+            "maxItems": 5,
+            "type": "array"
+          },
+          "reason": {
+            "maxLength": 1000,
+            "type": "string"
+          }
+        },
+        "required": [
+          "number",
+          "email",
+          "kind",
+          "reason"
+        ],
+        "type": "object"
+      },
+      "TaxonomyDto": {
+        "properties": {
+          "blurb": {
+            "maxLength": 500,
+            "type": "string"
+          },
+          "image": {
+            "format": "uri",
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "sentiment",
+              "occasion",
+              "recipient",
+              "category"
+            ],
+            "type": "string"
+          },
+          "name": {
+            "maxLength": 100,
+            "type": "string"
+          },
+          "slug": {
+            "maxLength": 100,
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+            "type": "string"
+          },
+          "sortOrder": {
+            "minimum": 0,
+            "type": "number"
+          }
+        },
+        "required": [
+          "kind",
+          "slug",
+          "name"
+        ],
+        "type": "object"
+      },
+      "TrackDto": {
+        "properties": {
+          "email": {
+            "format": "email",
+            "maxLength": 254,
+            "type": "string"
+          },
+          "number": {
+            "maxLength": 40,
+            "type": "string"
+          }
+        },
+        "required": [
+          "number",
+          "email"
+        ],
+        "type": "object"
+      },
+      "TransitionDto": {
+        "properties": {
+          "courier": {
+            "maxLength": 60,
+            "type": "string"
+          },
+          "note": {
+            "maxLength": 500,
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "awaiting_payment",
+              "placed",
+              "paid",
+              "preparing",
+              "in_production",
+              "dispatched",
+              "delivered",
+              "failed_delivery",
+              "returned",
+              "refunded",
+              "cancelled"
+            ],
+            "type": "string"
+          },
+          "trackingRef": {
+            "maxLength": 100,
+            "type": "string"
+          }
+        },
+        "required": [
+          "status"
+        ],
+        "type": "object"
+      },
+      "UpdateExtraDto": {
+        "properties": {
+          "isActive": {
+            "type": "boolean"
+          },
+          "name": {
+            "maxLength": 60,
+            "minLength": 1,
+            "type": "string"
+          },
+          "price": {
+            "minimum": 0,
+            "type": "number"
+          }
+        },
+        "type": "object"
+      },
+      "UpdateProductDto": {
+        "properties": {
+          "allowedExtras": {
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 10,
+            "type": "array"
+          },
+          "category": {
+            "type": "string"
+          },
+          "description": {
+            "maxLength": 5000,
+            "type": "string"
+          },
+          "digitalKind": {
+            "enum": [
+              "egift",
+              "greeting"
+            ],
+            "type": "string"
+          },
+          "imageUrls": {
+            "items": {
+              "format": "uri",
+              "type": "string"
+            },
+            "maxItems": 10,
+            "type": "array"
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "isMadeToOrder": {
+            "type": "boolean"
+          },
+          "isPerishable": {
+            "type": "boolean"
+          },
+          "leadTimeMaxDays": {
+            "minimum": 0,
+            "type": "number"
+          },
+          "leadTimeMinDays": {
+            "minimum": 0,
+            "type": "number"
+          },
+          "name": {
+            "maxLength": 150,
+            "type": "string"
+          },
+          "occasions": {
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 20,
+            "type": "array"
+          },
+          "offerPrice": {
+            "minimum": 0,
+            "nullable": true,
+            "type": "number"
+          },
+          "price": {
+            "minimum": 0,
+            "type": "number"
+          },
+          "recipients": {
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 20,
+            "type": "array"
+          },
+          "sentiments": {
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 20,
+            "type": "array"
+          },
+          "slug": {
+            "maxLength": 100,
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+            "type": "string"
+          },
+          "stock": {
+            "minimum": 0,
+            "type": "number"
+          },
+          "type": {
+            "enum": [
+              "physical",
+              "digital"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "UpdateProfileDto": {
+        "properties": {
+          "name": {
+            "maxLength": 100,
+            "type": "string"
+          },
+          "phone": {
+            "maxLength": 30,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "UpdatePromoDto": {
+        "properties": {
+          "endsAt": {
+            "nullable": true,
+            "type": "string"
+          },
+          "firstOrderOnly": {
+            "type": "boolean"
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "minOrder": {
+            "minimum": 0,
+            "type": "number"
+          },
+          "percent": {
+            "maximum": 100,
+            "minimum": 1,
+            "type": "number"
+          },
+          "startsAt": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "UpdateReminderDto": {
+        "properties": {
+          "date": {
+            "type": "string"
+          },
+          "label": {
+            "maxLength": 100,
+            "type": "string"
+          },
+          "notifyDaysBefore": {
+            "maximum": 60,
+            "minimum": 0,
+            "type": "number"
+          },
+          "recipientName": {
+            "maxLength": 100,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "UpdateStoreDto": {
+        "properties": {
+          "announcement": {
+            "maxLength": 200,
+            "nullable": true,
+            "type": "string"
+          },
+          "bankTransferInstructions": {
+            "maxLength": 1000,
+            "nullable": true,
+            "type": "string"
+          },
+          "banner": {
+            "maxLength": 300,
+            "nullable": true,
+            "type": "string"
+          },
+          "contactEmail": {
+            "format": "email",
+            "nullable": true,
+            "type": "string"
+          },
+          "contactPhone": {
+            "maxLength": 30,
+            "nullable": true,
+            "type": "string"
+          },
+          "deliveryRates": {
+            "additionalProperties": true,
+            "description": "{ \"Karachi\": { \"fee\": 350, \"minDays\": 0, \"maxDays\": 0, \"sameDay\": true }, ... }",
+            "type": "object"
+          },
+          "freeDeliveryThreshold": {
+            "minimum": 0,
+            "type": "number"
+          },
+          "restOfPakistan": {
+            "type": "object"
+          },
+          "sameDayCapacity": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "description": "{ \"Karachi\": 40 }: same-day orders a city can take in a day. A city left out has no limit.",
+            "type": "object"
+          },
+          "sameDayCutoffHour": {
+            "maximum": 23,
+            "minimum": 0,
+            "type": "number"
+          },
+          "socialLinks": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "UpdateTaxonomyDto": {
+        "properties": {
+          "blurb": {
+            "maxLength": 500,
+            "type": "string"
+          },
+          "image": {
+            "format": "uri",
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "sentiment",
+              "occasion",
+              "recipient",
+              "category"
+            ],
+            "type": "string"
+          },
+          "name": {
+            "maxLength": 100,
+            "type": "string"
+          },
+          "slug": {
+            "maxLength": 100,
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+            "type": "string"
+          },
+          "sortOrder": {
+            "minimum": 0,
+            "type": "number"
+          }
+        },
+        "type": "object"
+      },
+      "VerifyEmailDto": {
+        "properties": {
+          "token": {
+            "maxLength": 200,
+            "type": "string"
+          }
+        },
+        "required": [
+          "token"
+        ],
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "bearer": {
+        "bearerFormat": "JWT",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "contact": {},
+    "description": "REST API for the Sentimently gift store. Money is in whole rupees (PKR). Times are ISO 8601 in UTC; delivery dates are plain dates in Pakistan time.\n\nSign in with POST /auth/login and send the token as \"Authorization: Bearer <token>\". Routes marked with no security need no token.\n\nEvery error has the shape { \"error\": { \"code\", \"message\", \"details\"?, \"requestId\" } }. Too many requests give 429 with a Retry-After header.\n\nThis is version 1 and is frozen: changes after the Backend Gate are additive, or a new /api/v2.",
+    "title": "Sentimently API",
+    "version": "1.0.0"
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/api/v1/admin/contact": {
+      "get": {
+        "operationId": "ContactController_list",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "ContactController.list",
+        "tags": [
+          "Contact"
+        ],
+        "x-access": "roles: staff, admin"
+      }
+    },
+    "/api/v1/admin/contact/{id}": {
+      "patch": {
+        "operationId": "ContactController_setStatus",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ContactStatusDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "ContactController.setStatus",
+        "tags": [
+          "Contact"
+        ],
+        "x-access": "roles: staff, admin"
+      }
+    },
+    "/api/v1/admin/digital-gifts/{id}/retry": {
+      "post": {
+        "operationId": "DigitalAdminController_retry",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "DigitalAdminController.retry",
+        "tags": [
+          "DigitalAdmin"
+        ],
+        "x-access": "roles: staff, admin"
+      }
+    },
+    "/api/v1/admin/dispatch": {
+      "get": {
+        "operationId": "ReportsController_rota",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "date",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "city",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "ReportsController.rota",
+        "tags": [
+          "Reports"
+        ],
+        "x-access": "roles: staff, admin"
+      }
+    },
+    "/api/v1/admin/extras": {
+      "get": {
+        "operationId": "AdminSettingsController_extras",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "AdminSettingsController.extras",
+        "tags": [
+          "AdminSettings"
+        ],
+        "x-access": "roles: staff, admin"
+      }
+    },
+    "/api/v1/admin/extras/{code}": {
+      "patch": {
+        "operationId": "AdminSettingsController_updateExtra",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "code",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateExtraDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "AdminSettingsController.updateExtra",
+        "tags": [
+          "AdminSettings"
+        ],
+        "x-access": "roles: admin"
+      }
+    },
+    "/api/v1/admin/orders": {
+      "get": {
+        "operationId": "AdminOrdersController_list",
+        "parameters": [
+          {
+            "description": "One status or a comma-separated list, e.g. preparing,in_production",
+            "in": "query",
+            "name": "status",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "city",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "q",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "from",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "to",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "AdminOrdersController.list",
+        "tags": [
+          "AdminOrders"
+        ],
+        "x-access": "roles: staff, admin"
+      }
+    },
+    "/api/v1/admin/orders/{id}": {
+      "get": {
+        "operationId": "AdminOrdersController_one",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "AdminOrdersController.one",
+        "tags": [
+          "AdminOrders"
+        ],
+        "x-access": "roles: staff, admin"
+      }
+    },
+    "/api/v1/admin/orders/{id}/status": {
+      "post": {
+        "operationId": "AdminOrdersController_status",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransitionDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "AdminOrdersController.status",
+        "tags": [
+          "AdminOrders"
+        ],
+        "x-access": "roles: staff, admin"
+      }
+    },
+    "/api/v1/admin/privacy/erase": {
+      "post": {
+        "operationId": "PrivacyController_erase",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EraseDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "PrivacyController.erase",
+        "tags": [
+          "Privacy"
+        ],
+        "x-access": "roles: admin"
+      }
+    },
+    "/api/v1/admin/production": {
+      "get": {
+        "operationId": "AdminOrdersController_production",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "AdminOrdersController.production",
+        "tags": [
+          "AdminOrders"
+        ],
+        "x-access": "roles: staff, admin"
+      }
+    },
+    "/api/v1/admin/products": {
+      "get": {
+        "operationId": "AdminCatalogueController_all",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "AdminCatalogueController.all",
+        "tags": [
+          "AdminCatalogue"
+        ],
+        "x-access": "roles: staff, admin"
+      },
+      "post": {
+        "operationId": "AdminCatalogueController_create",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateProductDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "AdminCatalogueController.create",
+        "tags": [
+          "AdminCatalogue"
+        ],
+        "x-access": "roles: staff, admin"
+      }
+    },
+    "/api/v1/admin/products/{id}": {
+      "delete": {
+        "operationId": "AdminCatalogueController_deactivate",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "AdminCatalogueController.deactivate",
+        "tags": [
+          "AdminCatalogue"
+        ],
+        "x-access": "roles: staff, admin"
+      },
+      "patch": {
+        "operationId": "AdminCatalogueController_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateProductDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "AdminCatalogueController.update",
+        "tags": [
+          "AdminCatalogue"
+        ],
+        "x-access": "roles: staff, admin"
+      }
+    },
+    "/api/v1/admin/promo-codes": {
+      "get": {
+        "operationId": "AdminSettingsController_promos",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "AdminSettingsController.promos",
+        "tags": [
+          "AdminSettings"
+        ],
+        "x-access": "roles: staff, admin"
+      },
+      "post": {
+        "operationId": "AdminSettingsController_createPromo",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePromoDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "AdminSettingsController.createPromo",
+        "tags": [
+          "AdminSettings"
+        ],
+        "x-access": "roles: admin"
+      }
+    },
+    "/api/v1/admin/promo-codes/{code}": {
+      "patch": {
+        "operationId": "AdminSettingsController_updatePromo",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "code",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePromoDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "AdminSettingsController.updatePromo",
+        "tags": [
+          "AdminSettings"
+        ],
+        "x-access": "roles: admin"
+      }
+    },
+    "/api/v1/admin/refunds": {
+      "get": {
+        "operationId": "AdminReturnsController_refundQueue",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "status",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "AdminReturnsController.refundQueue",
+        "tags": [
+          "AdminReturns"
+        ],
+        "x-access": "roles: staff, admin"
+      }
+    },
+    "/api/v1/admin/refunds/{id}/process": {
+      "post": {
+        "operationId": "AdminReturnsController_process",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "AdminReturnsController.process",
+        "tags": [
+          "AdminReturns"
+        ],
+        "x-access": "roles: staff, admin"
+      }
+    },
+    "/api/v1/admin/reports/summary": {
+      "get": {
+        "operationId": "ReportsController_summary",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "from",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "to",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "ReportsController.summary",
+        "tags": [
+          "Reports"
+        ],
+        "x-access": "roles: staff, admin"
+      }
+    },
+    "/api/v1/admin/returns": {
+      "get": {
+        "operationId": "AdminReturnsController_list",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "status",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "AdminReturnsController.list",
+        "tags": [
+          "AdminReturns"
+        ],
+        "x-access": "roles: staff, admin"
+      }
+    },
+    "/api/v1/admin/returns/{id}/complete": {
+      "post": {
+        "operationId": "AdminReturnsController_complete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CompleteReturnDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "AdminReturnsController.complete",
+        "tags": [
+          "AdminReturns"
+        ],
+        "x-access": "roles: staff, admin"
+      }
+    },
+    "/api/v1/admin/returns/{id}/decision": {
+      "post": {
+        "operationId": "AdminReturnsController_decide",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DecisionDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "AdminReturnsController.decide",
+        "tags": [
+          "AdminReturns"
+        ],
+        "x-access": "roles: staff, admin"
+      }
+    },
+    "/api/v1/admin/reviews": {
+      "get": {
+        "operationId": "ReviewsController_all",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "ReviewsController.all",
+        "tags": [
+          "Reviews"
+        ],
+        "x-access": "roles: staff, admin"
+      }
+    },
+    "/api/v1/admin/reviews/{id}": {
+      "patch": {
+        "operationId": "ReviewsController_moderate",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ModerateReviewDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "ReviewsController.moderate",
+        "tags": [
+          "Reviews"
+        ],
+        "x-access": "roles: staff, admin"
+      }
+    },
+    "/api/v1/admin/scheduler/run": {
+      "post": {
+        "operationId": "SchedulerController_runNow",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "SchedulerController.runNow",
+        "tags": [
+          "Scheduler"
+        ],
+        "x-access": "roles: admin"
+      }
+    },
+    "/api/v1/admin/staff": {
+      "get": {
+        "operationId": "AdminSettingsController_staff",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "AdminSettingsController.staff",
+        "tags": [
+          "AdminSettings"
+        ],
+        "x-access": "roles: admin"
+      },
+      "post": {
+        "operationId": "AdminSettingsController_createStaff",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateStaffDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "AdminSettingsController.createStaff",
+        "tags": [
+          "AdminSettings"
+        ],
+        "x-access": "roles: admin"
+      }
+    },
+    "/api/v1/admin/staff/{id}": {
+      "delete": {
+        "operationId": "AdminSettingsController_removeStaff",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "AdminSettingsController.removeStaff",
+        "tags": [
+          "AdminSettings"
+        ],
+        "x-access": "roles: admin"
+      }
+    },
+    "/api/v1/admin/store": {
+      "get": {
+        "operationId": "AdminSettingsController_getStore",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "AdminSettingsController.getStore",
+        "tags": [
+          "AdminSettings"
+        ],
+        "x-access": "roles: staff, admin"
+      },
+      "patch": {
+        "operationId": "AdminSettingsController_updateStore",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateStoreDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "AdminSettingsController.updateStore",
+        "tags": [
+          "AdminSettings"
+        ],
+        "x-access": "roles: admin"
+      }
+    },
+    "/api/v1/admin/taxonomy": {
+      "post": {
+        "operationId": "AdminCatalogueController_createTaxonomy",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TaxonomyDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "AdminCatalogueController.createTaxonomy",
+        "tags": [
+          "AdminCatalogue"
+        ],
+        "x-access": "roles: staff, admin"
+      }
+    },
+    "/api/v1/admin/taxonomy/{id}": {
+      "patch": {
+        "operationId": "AdminCatalogueController_updateTaxonomy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTaxonomyDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "AdminCatalogueController.updateTaxonomy",
+        "tags": [
+          "AdminCatalogue"
+        ],
+        "x-access": "roles: staff, admin"
+      }
+    },
+    "/api/v1/auth/forgot-password": {
+      "post": {
+        "operationId": "AuthController_forgot",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ForgotDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "description": ""
+          }
+        },
+        "security": [],
+        "summary": "AuthController.forgot",
+        "tags": [
+          "Auth"
+        ],
+        "x-access": "public"
+      }
+    },
+    "/api/v1/auth/google": {
+      "post": {
+        "operationId": "AuthController_google",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GoogleDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [],
+        "summary": "AuthController.google",
+        "tags": [
+          "Auth"
+        ],
+        "x-access": "public"
+      }
+    },
+    "/api/v1/auth/login": {
+      "post": {
+        "operationId": "AuthController_login",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [],
+        "summary": "AuthController.login",
+        "tags": [
+          "Auth"
+        ],
+        "x-access": "public"
+      }
+    },
+    "/api/v1/auth/register": {
+      "post": {
+        "operationId": "AuthController_register",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [],
+        "summary": "AuthController.register",
+        "tags": [
+          "Auth"
+        ],
+        "x-access": "public"
+      }
+    },
+    "/api/v1/auth/resend-verification": {
+      "post": {
+        "operationId": "AccountAuthController_resend",
+        "parameters": [],
+        "responses": {
+          "202": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "AccountAuthController.resend",
+        "tags": [
+          "AccountAuth"
+        ],
+        "x-access": "signed-in"
+      }
+    },
+    "/api/v1/auth/reset-password": {
+      "post": {
+        "operationId": "AuthController_reset",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [],
+        "summary": "AuthController.reset",
+        "tags": [
+          "Auth"
+        ],
+        "x-access": "public"
+      }
+    },
+    "/api/v1/auth/verify-email": {
+      "post": {
+        "operationId": "AuthController_verifyEmail",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VerifyEmailDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [],
+        "summary": "AuthController.verifyEmail",
+        "tags": [
+          "Auth"
+        ],
+        "x-access": "public"
+      }
+    },
+    "/api/v1/checkout": {
+      "post": {
+        "operationId": "OrdersController_checkout",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "idempotency-key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CheckoutDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [],
+        "summary": "OrdersController.checkout",
+        "tags": [
+          "Orders"
+        ],
+        "x-access": "public"
+      }
+    },
+    "/api/v1/contact": {
+      "post": {
+        "operationId": "ContactController_create",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ContactDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [],
+        "summary": "ContactController.create",
+        "tags": [
+          "Contact"
+        ],
+        "x-access": "public"
+      }
+    },
+    "/api/v1/gift-cards/check": {
+      "post": {
+        "operationId": "GiftCardsController_check",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CheckCodeDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [],
+        "summary": "GiftCardsController.check",
+        "tags": [
+          "GiftCards"
+        ],
+        "x-access": "public"
+      }
+    },
+    "/api/v1/gift-links/{token}": {
+      "get": {
+        "operationId": "GiftLinksController_preview",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [],
+        "summary": "GiftLinksController.preview",
+        "tags": [
+          "GiftLinks"
+        ],
+        "x-access": "public"
+      }
+    },
+    "/api/v1/gift-links/{token}/claim": {
+      "post": {
+        "operationId": "GiftLinksController_claim",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClaimDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [],
+        "summary": "GiftLinksController.claim",
+        "tags": [
+          "GiftLinks"
+        ],
+        "x-access": "public"
+      }
+    },
+    "/api/v1/health": {
+      "get": {
+        "operationId": "HealthController_check",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [],
+        "summary": "HealthController.check",
+        "tags": [
+          "Health"
+        ],
+        "x-access": "public"
+      }
+    },
+    "/api/v1/internal/scheduler/run": {
+      "get": {
+        "operationId": "SchedulerController_run",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [],
+        "summary": "SchedulerController.run",
+        "tags": [
+          "Scheduler"
+        ],
+        "x-access": "public"
+      }
+    },
+    "/api/v1/me": {
+      "delete": {
+        "operationId": "PrivacyController_deleteAccount",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteAccountDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "PrivacyController.deleteAccount",
+        "tags": [
+          "Privacy"
+        ],
+        "x-access": "signed-in"
+      },
+      "get": {
+        "operationId": "MeController_profile",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "MeController.profile",
+        "tags": [
+          "Me"
+        ],
+        "x-access": "signed-in"
+      },
+      "patch": {
+        "operationId": "MeController_update",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateProfileDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "MeController.update",
+        "tags": [
+          "Me"
+        ],
+        "x-access": "signed-in"
+      }
+    },
+    "/api/v1/me/claim-order": {
+      "post": {
+        "operationId": "MeController_claimOrder",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClaimOrderDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "MeController.claimOrder",
+        "tags": [
+          "Me"
+        ],
+        "x-access": "signed-in"
+      }
+    },
+    "/api/v1/me/export": {
+      "get": {
+        "operationId": "PrivacyController_export",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "PrivacyController.export",
+        "tags": [
+          "Privacy"
+        ],
+        "x-access": "signed-in"
+      }
+    },
+    "/api/v1/me/reminders": {
+      "get": {
+        "operationId": "MeController_reminders",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "MeController.reminders",
+        "tags": [
+          "Me"
+        ],
+        "x-access": "signed-in"
+      },
+      "post": {
+        "operationId": "MeController_createReminder",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateReminderDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "MeController.createReminder",
+        "tags": [
+          "Me"
+        ],
+        "x-access": "signed-in"
+      }
+    },
+    "/api/v1/me/reminders/{id}": {
+      "delete": {
+        "operationId": "MeController_deleteReminder",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "MeController.deleteReminder",
+        "tags": [
+          "Me"
+        ],
+        "x-access": "signed-in"
+      },
+      "patch": {
+        "operationId": "MeController_updateReminder",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateReminderDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "MeController.updateReminder",
+        "tags": [
+          "Me"
+        ],
+        "x-access": "signed-in"
+      }
+    },
+    "/api/v1/me/wishlist": {
+      "get": {
+        "operationId": "MeController_wishlist",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "MeController.wishlist",
+        "tags": [
+          "Me"
+        ],
+        "x-access": "signed-in"
+      }
+    },
+    "/api/v1/me/wishlist/{productId}": {
+      "delete": {
+        "operationId": "MeController_remove",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "productId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "MeController.remove",
+        "tags": [
+          "Me"
+        ],
+        "x-access": "signed-in"
+      },
+      "put": {
+        "operationId": "MeController_add",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "productId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "MeController.add",
+        "tags": [
+          "Me"
+        ],
+        "x-access": "signed-in"
+      }
+    },
+    "/api/v1/orders": {
+      "get": {
+        "operationId": "OrdersController_mine",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "OrdersController.mine",
+        "tags": [
+          "Orders"
+        ],
+        "x-access": "signed-in"
+      }
+    },
+    "/api/v1/orders/{number}": {
+      "get": {
+        "operationId": "OrdersController_one",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "number",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "OrdersController.one",
+        "tags": [
+          "Orders"
+        ],
+        "x-access": "signed-in"
+      }
+    },
+    "/api/v1/orders/cancel": {
+      "post": {
+        "operationId": "CustomerReturnsController_cancel",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CancelDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [],
+        "summary": "CustomerReturnsController.cancel",
+        "tags": [
+          "CustomerReturns"
+        ],
+        "x-access": "public"
+      }
+    },
+    "/api/v1/orders/returns": {
+      "post": {
+        "operationId": "CustomerReturnsController_request",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReturnRequestDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [],
+        "summary": "CustomerReturnsController.request",
+        "tags": [
+          "CustomerReturns"
+        ],
+        "x-access": "public"
+      }
+    },
+    "/api/v1/orders/track": {
+      "post": {
+        "operationId": "OrdersController_track",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TrackDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [],
+        "summary": "OrdersController.track",
+        "tags": [
+          "Orders"
+        ],
+        "x-access": "public"
+      }
+    },
+    "/api/v1/payments/webhook": {
+      "post": {
+        "operationId": "OrdersController_webhook",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [],
+        "summary": "OrdersController.webhook",
+        "tags": [
+          "Orders"
+        ],
+        "x-access": "public"
+      }
+    },
+    "/api/v1/personalisation/options": {
+      "get": {
+        "operationId": "PricingController_options",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [],
+        "summary": "PricingController.options",
+        "tags": [
+          "Pricing"
+        ],
+        "x-access": "public"
+      }
+    },
+    "/api/v1/products": {
+      "get": {
+        "operationId": "CatalogueController_list",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "sentiment",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "occasion",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "recipient",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "category",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "type",
+            "required": false,
+            "schema": {
+              "enum": [
+                "physical",
+                "digital"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "minPrice",
+            "required": false,
+            "schema": {
+              "minimum": 0,
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "maxPrice",
+            "required": false,
+            "schema": {
+              "minimum": 0,
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "q",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "schema": {
+              "enum": [
+                "popularity",
+                "price_asc",
+                "price_desc",
+                "rating",
+                "newest"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "minimum": 1,
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "required": false,
+            "schema": {
+              "maximum": 100,
+              "minimum": 1,
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [],
+        "summary": "CatalogueController.list",
+        "tags": [
+          "Catalogue"
+        ],
+        "x-access": "public"
+      }
+    },
+    "/api/v1/products/{slug}": {
+      "get": {
+        "operationId": "CatalogueController_one",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "slug",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [],
+        "summary": "CatalogueController.one",
+        "tags": [
+          "Catalogue"
+        ],
+        "x-access": "public"
+      }
+    },
+    "/api/v1/products/{slug}/reviews": {
+      "get": {
+        "operationId": "ReviewsController_list",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "slug",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [],
+        "summary": "ReviewsController.list",
+        "tags": [
+          "Reviews"
+        ],
+        "x-access": "public"
+      },
+      "post": {
+        "operationId": "ReviewsController_create",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "slug",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateReviewDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "ReviewsController.create",
+        "tags": [
+          "Reviews"
+        ],
+        "x-access": "signed-in"
+      }
+    },
+    "/api/v1/quote": {
+      "post": {
+        "operationId": "PricingController_quote",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QuoteDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [],
+        "summary": "PricingController.quote",
+        "tags": [
+          "Pricing"
+        ],
+        "x-access": "public"
+      }
+    },
+    "/api/v1/store": {
+      "get": {
+        "operationId": "StoreController_settings",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [],
+        "summary": "StoreController.settings",
+        "tags": [
+          "Store"
+        ],
+        "x-access": "public"
+      }
+    },
+    "/api/v1/taxonomy/{kind}": {
+      "get": {
+        "operationId": "CatalogueController_taxonomy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "kind",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [],
+        "summary": "CatalogueController.taxonomy",
+        "tags": [
+          "Catalogue"
+        ],
+        "x-access": "public"
+      }
+    },
+    "/api/v1/taxonomy/{kind}/{slug}": {
+      "get": {
+        "operationId": "CatalogueController_hub",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "kind",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "slug",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sentiment",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "occasion",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "recipient",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "category",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "type",
+            "required": false,
+            "schema": {
+              "enum": [
+                "physical",
+                "digital"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "minPrice",
+            "required": false,
+            "schema": {
+              "minimum": 0,
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "maxPrice",
+            "required": false,
+            "schema": {
+              "minimum": 0,
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "q",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "schema": {
+              "enum": [
+                "popularity",
+                "price_asc",
+                "price_desc",
+                "rating",
+                "newest"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "minimum": 1,
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "required": false,
+            "schema": {
+              "maximum": 100,
+              "minimum": 1,
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [],
+        "summary": "CatalogueController.hub",
+        "tags": [
+          "Catalogue"
+        ],
+        "x-access": "public"
+      }
+    }
+  },
+  "servers": [],
+  "tags": []
+}

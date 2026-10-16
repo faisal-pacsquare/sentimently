@@ -1,0 +1,12 @@
+kind,slug,name,blurb,image,sortOrder
+sentiment,i-miss-you,SAMPLE I miss you,For someone far away,,1
+sentiment,thank-you,SAMPLE Thank you,Say it properly,,2
+sentiment,im-sorry,SAMPLE I'm sorry,When words are not enough,,3
+occasion,birthday,SAMPLE Birthday,,,1
+occasion,eid,SAMPLE Eid,,,2
+recipient,friend,SAMPLE Friend,,,1
+recipient,partner,SAMPLE Partner,,,2
+category,home,SAMPLE Home,,,1
+category,jewellery,SAMPLE Jewellery,,,2
+category,food,SAMPLE Food,,,3
+category,digital,SAMPLE Digital gifts,,,4

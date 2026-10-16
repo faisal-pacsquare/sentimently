@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-label="Birthstone ring">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fde4e1"/><stop offset="1" stop-color="#f6b3ab"/></linearGradient>
+    <linearGradient id="sh" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+  </defs>
+  <rect width="800" height="800" fill="url(#bg)"/>
+  <circle cx="650" cy="150" r="120" fill="#fff" opacity=".28"/>
+  <circle cx="120" cy="700" r="90" fill="#fff" opacity=".2"/>
+  <ellipse cx="400" cy="672" rx="220" ry="24" fill="#000" opacity=".1"/>
+  <circle cx="400" cy="450" r="150" fill="none" stroke="#cf4a3d" stroke-width="44"/>
+  <circle cx="400" cy="450" r="150" fill="none" stroke="#ffffff" stroke-width="8" opacity=".5" stroke-dasharray="40 600" stroke-dashoffset="-40"/>
+  <path d="M400 225l62 62-62 50-62-50z" fill="#ffffff"/><path d="M400 225l62 62h-124z" fill="#fde4e1"/><path d="M338 287l62 50 62-50z" fill="#cf4a3d" opacity=".45"/>
+</svg>

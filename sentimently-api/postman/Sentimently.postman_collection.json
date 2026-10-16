@@ -1,0 +1,3517 @@
+{
+  "info": {
+    "name": "Sentimently API v1",
+    "description": "Generated from openapi/openapi.v1.json.\n\n1. Run POST /auth/login (or register). The token is saved for you.\n2. Set productId (GET /products).\n3. POST /quote, then POST /checkout. The order id and number are saved for the other requests.\n\nStaff and admin requests need a token from a staff or admin account.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000/api/v1"
+    },
+    {
+      "key": "token",
+      "value": ""
+    },
+    {
+      "key": "productId",
+      "value": ""
+    },
+    {
+      "key": "orderId",
+      "value": ""
+    },
+    {
+      "key": "orderNumber",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "admin / contact",
+      "item": [
+        {
+          "name": "GET /admin/contact",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "description": "Access: roles: staff, admin",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admin/contact",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "contact"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "PATCH /admin/contact/{id}",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "description": "Access: roles: staff, admin",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/contact/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "contact",
+                ":id"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "{{orderId}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"preparing\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "admin / digital-gifts",
+      "item": [
+        {
+          "name": "POST /admin/digital-gifts/{id}/retry",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "description": "Access: roles: staff, admin",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admin/digital-gifts/:id/retry",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "digital-gifts",
+                ":id",
+                "retry"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "{{orderId}}"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "admin / dispatch",
+      "item": [
+        {
+          "name": "GET /admin/dispatch",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "description": "Access: roles: staff, admin",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admin/dispatch?date=&city=",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "dispatch"
+              ],
+              "query": [
+                {
+                  "key": "date",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "city",
+                  "value": "",
+                  "disabled": true
+                }
+              ],
+              "variable": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "admin / extras",
+      "item": [
+        {
+          "name": "GET /admin/extras",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "description": "Access: roles: staff, admin",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admin/extras",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "extras"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "PATCH /admin/extras/{code}",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "description": "Access: roles: admin",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/extras/:code",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "extras",
+                ":code"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "code",
+                  "value": "GC-XXXX-XXXX-XXXX-XXXX"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "admin / orders",
+      "item": [
+        {
+          "name": "GET /admin/orders",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "description": "Access: roles: staff, admin",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admin/orders?status=&city=&q=&from=&to=&page=&pageSize=",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "orders"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "",
+                  "disabled": true,
+                  "description": "One status or a comma-separated list, e.g. preparing,in_production"
+                },
+                {
+                  "key": "city",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "q",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "from",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "to",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "page",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "pageSize",
+                  "value": "",
+                  "disabled": true
+                }
+              ],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "GET /admin/orders/{id}",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "description": "Access: roles: staff, admin",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admin/orders/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "orders",
+                ":id"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "{{orderId}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "POST /admin/orders/{id}/status",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "description": "Access: roles: staff, admin",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/orders/:id/status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "orders",
+                ":id",
+                "status"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "{{orderId}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"preparing\",\n  \"note\": \"Started\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "admin / privacy",
+      "item": [
+        {
+          "name": "POST /admin/privacy/erase",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "description": "Access: roles: admin",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/privacy/erase",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "privacy",
+                "erase"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"customer@example.pk\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "admin / production",
+      "item": [
+        {
+          "name": "GET /admin/production",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "description": "Access: roles: staff, admin",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admin/production",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "production"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "admin / products",
+      "item": [
+        {
+          "name": "GET /admin/products",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "description": "Access: roles: staff, admin",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admin/products",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "products"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "POST /admin/products",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "description": "Access: roles: staff, admin",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/products",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "products"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"category\": \"string\",\n  \"description\": \"string\",\n  \"name\": \"Ayesha Khan\",\n  \"price\": 0,\n  \"slug\": \"sample-photo-mug\",\n  \"stock\": 0,\n  \"type\": \"physical\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "DELETE /admin/products/{id}",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "description": "Access: roles: staff, admin",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admin/products/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "products",
+                ":id"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "{{orderId}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "PATCH /admin/products/{id}",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "description": "Access: roles: staff, admin",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/products/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "products",
+                ":id"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "{{orderId}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "admin / promo-codes",
+      "item": [
+        {
+          "name": "GET /admin/promo-codes",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "description": "Access: roles: staff, admin",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admin/promo-codes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "promo-codes"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "POST /admin/promo-codes",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "description": "Access: roles: admin",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/promo-codes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "promo-codes"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"GC-XXXX-XXXX-XXXX-XXXX\",\n  \"percent\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PATCH /admin/promo-codes/{code}",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "description": "Access: roles: admin",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/promo-codes/:code",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "promo-codes",
+                ":code"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "code",
+                  "value": "GC-XXXX-XXXX-XXXX-XXXX"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "admin / refunds",
+      "item": [
+        {
+          "name": "GET /admin/refunds",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "description": "Access: roles: staff, admin",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admin/refunds?status=",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "refunds"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "",
+                  "disabled": true
+                }
+              ],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "POST /admin/refunds/{id}/process",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "description": "Access: roles: staff, admin",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admin/refunds/:id/process",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "refunds",
+                ":id",
+                "process"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "{{orderId}}"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "admin / reports",
+      "item": [
+        {
+          "name": "GET /admin/reports/summary",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "description": "Access: roles: staff, admin",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admin/reports/summary?from=&to=",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "reports",
+                "summary"
+              ],
+              "query": [
+                {
+                  "key": "from",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "to",
+                  "value": "",
+                  "disabled": true
+                }
+              ],
+              "variable": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "admin / returns",
+      "item": [
+        {
+          "name": "GET /admin/returns",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "description": "Access: roles: staff, admin",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admin/returns?status=",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "returns"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "",
+                  "disabled": true
+                }
+              ],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "POST /admin/returns/{id}/complete",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "description": "Access: roles: staff, admin",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/returns/:id/complete",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "returns",
+                ":id",
+                "complete"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "{{orderId}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /admin/returns/{id}/decision",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "description": "Access: roles: staff, admin",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/returns/:id/decision",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "returns",
+                ":id",
+                "decision"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "{{orderId}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"decision\": \"approve\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "admin / reviews",
+      "item": [
+        {
+          "name": "GET /admin/reviews",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "description": "Access: roles: staff, admin",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admin/reviews",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "reviews"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "PATCH /admin/reviews/{id}",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "description": "Access: roles: staff, admin",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/reviews/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "reviews",
+                ":id"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "{{orderId}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"preparing\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "admin / scheduler",
+      "item": [
+        {
+          "name": "POST /admin/scheduler/run",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "description": "Access: roles: admin",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admin/scheduler/run",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "scheduler",
+                "run"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "admin / staff",
+      "item": [
+        {
+          "name": "GET /admin/staff",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "description": "Access: roles: admin",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admin/staff",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "staff"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "POST /admin/staff",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "description": "Access: roles: admin",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/staff",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "staff"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"customer@example.pk\",\n  \"password\": \"a-long-password-1\",\n  \"role\": \"staff\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "DELETE /admin/staff/{id}",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "description": "Access: roles: admin",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admin/staff/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "staff",
+                ":id"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "{{orderId}}"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "admin / store",
+      "item": [
+        {
+          "name": "GET /admin/store",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "description": "Access: roles: staff, admin",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admin/store",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "store"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "PATCH /admin/store",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "description": "Access: roles: admin",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/store",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "store"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "admin / taxonomy",
+      "item": [
+        {
+          "name": "POST /admin/taxonomy",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "description": "Access: roles: staff, admin",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/taxonomy",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "taxonomy"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"kind\": \"return\",\n  \"name\": \"Ayesha Khan\",\n  \"slug\": \"sample-photo-mug\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PATCH /admin/taxonomy/{id}",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "description": "Access: roles: staff, admin",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/taxonomy/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "taxonomy",
+                ":id"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "{{orderId}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "auth",
+      "item": [
+        {
+          "name": "POST /auth/forgot-password",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "description": "Access: public",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/forgot-password",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "forgot-password"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"customer@example.pk\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "POST /auth/google",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }",
+                  "const body = pm.response.json();",
+                  "if (body.accessToken) { pm.collectionVariables.set('token', body.accessToken); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "description": "Access: public",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/google",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "google"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idToken\": \"google-id-token\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "POST /auth/login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }",
+                  "const body = pm.response.json();",
+                  "if (body.accessToken) { pm.collectionVariables.set('token', body.accessToken); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "description": "Access: public",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"customer@example.pk\",\n  \"password\": \"a-long-password-1\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "POST /auth/register",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }",
+                  "const body = pm.response.json();",
+                  "if (body.accessToken) { pm.collectionVariables.set('token', body.accessToken); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "description": "Access: public",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"customer@example.pk\",\n  \"password\": \"a-long-password-1\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "POST /auth/resend-verification",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "description": "Access: signed-in",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/auth/resend-verification",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "resend-verification"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "POST /auth/reset-password",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "description": "Access: public",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/reset-password",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "reset-password"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"password\": \"a-long-password-1\",\n  \"token\": \"reset-token-from-email\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "POST /auth/verify-email",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "description": "Access: public",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/verify-email",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "verify-email"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"token\": \"reset-token-from-email\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "checkout",
+      "item": [
+        {
+          "name": "POST /checkout",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }",
+                  "const body = pm.response.json();",
+                  "if (body.order) { pm.collectionVariables.set('orderId', body.order.id); pm.collectionVariables.set('orderNumber', body.order.number); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "description": "Access: public",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Idempotency-Key",
+                "value": "{{$guid}}",
+                "description": "Repeating a checkout with the same key returns the first order"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/checkout",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "checkout"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"lines\": [\n    {\n      \"productId\": \"{{productId}}\",\n      \"quantity\": 1\n    }\n  ],\n  \"delivery\": {\n    \"city\": \"Karachi\",\n    \"address\": \"House 12, Street 4, DHA Phase 5\",\n    \"phone\": \"03001234567\"\n  },\n  \"contact\": {\n    \"email\": \"customer@example.pk\",\n    \"name\": \"Ayesha Khan\"\n  },\n  \"paymentMethod\": \"cod\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "contact",
+      "item": [
+        {
+          "name": "POST /contact",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "description": "Access: public",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/contact",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "contact"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"customer@example.pk\",\n  \"message\": \"Thinking of you\",\n  \"name\": \"Ayesha Khan\",\n  \"subject\": \"A question\",\n  \"topic\": \"order\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "gift-cards",
+      "item": [
+        {
+          "name": "POST /gift-cards/check",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "description": "Access: public",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/gift-cards/check",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "gift-cards",
+                "check"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"GC-XXXX-XXXX-XXXX-XXXX\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "gift-links",
+      "item": [
+        {
+          "name": "GET /gift-links/{token}",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "description": "Access: public",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/gift-links/:token",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "gift-links",
+                ":token"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "token",
+                  "value": "reset-token-from-email"
+                }
+              ]
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "POST /gift-links/{token}/claim",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "description": "Access: public",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/gift-links/:token/claim",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "gift-links",
+                ":token",
+                "claim"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "token",
+                  "value": "reset-token-from-email"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"address\": \"House 12, Street 4, DHA Phase 5\",\n  \"phone\": \"03001234567\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "health",
+      "item": [
+        {
+          "name": "GET /health",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "description": "Access: public",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/health",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "health"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "internal",
+      "item": [
+        {
+          "name": "GET /internal/scheduler/run",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "description": "Access: public",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/internal/scheduler/run",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "internal",
+                "scheduler",
+                "run"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "me",
+      "item": [
+        {
+          "name": "DELETE /me",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "description": "Access: signed-in",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "me"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /me",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "description": "Access: signed-in",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "me"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "PATCH /me",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "description": "Access: signed-in",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "me"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /me/claim-order",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "description": "Access: signed-in",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/me/claim-order",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "me",
+                "claim-order"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"customer@example.pk\",\n  \"number\": \"{{orderNumber}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /me/export",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "description": "Access: signed-in",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/me/export",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "me",
+                "export"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "GET /me/reminders",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "description": "Access: signed-in",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/me/reminders",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "me",
+                "reminders"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "POST /me/reminders",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "description": "Access: signed-in",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/me/reminders",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "me",
+                "reminders"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"date\": \"2026-12-01\",\n  \"label\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "DELETE /me/reminders/{id}",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "description": "Access: signed-in",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/me/reminders/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "me",
+                "reminders",
+                ":id"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "{{orderId}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "PATCH /me/reminders/{id}",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "description": "Access: signed-in",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/me/reminders/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "me",
+                "reminders",
+                ":id"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "{{orderId}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /me/wishlist",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "description": "Access: signed-in",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/me/wishlist",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "me",
+                "wishlist"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "DELETE /me/wishlist/{productId}",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "description": "Access: signed-in",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/me/wishlist/:productId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "me",
+                "wishlist",
+                ":productId"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "productId",
+                  "value": "{{productId}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "PUT /me/wishlist/{productId}",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "description": "Access: signed-in",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/me/wishlist/:productId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "me",
+                "wishlist",
+                ":productId"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "productId",
+                  "value": "{{productId}}"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "orders",
+      "item": [
+        {
+          "name": "GET /orders",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "description": "Access: signed-in",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/orders",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "orders"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "GET /orders/{number}",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "description": "Access: signed-in",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/orders/:number",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "orders",
+                ":number"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "number",
+                  "value": "{{orderNumber}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "POST /orders/cancel",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "description": "Access: public",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/orders/cancel",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "orders",
+                "cancel"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"number\": \"{{orderNumber}}\",\n  \"email\": \"customer@example.pk\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "POST /orders/returns",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "description": "Access: public",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/orders/returns",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "orders",
+                "returns"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"customer@example.pk\",\n  \"kind\": \"return\",\n  \"number\": \"{{orderNumber}}\",\n  \"reason\": \"Not the right colour\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "POST /orders/track",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "description": "Access: public",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/orders/track",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "orders",
+                "track"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"number\": \"{{orderNumber}}\",\n  \"email\": \"customer@example.pk\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "payments",
+      "item": [
+        {
+          "name": "POST /payments/webhook",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "description": "Access: public",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/payments/webhook",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "payments",
+                "webhook"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "personalisation",
+      "item": [
+        {
+          "name": "GET /personalisation/options",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "description": "Access: public",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/personalisation/options",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "personalisation",
+                "options"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "products",
+      "item": [
+        {
+          "name": "GET /products",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "description": "Access: public",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/products?sentiment=&occasion=&recipient=&category=&type=&minPrice=&maxPrice=&q=&sort=&page=&pageSize=",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "products"
+              ],
+              "query": [
+                {
+                  "key": "sentiment",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "occasion",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "recipient",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "category",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "type",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "minPrice",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "maxPrice",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "q",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "sort",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "page",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "pageSize",
+                  "value": "",
+                  "disabled": true
+                }
+              ],
+              "variable": []
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "GET /products/{slug}",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "description": "Access: public",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/products/:slug",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "products",
+                ":slug"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "slug",
+                  "value": "sample-photo-mug"
+                }
+              ]
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "GET /products/{slug}/reviews",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "description": "Access: public",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/products/:slug/reviews",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "products",
+                ":slug",
+                "reviews"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "slug",
+                  "value": "sample-photo-mug"
+                }
+              ]
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "POST /products/{slug}/reviews",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "description": "Access: signed-in",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/products/:slug/reviews",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "products",
+                ":slug",
+                "reviews"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "slug",
+                  "value": "sample-photo-mug"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rating\": 5\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "quote",
+      "item": [
+        {
+          "name": "POST /quote",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "description": "Access: public",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/quote",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "quote"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"lines\": [\n    {\n      \"productId\": \"{{productId}}\",\n      \"quantity\": 1,\n      \"personalisation\": {\n        \"recipientName\": \"Maryam\",\n        \"relationship\": \"friend\",\n        \"cardDesign\": \"classic\",\n        \"message\": \"Thinking of you\",\n        \"extras\": [\n          \"premium_wrap\"\n        ]\n      }\n    }\n  ],\n  \"delivery\": {\n    \"city\": \"Karachi\"\n  },\n  \"promoCode\": \"HELLO10\",\n  \"email\": \"customer@example.pk\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "store",
+      "item": [
+        {
+          "name": "GET /store",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "description": "Access: public",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/store",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "store"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "taxonomy",
+      "item": [
+        {
+          "name": "GET /taxonomy/{kind}",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "description": "Access: public",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/taxonomy/:kind",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "taxonomy",
+                ":kind"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "kind",
+                  "value": "return"
+                }
+              ]
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "GET /taxonomy/{kind}/{slug}",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "description": "Access: public",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/taxonomy/:kind/:slug?sentiment=&occasion=&recipient=&category=&type=&minPrice=&maxPrice=&q=&sort=&page=&pageSize=",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "taxonomy",
+                ":kind",
+                ":slug"
+              ],
+              "query": [
+                {
+                  "key": "sentiment",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "occasion",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "recipient",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "category",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "type",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "minPrice",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "maxPrice",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "q",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "sort",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "page",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "pageSize",
+                  "value": "",
+                  "disabled": true
+                }
+              ],
+              "variable": [
+                {
+                  "key": "kind",
+                  "value": "return"
+                },
+                {
+                  "key": "slug",
+                  "value": "sample-photo-mug"
+                }
+              ]
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

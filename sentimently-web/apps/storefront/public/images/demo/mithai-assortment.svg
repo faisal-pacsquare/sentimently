@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-label="Mithai assortment">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fdf1d3"/><stop offset="1" stop-color="#f4d98d"/></linearGradient>
+    <linearGradient id="sh" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+  </defs>
+  <rect width="800" height="800" fill="url(#bg)"/>
+  <circle cx="650" cy="150" r="120" fill="#fff" opacity=".28"/>
+  <circle cx="120" cy="700" r="90" fill="#fff" opacity=".2"/>
+  <ellipse cx="400" cy="672" rx="220" ry="24" fill="#000" opacity=".1"/>
+  <ellipse cx="400" cy="570" rx="230" ry="60" fill="#b88a1e"/><rect x="170" y="400" width="460" height="170" fill="#b88a1e"/><rect x="170" y="400" width="460" height="170" fill="#000" opacity=".1"/>
+  <ellipse cx="400" cy="400" rx="230" ry="60" fill="#ffffff"/><ellipse cx="400" cy="400" rx="206" ry="48" fill="#b88a1e" opacity=".3"/>
+  <rect x="170" y="440" width="460" height="46" fill="#ffffff" opacity=".9"/><g transform="translate(400 466) scale(.45)"><path d="M0 38c-30-22-40-38-40-54a22 22 0 0 1 40-11 22 22 0 0 1 40 11c0 16-10 32-40 54z" fill="#b88a1e"/></g>
+  <rect x="198" y="410" width="40" height="150" rx="14" fill="url(#sh)"/>
+  <path d="M400 360c-50-80-110-30-60 8l60 10zM400 360c50-80 110-30 60 8l-60 10z" fill="#ffffff" opacity=".9"/>
+</svg>

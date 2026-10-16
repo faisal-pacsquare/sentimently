@@ -1,0 +1,30 @@
+{
+  "name": "sentimently-web",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Sentimently storefront and admin console (React)",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w @sentimently/storefront",
+    "dev:admin": "npm run dev -w @sentimently/admin",
+    "build": "npm run build -w @sentimently/storefront && npm run build -w @sentimently/admin",
+    "test": "npm run test --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "eslint": "^9.0.0",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "globals": "^15.0.0",
+    "typescript": "~5.8.0",
+    "typescript-eslint": "^8.0.0"
+  },
+  "engines": {
+    "node": ">=20.19"
+  },
+  "type": "module"
+}

@@ -1,0 +1,4197 @@
+[
+  {
+    "id": "p-photo-mug",
+    "slug": "photo-mug",
+    "name": "Photo mug",
+    "description": "A ceramic mug printed with your favourite photograph and a short message. Dishwasher safe.",
+    "price": 1200,
+    "offerPrice": 999,
+    "type": "physical",
+    "stock": 25,
+    "category": "home",
+    "sentiments": [
+      "i-miss-you",
+      "thank-you",
+      "i-love-you"
+    ],
+    "occasions": [
+      "birthday",
+      "anniversary"
+    ],
+    "recipients": [
+      "friend",
+      "partner",
+      "parent"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/photo-mug.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-couple-mugs-set",
+    "slug": "couple-mugs-set",
+    "name": "Couple mugs set",
+    "description": "Two matching mugs with your names, boxed together. A warm start to every shared morning.",
+    "price": 2400,
+    "type": "physical",
+    "stock": 18,
+    "category": "home",
+    "sentiments": [
+      "i-love-you",
+      "happy-anniversary"
+    ],
+    "occasions": [
+      "anniversary",
+      "wedding"
+    ],
+    "recipients": [
+      "partner"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/couple-mugs-set.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-scented-soy-candle",
+    "slug": "scented-soy-candle",
+    "name": "Scented soy candle",
+    "description": "A hand-poured soy candle in rose and vanilla, about 40 hours of slow, clean burn.",
+    "price": 1500,
+    "type": "physical",
+    "stock": 30,
+    "category": "home",
+    "sentiments": [
+      "thinking-of-you",
+      "just-because",
+      "thank-you"
+    ],
+    "occasions": [
+      "birthday",
+      "mothers-day"
+    ],
+    "recipients": [
+      "friend",
+      "parent"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/scented-soy-candle.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-candle-trio-gift-set",
+    "slug": "candle-trio-gift-set",
+    "name": "Candle trio gift set",
+    "description": "Three small candles in oud, jasmine and sandalwood, packed in a keepsake sleeve.",
+    "price": 3600,
+    "offerPrice": 3200,
+    "type": "physical",
+    "stock": 14,
+    "category": "home",
+    "sentiments": [
+      "thank-you",
+      "welcome-home",
+      "youre-the-best"
+    ],
+    "occasions": [
+      "eid",
+      "wedding"
+    ],
+    "recipients": [
+      "friend",
+      "colleague"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/candle-trio-gift-set.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-wooden-photo-frame",
+    "slug": "wooden-photo-frame",
+    "name": "Wooden photo frame",
+    "description": "A solid sheesham frame for a 5 by 7 photograph, with a small engraved line along the base.",
+    "price": 1800,
+    "type": "physical",
+    "stock": 22,
+    "category": "home",
+    "sentiments": [
+      "i-miss-you",
+      "thinking-of-you"
+    ],
+    "occasions": [
+      "birthday",
+      "anniversary"
+    ],
+    "recipients": [
+      "parent",
+      "partner"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/wooden-photo-frame.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-personalised-cushion",
+    "slug": "personalised-cushion",
+    "name": "Personalised cushion",
+    "description": "A soft velvet cushion with a name and a short message embroidered in the corner.",
+    "price": 2200,
+    "type": "physical",
+    "stock": 0,
+    "category": "home",
+    "sentiments": [
+      "i-love-you",
+      "welcome-home"
+    ],
+    "occasions": [
+      "wedding",
+      "birthday"
+    ],
+    "recipients": [
+      "partner",
+      "sibling"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box"
+    ],
+    "isMadeToOrder": true,
+    "leadTimeMinDays": 3,
+    "leadTimeMaxDays": 4,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/personalised-cushion.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-ceramic-bud-vase",
+    "slug": "ceramic-bud-vase",
+    "name": "Ceramic bud vase",
+    "description": "A small hand-glazed vase in sea green, made for a single flower or a sprig from the garden.",
+    "price": 1400,
+    "type": "physical",
+    "stock": 20,
+    "category": "home",
+    "sentiments": [
+      "just-because",
+      "thank-you"
+    ],
+    "occasions": [
+      "mothers-day",
+      "eid"
+    ],
+    "recipients": [
+      "friend",
+      "parent"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/ceramic-bud-vase.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-fairy-light-memory-jar",
+    "slug": "fairy-light-memory-jar",
+    "name": "Fairy-light memory jar",
+    "description": "A glass jar of warm fairy lights with space to slip in notes and tiny photographs.",
+    "price": 1100,
+    "type": "physical",
+    "stock": 35,
+    "category": "home",
+    "sentiments": [
+      "i-miss-you",
+      "thinking-of-you",
+      "im-sorry"
+    ],
+    "occasions": [
+      "birthday"
+    ],
+    "recipients": [
+      "friend",
+      "sibling",
+      "partner"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/fairy-light-memory-jar.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-calligraphy-wall-art",
+    "slug": "calligraphy-wall-art",
+    "name": "Calligraphy wall art",
+    "description": "A framed print with a line of verse in elegant calligraphy. Choose Urdu or English.",
+    "price": 2900,
+    "type": "physical",
+    "stock": 0,
+    "category": "home",
+    "sentiments": [
+      "i-love-you",
+      "proud-of-you"
+    ],
+    "occasions": [
+      "wedding",
+      "eid"
+    ],
+    "recipients": [
+      "parent",
+      "partner"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box"
+    ],
+    "isMadeToOrder": true,
+    "leadTimeMinDays": 4,
+    "leadTimeMaxDays": 6,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/calligraphy-wall-art.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-brass-table-lamp",
+    "slug": "brass-table-lamp",
+    "name": "Brass table lamp",
+    "description": "A compact brass-finish lamp with a linen shade. Gives a gentle pool of light for a reading corner.",
+    "price": 5400,
+    "type": "physical",
+    "stock": 9,
+    "category": "home",
+    "sentiments": [
+      "welcome-home",
+      "congratulations"
+    ],
+    "occasions": [
+      "wedding"
+    ],
+    "recipients": [
+      "friend",
+      "sibling"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/brass-table-lamp.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-aroma-diffuser-set",
+    "slug": "aroma-diffuser-set",
+    "name": "Aroma diffuser set",
+    "description": "An ultrasonic diffuser with three essential oils: lavender, eucalyptus and citrus.",
+    "price": 4200,
+    "offerPrice": 3700,
+    "type": "physical",
+    "stock": 16,
+    "category": "home",
+    "sentiments": [
+      "get-well-soon",
+      "thinking-of-you"
+    ],
+    "occasions": [
+      "mothers-day"
+    ],
+    "recipients": [
+      "parent",
+      "friend"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/aroma-diffuser-set.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-cotton-throw-blanket",
+    "slug": "cotton-throw-blanket",
+    "name": "Cotton throw blanket",
+    "description": "A woven cotton throw in soft stone, light enough for summer evenings and warm enough for winter.",
+    "price": 3800,
+    "type": "physical",
+    "stock": 12,
+    "category": "home",
+    "sentiments": [
+      "welcome-home",
+      "thank-you"
+    ],
+    "occasions": [
+      "wedding"
+    ],
+    "recipients": [
+      "parent",
+      "friend"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/cotton-throw-blanket.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-serving-tray-set",
+    "slug": "serving-tray-set",
+    "name": "Serving tray set",
+    "description": "Two hand-painted serving trays that nest together. Good for chai, sweets or a gift of their own.",
+    "price": 3100,
+    "type": "physical",
+    "stock": 15,
+    "category": "home",
+    "sentiments": [
+      "thank-you",
+      "welcome-home"
+    ],
+    "occasions": [
+      "eid",
+      "wedding"
+    ],
+    "recipients": [
+      "parent",
+      "colleague"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/serving-tray-set.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-chai-and-cup-set",
+    "slug": "chai-and-cup-set",
+    "name": "Chai and cup set",
+    "description": "Two cups, a tea strainer and a small tin of loose-leaf chai blend.",
+    "price": 2700,
+    "type": "physical",
+    "stock": 26,
+    "category": "home",
+    "sentiments": [
+      "thank-you",
+      "youre-the-best"
+    ],
+    "occasions": [
+      "eid",
+      "birthday"
+    ],
+    "recipients": [
+      "colleague",
+      "friend"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/chai-and-cup-set.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-cursive-name-necklace",
+    "slug": "cursive-name-necklace",
+    "name": "Cursive name necklace",
+    "description": "A silver necklace engraved with a name in cursive. Made to order.",
+    "price": 3500,
+    "type": "physical",
+    "stock": 0,
+    "category": "jewellery",
+    "sentiments": [
+      "i-love-you",
+      "i-miss-you",
+      "youre-the-best"
+    ],
+    "occasions": [
+      "birthday",
+      "anniversary"
+    ],
+    "recipients": [
+      "partner",
+      "friend",
+      "sibling"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box"
+    ],
+    "isMadeToOrder": true,
+    "leadTimeMinDays": 5,
+    "leadTimeMaxDays": 7,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/cursive-name-necklace.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-initial-pendant",
+    "slug": "initial-pendant",
+    "name": "Initial pendant",
+    "description": "A gold-plated initial on a fine chain. Choose any letter from A to Z.",
+    "price": 2800,
+    "type": "physical",
+    "stock": 24,
+    "category": "jewellery",
+    "sentiments": [
+      "just-because",
+      "i-love-you"
+    ],
+    "occasions": [
+      "birthday",
+      "mothers-day"
+    ],
+    "recipients": [
+      "partner",
+      "friend",
+      "sibling"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/initial-pendant.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-birthstone-ring",
+    "slug": "birthstone-ring",
+    "name": "Birthstone ring",
+    "description": "A sterling silver ring set with the stone of the month. Sizes 5 to 9.",
+    "price": 4900,
+    "offerPrice": 4400,
+    "type": "physical",
+    "stock": 11,
+    "category": "jewellery",
+    "sentiments": [
+      "proud-of-you",
+      "i-love-you"
+    ],
+    "occasions": [
+      "birthday",
+      "anniversary"
+    ],
+    "recipients": [
+      "partner",
+      "sibling"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/birthstone-ring.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-silver-bracelet",
+    "slug": "silver-bracelet",
+    "name": "Silver bracelet",
+    "description": "A slim silver bracelet with an adjustable clasp and a small engraved charm.",
+    "price": 3300,
+    "type": "physical",
+    "stock": 17,
+    "category": "jewellery",
+    "sentiments": [
+      "thinking-of-you",
+      "thank-you"
+    ],
+    "occasions": [
+      "birthday"
+    ],
+    "recipients": [
+      "friend",
+      "sibling"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/silver-bracelet.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-pearl-drop-earrings",
+    "slug": "pearl-drop-earrings",
+    "name": "Pearl drop earrings",
+    "description": "Freshwater pearls on gold-plated hooks, light enough to wear all day.",
+    "price": 3900,
+    "type": "physical",
+    "stock": 13,
+    "category": "jewellery",
+    "sentiments": [
+      "thank-you",
+      "congratulations"
+    ],
+    "occasions": [
+      "wedding",
+      "mothers-day"
+    ],
+    "recipients": [
+      "parent",
+      "friend"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/pearl-drop-earrings.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-couple-promise-bands",
+    "slug": "couple-promise-bands",
+    "name": "Couple promise bands",
+    "description": "A matching pair of brushed steel bands, engraved inside with a date or a word.",
+    "price": 6800,
+    "type": "physical",
+    "stock": 0,
+    "category": "jewellery",
+    "sentiments": [
+      "i-love-you",
+      "happy-anniversary"
+    ],
+    "occasions": [
+      "anniversary",
+      "wedding"
+    ],
+    "recipients": [
+      "partner"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box"
+    ],
+    "isMadeToOrder": true,
+    "leadTimeMinDays": 6,
+    "leadTimeMaxDays": 8,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/couple-promise-bands.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-engraved-bangle",
+    "slug": "engraved-bangle",
+    "name": "Engraved bangle",
+    "description": "A gold-plated bangle with a short message engraved on the inside curve.",
+    "price": 4600,
+    "type": "physical",
+    "stock": 0,
+    "category": "jewellery",
+    "sentiments": [
+      "i-love-you",
+      "proud-of-you",
+      "youre-the-best"
+    ],
+    "occasions": [
+      "birthday",
+      "eid"
+    ],
+    "recipients": [
+      "partner",
+      "parent",
+      "sibling"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box"
+    ],
+    "isMadeToOrder": true,
+    "leadTimeMinDays": 5,
+    "leadTimeMaxDays": 7,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/engraved-bangle.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-fine-gold-plated-chain",
+    "slug": "fine-gold-plated-chain",
+    "name": "Fine gold-plated chain",
+    "description": "A delicate 18 inch chain that layers beautifully with a pendant of your own.",
+    "price": 2500,
+    "type": "physical",
+    "stock": 28,
+    "category": "jewellery",
+    "sentiments": [
+      "just-because"
+    ],
+    "occasions": [
+      "birthday"
+    ],
+    "recipients": [
+      "friend",
+      "sibling"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/fine-gold-plated-chain.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-charm-bracelet",
+    "slug": "charm-bracelet",
+    "name": "Charm bracelet",
+    "description": "Start a story: a silver bracelet with three charms, with room for more over the years.",
+    "price": 5200,
+    "offerPrice": 4700,
+    "type": "physical",
+    "stock": 10,
+    "category": "jewellery",
+    "sentiments": [
+      "proud-of-you",
+      "just-because"
+    ],
+    "occasions": [
+      "birthday",
+      "graduation"
+    ],
+    "recipients": [
+      "friend",
+      "sibling"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/charm-bracelet.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-zodiac-constellation-necklace",
+    "slug": "zodiac-constellation-necklace",
+    "name": "Zodiac constellation necklace",
+    "description": "A pendant showing your sign's constellation in tiny stars, on a silver chain.",
+    "price": 3600,
+    "type": "physical",
+    "stock": 19,
+    "category": "jewellery",
+    "sentiments": [
+      "thinking-of-you",
+      "i-love-you"
+    ],
+    "occasions": [
+      "birthday"
+    ],
+    "recipients": [
+      "friend",
+      "partner"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/zodiac-constellation-necklace.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-heart-locket",
+    "slug": "heart-locket",
+    "name": "Heart locket",
+    "description": "A small heart locket that opens to hold a photo. Sterling silver with a rose finish.",
+    "price": 4400,
+    "type": "physical",
+    "stock": 14,
+    "category": "jewellery",
+    "sentiments": [
+      "i-miss-you",
+      "i-love-you",
+      "im-sorry"
+    ],
+    "occasions": [
+      "anniversary",
+      "birthday"
+    ],
+    "recipients": [
+      "partner",
+      "parent"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/heart-locket.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-engraved-cufflinks",
+    "slug": "engraved-cufflinks",
+    "name": "Engraved cufflinks",
+    "description": "Stainless steel cufflinks engraved with initials. Arrive in a slim presentation box.",
+    "price": 3700,
+    "type": "physical",
+    "stock": 0,
+    "category": "jewellery",
+    "sentiments": [
+      "proud-of-you",
+      "congratulations"
+    ],
+    "occasions": [
+      "wedding",
+      "fathers-day"
+    ],
+    "recipients": [
+      "partner",
+      "parent",
+      "colleague"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box"
+    ],
+    "isMadeToOrder": true,
+    "leadTimeMinDays": 4,
+    "leadTimeMaxDays": 5,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/engraved-cufflinks.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-luxury-chocolate-box",
+    "slug": "luxury-chocolate-box",
+    "name": "Luxury chocolate box",
+    "description": "Twelve hand-finished chocolates: salted caramel, hazelnut praline, dark orange and more.",
+    "price": 1800,
+    "type": "physical",
+    "stock": 30,
+    "category": "food",
+    "sentiments": [
+      "thank-you",
+      "im-sorry",
+      "i-love-you"
+    ],
+    "occasions": [
+      "birthday",
+      "eid"
+    ],
+    "recipients": [
+      "friend",
+      "partner",
+      "colleague"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": true,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/luxury-chocolate-box.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-dates-gift-tray",
+    "slug": "dates-gift-tray",
+    "name": "Dates gift tray",
+    "description": "Premium Ajwa and Medjool dates arranged on a wooden tray, ready for Ramadan and Eid.",
+    "price": 2600,
+    "type": "physical",
+    "stock": 40,
+    "category": "food",
+    "sentiments": [
+      "thank-you",
+      "welcome-home"
+    ],
+    "occasions": [
+      "eid"
+    ],
+    "recipients": [
+      "parent",
+      "colleague"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/dates-gift-tray.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-celebration-cake-1-kg",
+    "slug": "celebration-cake-1-kg",
+    "name": "Celebration cake (1 kg)",
+    "description": "A fresh vanilla and strawberry cake with a short message piped on top. Baked the day it is sent.",
+    "price": 3200,
+    "type": "physical",
+    "stock": 10,
+    "category": "food",
+    "sentiments": [
+      "congratulations",
+      "i-love-you"
+    ],
+    "occasions": [
+      "birthday",
+      "anniversary"
+    ],
+    "recipients": [
+      "friend",
+      "partner",
+      "child"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": true,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/celebration-cake-1-kg.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-gourmet-cookie-tin",
+    "slug": "gourmet-cookie-tin",
+    "name": "Gourmet cookie tin",
+    "description": "Twelve big cookies in a keepsake tin: chocolate chunk, oat and sea-salt caramel.",
+    "price": 1900,
+    "type": "physical",
+    "stock": 32,
+    "category": "food",
+    "sentiments": [
+      "thank-you",
+      "just-because",
+      "im-sorry"
+    ],
+    "occasions": [
+      "birthday",
+      "eid"
+    ],
+    "recipients": [
+      "friend",
+      "colleague",
+      "child"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/gourmet-cookie-tin.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-dry-fruit-hamper",
+    "slug": "dry-fruit-hamper",
+    "name": "Dry fruit hamper",
+    "description": "Almonds, pistachios, walnuts and dried apricots in a hand-woven basket.",
+    "price": 4800,
+    "offerPrice": 4300,
+    "type": "physical",
+    "stock": 16,
+    "category": "food",
+    "sentiments": [
+      "thank-you",
+      "welcome-home"
+    ],
+    "occasions": [
+      "eid",
+      "wedding"
+    ],
+    "recipients": [
+      "parent",
+      "colleague"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/dry-fruit-hamper.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-tea-and-honey-set",
+    "slug": "tea-and-honey-set",
+    "name": "Tea and honey set",
+    "description": "Three loose-leaf teas and a jar of wild honey, with a wooden dipper.",
+    "price": 2400,
+    "type": "physical",
+    "stock": 21,
+    "category": "food",
+    "sentiments": [
+      "get-well-soon",
+      "thinking-of-you",
+      "thank-you"
+    ],
+    "occasions": [
+      "mothers-day"
+    ],
+    "recipients": [
+      "parent",
+      "friend"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/tea-and-honey-set.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-macarons-box-12",
+    "slug": "macarons-box-12",
+    "name": "Macarons box (12)",
+    "description": "Twelve French-style macarons in rose, pistachio, salted caramel and coffee.",
+    "price": 2300,
+    "type": "physical",
+    "stock": 18,
+    "category": "food",
+    "sentiments": [
+      "i-love-you",
+      "congratulations"
+    ],
+    "occasions": [
+      "birthday",
+      "anniversary"
+    ],
+    "recipients": [
+      "partner",
+      "friend"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": true,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/macarons-box-12.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-fudge-brownie-box",
+    "slug": "fudge-brownie-box",
+    "name": "Fudge brownie box",
+    "description": "Eight dense chocolate brownies, cut into squares and wrapped in ribbon.",
+    "price": 1600,
+    "type": "physical",
+    "stock": 26,
+    "category": "food",
+    "sentiments": [
+      "im-sorry",
+      "just-because",
+      "youre-the-best"
+    ],
+    "occasions": [
+      "birthday"
+    ],
+    "recipients": [
+      "friend",
+      "colleague",
+      "child"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": true,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/fudge-brownie-box.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-mithai-assortment",
+    "slug": "mithai-assortment",
+    "name": "Mithai assortment",
+    "description": "Barfi, gulab jamun, rasmalai and kaju katli from a family confectioner, in a decorative box.",
+    "price": 2900,
+    "type": "physical",
+    "stock": 22,
+    "category": "food",
+    "sentiments": [
+      "congratulations",
+      "thank-you"
+    ],
+    "occasions": [
+      "eid",
+      "wedding",
+      "new-baby"
+    ],
+    "recipients": [
+      "parent",
+      "colleague"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": true,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/mithai-assortment.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-coffee-lovers-hamper",
+    "slug": "coffee-lovers-hamper",
+    "name": "Coffee lover's hamper",
+    "description": "Freshly roasted beans, a small grinder and a ceramic mug for the one who needs their cup.",
+    "price": 4100,
+    "type": "physical",
+    "stock": 11,
+    "category": "food",
+    "sentiments": [
+      "thank-you",
+      "youre-the-best"
+    ],
+    "occasions": [
+      "birthday",
+      "fathers-day"
+    ],
+    "recipients": [
+      "colleague",
+      "friend",
+      "parent"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/coffee-lovers-hamper.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-hazelnut-spread-jar",
+    "slug": "hazelnut-spread-jar",
+    "name": "Hazelnut spread jar",
+    "description": "A jar of smooth roasted hazelnut and cocoa spread, made in small batches.",
+    "price": 900,
+    "type": "physical",
+    "stock": 45,
+    "category": "food",
+    "sentiments": [
+      "just-because",
+      "im-sorry"
+    ],
+    "occasions": [
+      "birthday"
+    ],
+    "recipients": [
+      "friend",
+      "child"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/hazelnut-spread-jar.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-baklava-box",
+    "slug": "baklava-box",
+    "name": "Baklava box",
+    "description": "Layers of flaky pastry with pistachio and honey, packed fresh in a gold-trimmed box.",
+    "price": 2700,
+    "type": "physical",
+    "stock": 20,
+    "category": "food",
+    "sentiments": [
+      "thank-you",
+      "congratulations"
+    ],
+    "occasions": [
+      "eid",
+      "wedding"
+    ],
+    "recipients": [
+      "parent",
+      "colleague"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": true,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/baklava-box.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-red-roses-bouquet-12",
+    "slug": "red-roses-bouquet-12",
+    "name": "Red roses bouquet (12)",
+    "description": "Twelve long-stem red roses with eucalyptus, hand tied and wrapped in paper.",
+    "price": 3400,
+    "type": "physical",
+    "stock": 20,
+    "category": "flowers",
+    "sentiments": [
+      "i-love-you",
+      "im-sorry"
+    ],
+    "occasions": [
+      "anniversary",
+      "birthday"
+    ],
+    "recipients": [
+      "partner"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "dried_flower_posy",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": true,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/red-roses-bouquet-12.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-pastel-mixed-bouquet",
+    "slug": "pastel-mixed-bouquet",
+    "name": "Pastel mixed bouquet",
+    "description": "Roses, carnations and lisianthus in soft pinks and creams, tied with a satin ribbon.",
+    "price": 3000,
+    "type": "physical",
+    "stock": 16,
+    "category": "flowers",
+    "sentiments": [
+      "thank-you",
+      "congratulations",
+      "thinking-of-you"
+    ],
+    "occasions": [
+      "birthday",
+      "mothers-day"
+    ],
+    "recipients": [
+      "friend",
+      "parent"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "dried_flower_posy",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": true,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/pastel-mixed-bouquet.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-sunflower-bunch",
+    "slug": "sunflower-bunch",
+    "name": "Sunflower bunch",
+    "description": "Seven bright sunflowers with greens. Impossible not to smile at.",
+    "price": 2200,
+    "type": "physical",
+    "stock": 14,
+    "category": "flowers",
+    "sentiments": [
+      "get-well-soon",
+      "proud-of-you",
+      "just-because"
+    ],
+    "occasions": [
+      "birthday",
+      "graduation"
+    ],
+    "recipients": [
+      "friend",
+      "sibling"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "dried_flower_posy",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": true,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/sunflower-bunch.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-white-lilies-bouquet",
+    "slug": "white-lilies-bouquet",
+    "name": "White lilies bouquet",
+    "description": "A generous bunch of fragrant white lilies, for sympathy, welcome or celebration.",
+    "price": 3600,
+    "type": "physical",
+    "stock": 9,
+    "category": "flowers",
+    "sentiments": [
+      "im-sorry",
+      "get-well-soon",
+      "welcome-home"
+    ],
+    "occasions": [
+      "new-baby",
+      "wedding"
+    ],
+    "recipients": [
+      "parent",
+      "friend"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "dried_flower_posy",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": true,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/white-lilies-bouquet.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-tulip-bunch",
+    "slug": "tulip-bunch",
+    "name": "Tulip bunch",
+    "description": "Fifteen tulips in mixed spring colours, wrapped in kraft paper.",
+    "price": 2800,
+    "type": "physical",
+    "stock": 12,
+    "category": "flowers",
+    "sentiments": [
+      "just-because",
+      "thinking-of-you"
+    ],
+    "occasions": [
+      "mothers-day",
+      "birthday"
+    ],
+    "recipients": [
+      "friend",
+      "parent"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "dried_flower_posy",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": true,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/tulip-bunch.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-rose-box",
+    "slug": "rose-box",
+    "name": "Rose box",
+    "description": "Fresh roses arranged in a round hat box that you can keep afterwards.",
+    "price": 4200,
+    "offerPrice": 3800,
+    "type": "physical",
+    "stock": 15,
+    "category": "flowers",
+    "sentiments": [
+      "i-love-you",
+      "happy-anniversary"
+    ],
+    "occasions": [
+      "anniversary",
+      "birthday"
+    ],
+    "recipients": [
+      "partner"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "dried_flower_posy",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": true,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/rose-box.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-dried-flower-posy",
+    "slug": "dried-flower-posy",
+    "name": "Dried flower posy",
+    "description": "A small bunch of dried gypsophila, lavender and wheat. Lasts for months.",
+    "price": 2000,
+    "type": "physical",
+    "stock": 24,
+    "category": "flowers",
+    "sentiments": [
+      "thinking-of-you",
+      "thank-you",
+      "welcome-home"
+    ],
+    "occasions": [
+      "mothers-day",
+      "eid"
+    ],
+    "recipients": [
+      "friend",
+      "parent"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "dried_flower_posy",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/dried-flower-posy.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-carnation-basket",
+    "slug": "carnation-basket",
+    "name": "Carnation basket",
+    "description": "Pink and white carnations in a woven basket, ready to stand on a table.",
+    "price": 3100,
+    "type": "physical",
+    "stock": 13,
+    "category": "flowers",
+    "sentiments": [
+      "get-well-soon",
+      "thank-you"
+    ],
+    "occasions": [
+      "mothers-day"
+    ],
+    "recipients": [
+      "parent",
+      "friend"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "dried_flower_posy",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": true,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/carnation-basket.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-orchid-arrangement",
+    "slug": "orchid-arrangement",
+    "name": "Orchid arrangement",
+    "description": "A double-stem orchid in a ceramic pot, with lasting blooms for weeks.",
+    "price": 5900,
+    "type": "physical",
+    "stock": 7,
+    "category": "flowers",
+    "sentiments": [
+      "congratulations",
+      "welcome-home"
+    ],
+    "occasions": [
+      "wedding",
+      "new-baby"
+    ],
+    "recipients": [
+      "friend",
+      "colleague"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "dried_flower_posy",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/orchid-arrangement.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-gerbera-daisies",
+    "slug": "gerbera-daisies",
+    "name": "Gerbera daisies",
+    "description": "A cheerful mix of gerbera daisies in orange, yellow and pink.",
+    "price": 2300,
+    "type": "physical",
+    "stock": 17,
+    "category": "flowers",
+    "sentiments": [
+      "proud-of-you",
+      "get-well-soon",
+      "youre-the-best"
+    ],
+    "occasions": [
+      "graduation",
+      "birthday"
+    ],
+    "recipients": [
+      "friend",
+      "child"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "dried_flower_posy",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": true,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/gerbera-daisies.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-money-plant-in-a-pot",
+    "slug": "money-plant-in-a-pot",
+    "name": "Money plant in a pot",
+    "description": "A hardy trailing plant in a glazed pot. Forgiving, fast-growing and said to bring luck.",
+    "price": 1300,
+    "type": "physical",
+    "stock": 34,
+    "category": "plants",
+    "sentiments": [
+      "good-luck",
+      "welcome-home"
+    ],
+    "occasions": [
+      "wedding",
+      "eid"
+    ],
+    "recipients": [
+      "friend",
+      "colleague"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/money-plant-in-a-pot.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-succulent-trio",
+    "slug": "succulent-trio",
+    "name": "Succulent trio",
+    "description": "Three small succulents in matching terracotta pots, with a tray.",
+    "price": 1700,
+    "type": "physical",
+    "stock": 27,
+    "category": "plants",
+    "sentiments": [
+      "thinking-of-you",
+      "just-because"
+    ],
+    "occasions": [
+      "birthday"
+    ],
+    "recipients": [
+      "friend",
+      "colleague",
+      "sibling"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/succulent-trio.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-peace-lily",
+    "slug": "peace-lily",
+    "name": "Peace lily",
+    "description": "A graceful indoor plant with white blooms, known for clearing the air.",
+    "price": 2400,
+    "type": "physical",
+    "stock": 12,
+    "category": "plants",
+    "sentiments": [
+      "im-sorry",
+      "get-well-soon",
+      "welcome-home"
+    ],
+    "occasions": [
+      "new-baby",
+      "mothers-day"
+    ],
+    "recipients": [
+      "parent",
+      "friend"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/peace-lily.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-mini-cactus-garden",
+    "slug": "mini-cactus-garden",
+    "name": "Mini cactus garden",
+    "description": "A tiny desert in a bowl: five cacti and a layer of coloured sand.",
+    "price": 1900,
+    "type": "physical",
+    "stock": 22,
+    "category": "plants",
+    "sentiments": [
+      "just-because",
+      "good-luck"
+    ],
+    "occasions": [
+      "birthday",
+      "graduation"
+    ],
+    "recipients": [
+      "colleague",
+      "child"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/mini-cactus-garden.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-lucky-bamboo",
+    "slug": "lucky-bamboo",
+    "name": "Lucky bamboo",
+    "description": "Three stalks of lucky bamboo in a glass vase with pebbles.",
+    "price": 1500,
+    "type": "physical",
+    "stock": 30,
+    "category": "plants",
+    "sentiments": [
+      "good-luck",
+      "congratulations"
+    ],
+    "occasions": [
+      "wedding"
+    ],
+    "recipients": [
+      "colleague",
+      "friend"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/lucky-bamboo.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-snake-plant",
+    "slug": "snake-plant",
+    "name": "Snake plant",
+    "description": "A sculptural, nearly indestructible plant for brighter or dimmer rooms alike.",
+    "price": 2100,
+    "type": "physical",
+    "stock": 19,
+    "category": "plants",
+    "sentiments": [
+      "welcome-home",
+      "thank-you"
+    ],
+    "occasions": [
+      "wedding"
+    ],
+    "recipients": [
+      "colleague",
+      "friend"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/snake-plant.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-glass-terrarium",
+    "slug": "glass-terrarium",
+    "name": "Glass terrarium",
+    "description": "A closed glass terrarium with moss, small ferns and a stone path. Almost no care needed.",
+    "price": 3400,
+    "offerPrice": 3000,
+    "type": "physical",
+    "stock": 8,
+    "category": "plants",
+    "sentiments": [
+      "thinking-of-you",
+      "just-because"
+    ],
+    "occasions": [
+      "birthday"
+    ],
+    "recipients": [
+      "friend",
+      "partner"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/glass-terrarium.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-herb-garden-kit",
+    "slug": "herb-garden-kit",
+    "name": "Herb garden kit",
+    "description": "Basil, coriander and mint seeds with pots, soil and a small trowel.",
+    "price": 1800,
+    "type": "physical",
+    "stock": 23,
+    "category": "plants",
+    "sentiments": [
+      "thank-you",
+      "welcome-home"
+    ],
+    "occasions": [
+      "birthday",
+      "mothers-day"
+    ],
+    "recipients": [
+      "parent",
+      "friend"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/herb-garden-kit.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-signature-perfume-for-her",
+    "slug": "signature-perfume-for-her",
+    "name": "Signature perfume for her",
+    "description": "A warm floral fragrance with notes of jasmine, amber and musk. 50 ml.",
+    "price": 5800,
+    "type": "physical",
+    "stock": 21,
+    "category": "beauty",
+    "sentiments": [
+      "i-love-you",
+      "thank-you"
+    ],
+    "occasions": [
+      "birthday",
+      "mothers-day",
+      "anniversary"
+    ],
+    "recipients": [
+      "partner",
+      "parent"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/signature-perfume-for-her.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-signature-perfume-for-him",
+    "slug": "signature-perfume-for-him",
+    "name": "Signature perfume for him",
+    "description": "A woody, spiced fragrance with notes of cedar, cardamom and leather. 50 ml.",
+    "price": 5800,
+    "type": "physical",
+    "stock": 21,
+    "category": "beauty",
+    "sentiments": [
+      "i-love-you",
+      "proud-of-you"
+    ],
+    "occasions": [
+      "birthday",
+      "fathers-day"
+    ],
+    "recipients": [
+      "partner",
+      "parent"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/signature-perfume-for-him.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-spa-day-hamper",
+    "slug": "spa-day-hamper",
+    "name": "Spa day hamper",
+    "description": "A bath bomb, body scrub, face mask and candle, packed for a slow evening.",
+    "price": 4600,
+    "offerPrice": 4100,
+    "type": "physical",
+    "stock": 12,
+    "category": "beauty",
+    "sentiments": [
+      "get-well-soon",
+      "thank-you",
+      "youre-the-best"
+    ],
+    "occasions": [
+      "mothers-day",
+      "birthday"
+    ],
+    "recipients": [
+      "friend",
+      "parent"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/spa-day-hamper.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-skincare-essentials-set",
+    "slug": "skincare-essentials-set",
+    "name": "Skincare essentials set",
+    "description": "Cleanser, toner and moisturiser for everyday skin, in travel sizes.",
+    "price": 6200,
+    "type": "physical",
+    "stock": 14,
+    "category": "beauty",
+    "sentiments": [
+      "thank-you",
+      "thinking-of-you"
+    ],
+    "occasions": [
+      "birthday"
+    ],
+    "recipients": [
+      "friend",
+      "sibling"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/skincare-essentials-set.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-oud-attar",
+    "slug": "oud-attar",
+    "name": "Oud attar",
+    "description": "A rich, alcohol-free attar oil in a hand-cut glass bottle.",
+    "price": 3900,
+    "type": "physical",
+    "stock": 17,
+    "category": "beauty",
+    "sentiments": [
+      "thank-you",
+      "congratulations"
+    ],
+    "occasions": [
+      "eid",
+      "fathers-day"
+    ],
+    "recipients": [
+      "parent",
+      "friend",
+      "partner"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/oud-attar.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-bath-bomb-collection",
+    "slug": "bath-bomb-collection",
+    "name": "Bath bomb collection",
+    "description": "Six fizzing bath bombs in rose, lavender, citrus, vanilla, mint and ocean.",
+    "price": 1700,
+    "type": "physical",
+    "stock": 28,
+    "category": "beauty",
+    "sentiments": [
+      "just-because",
+      "get-well-soon"
+    ],
+    "occasions": [
+      "birthday"
+    ],
+    "recipients": [
+      "friend",
+      "sibling"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/bath-bomb-collection.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-body-mist-trio",
+    "slug": "body-mist-trio",
+    "name": "Body mist trio",
+    "description": "Three light body mists: peach blossom, sea salt and cherry.",
+    "price": 2900,
+    "type": "physical",
+    "stock": 24,
+    "category": "beauty",
+    "sentiments": [
+      "just-because",
+      "thank-you"
+    ],
+    "occasions": [
+      "birthday"
+    ],
+    "recipients": [
+      "friend",
+      "sibling",
+      "colleague"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/body-mist-trio.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-hair-care-ritual-set",
+    "slug": "hair-care-ritual-set",
+    "name": "Hair care ritual set",
+    "description": "A nourishing oil, a mask and a wooden comb, for glossier hair.",
+    "price": 3300,
+    "type": "physical",
+    "stock": 15,
+    "category": "beauty",
+    "sentiments": [
+      "thank-you",
+      "thinking-of-you"
+    ],
+    "occasions": [
+      "mothers-day",
+      "birthday"
+    ],
+    "recipients": [
+      "friend",
+      "parent"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/hair-care-ritual-set.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-lip-care-duo",
+    "slug": "lip-care-duo",
+    "name": "Lip care duo",
+    "description": "A tinted balm and a sleeping lip mask in a small satin pouch.",
+    "price": 1200,
+    "type": "physical",
+    "stock": 40,
+    "category": "beauty",
+    "sentiments": [
+      "just-because",
+      "youre-the-best"
+    ],
+    "occasions": [
+      "birthday"
+    ],
+    "recipients": [
+      "friend",
+      "colleague"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/lip-care-duo.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-silk-eye-mask-and-pouch",
+    "slug": "silk-eye-mask-and-pouch",
+    "name": "Silk eye mask and pouch",
+    "description": "A soft silk sleep mask with a matching pouch, for travel or lazy mornings.",
+    "price": 1600,
+    "type": "physical",
+    "stock": 26,
+    "category": "beauty",
+    "sentiments": [
+      "get-well-soon",
+      "thank-you"
+    ],
+    "occasions": [
+      "birthday",
+      "mothers-day"
+    ],
+    "recipients": [
+      "friend",
+      "parent"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/silk-eye-mask-and-pouch.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-leather-bifold-wallet",
+    "slug": "leather-bifold-wallet",
+    "name": "Leather bifold wallet",
+    "description": "A slim wallet in full-grain leather with six card slots and a note compartment. Initials on request.",
+    "price": 3900,
+    "type": "physical",
+    "stock": 0,
+    "category": "accessories",
+    "sentiments": [
+      "proud-of-you",
+      "thank-you",
+      "i-love-you"
+    ],
+    "occasions": [
+      "birthday",
+      "fathers-day"
+    ],
+    "recipients": [
+      "partner",
+      "parent",
+      "colleague"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box"
+    ],
+    "isMadeToOrder": true,
+    "leadTimeMinDays": 3,
+    "leadTimeMaxDays": 4,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/leather-bifold-wallet.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-canvas-tote-bag",
+    "slug": "canvas-tote-bag",
+    "name": "Canvas tote bag",
+    "description": "A sturdy cotton tote with a printed name or short quote. Big enough for a laptop.",
+    "price": 1900,
+    "type": "physical",
+    "stock": 33,
+    "category": "accessories",
+    "sentiments": [
+      "just-because",
+      "thank-you"
+    ],
+    "occasions": [
+      "birthday",
+      "graduation"
+    ],
+    "recipients": [
+      "friend",
+      "colleague"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/canvas-tote-bag.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-silk-scarf",
+    "slug": "silk-scarf",
+    "name": "Silk scarf",
+    "description": "A square silk-blend scarf in a floral print, to wear on the neck, hair or bag.",
+    "price": 3200,
+    "type": "physical",
+    "stock": 18,
+    "category": "accessories",
+    "sentiments": [
+      "thank-you",
+      "thinking-of-you"
+    ],
+    "occasions": [
+      "mothers-day",
+      "eid"
+    ],
+    "recipients": [
+      "parent",
+      "friend"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/silk-scarf.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-classic-mens-watch",
+    "slug": "classic-mens-watch",
+    "name": "Classic men's watch",
+    "description": "A simple steel watch with a navy dial and a leather strap. Water resistant to 30 m.",
+    "price": 7800,
+    "offerPrice": 6900,
+    "type": "physical",
+    "stock": 9,
+    "category": "accessories",
+    "sentiments": [
+      "proud-of-you",
+      "congratulations"
+    ],
+    "occasions": [
+      "fathers-day",
+      "graduation",
+      "birthday"
+    ],
+    "recipients": [
+      "partner",
+      "parent"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/classic-mens-watch.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-womens-rose-gold-watch",
+    "slug": "womens-rose-gold-watch",
+    "name": "Women's rose-gold watch",
+    "description": "A slim rose-gold watch with a mesh strap and a mother-of-pearl face.",
+    "price": 7200,
+    "type": "physical",
+    "stock": 10,
+    "category": "accessories",
+    "sentiments": [
+      "i-love-you",
+      "proud-of-you"
+    ],
+    "occasions": [
+      "birthday",
+      "anniversary"
+    ],
+    "recipients": [
+      "partner",
+      "sibling"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/womens-rose-gold-watch.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-polarised-sunglasses",
+    "slug": "polarised-sunglasses",
+    "name": "Polarised sunglasses",
+    "description": "Lightweight frames with UV400 polarised lenses and a soft case.",
+    "price": 3500,
+    "type": "physical",
+    "stock": 20,
+    "category": "accessories",
+    "sentiments": [
+      "just-because",
+      "youre-the-best"
+    ],
+    "occasions": [
+      "birthday"
+    ],
+    "recipients": [
+      "friend",
+      "sibling"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/polarised-sunglasses.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-leather-keychain",
+    "slug": "leather-keychain",
+    "name": "Leather keychain",
+    "description": "A hand-stitched leather keyfob with initials pressed in gold.",
+    "price": 900,
+    "type": "physical",
+    "stock": 0,
+    "category": "accessories",
+    "sentiments": [
+      "thank-you",
+      "good-luck"
+    ],
+    "occasions": [
+      "birthday",
+      "graduation"
+    ],
+    "recipients": [
+      "friend",
+      "colleague"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box"
+    ],
+    "isMadeToOrder": true,
+    "leadTimeMinDays": 2,
+    "leadTimeMaxDays": 3,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/leather-keychain.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-passport-holder",
+    "slug": "passport-holder",
+    "name": "Passport holder",
+    "description": "A leather passport holder with card slots and a name stamped on the cover.",
+    "price": 1800,
+    "type": "physical",
+    "stock": 25,
+    "category": "accessories",
+    "sentiments": [
+      "good-luck",
+      "i-miss-you"
+    ],
+    "occasions": [
+      "birthday",
+      "graduation"
+    ],
+    "recipients": [
+      "friend",
+      "sibling"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/passport-holder.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-everyday-handbag",
+    "slug": "everyday-handbag",
+    "name": "Everyday handbag",
+    "description": "A structured faux-leather handbag with an inner zip pocket and a detachable strap.",
+    "price": 6400,
+    "type": "physical",
+    "stock": 8,
+    "category": "accessories",
+    "sentiments": [
+      "i-love-you",
+      "thank-you"
+    ],
+    "occasions": [
+      "mothers-day",
+      "birthday"
+    ],
+    "recipients": [
+      "partner",
+      "parent"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/everyday-handbag.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-woollen-winter-set",
+    "slug": "woollen-winter-set",
+    "name": "Woollen winter set",
+    "description": "A matching cap, scarf and gloves in soft wool, in charcoal or camel.",
+    "price": 3100,
+    "type": "physical",
+    "stock": 16,
+    "category": "accessories",
+    "sentiments": [
+      "thinking-of-you",
+      "welcome-home"
+    ],
+    "occasions": [
+      "birthday"
+    ],
+    "recipients": [
+      "parent",
+      "friend",
+      "child"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/woollen-winter-set.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-personalised-leather-diary",
+    "slug": "personalised-leather-diary",
+    "name": "Personalised leather diary",
+    "description": "A refillable A5 diary with a name pressed on the cover and 200 cream pages.",
+    "price": 2800,
+    "type": "physical",
+    "stock": 0,
+    "category": "stationery",
+    "sentiments": [
+      "proud-of-you",
+      "thank-you"
+    ],
+    "occasions": [
+      "graduation",
+      "birthday"
+    ],
+    "recipients": [
+      "friend",
+      "colleague",
+      "sibling"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box"
+    ],
+    "isMadeToOrder": true,
+    "leadTimeMinDays": 3,
+    "leadTimeMaxDays": 4,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/personalised-leather-diary.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-fountain-pen-set",
+    "slug": "fountain-pen-set",
+    "name": "Fountain pen set",
+    "description": "A weighty fountain pen with two ink cartridges, in a wooden presentation case.",
+    "price": 4300,
+    "type": "physical",
+    "stock": 12,
+    "category": "stationery",
+    "sentiments": [
+      "congratulations",
+      "proud-of-you"
+    ],
+    "occasions": [
+      "graduation",
+      "fathers-day"
+    ],
+    "recipients": [
+      "colleague",
+      "parent"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/fountain-pen-set.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-notebook-trio",
+    "slug": "notebook-trio",
+    "name": "Notebook trio",
+    "description": "Three pocket notebooks in dotted, lined and plain, with a pen loop.",
+    "price": 1400,
+    "type": "physical",
+    "stock": 38,
+    "category": "stationery",
+    "sentiments": [
+      "just-because",
+      "thank-you"
+    ],
+    "occasions": [
+      "birthday"
+    ],
+    "recipients": [
+      "colleague",
+      "friend"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/notebook-trio.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-desk-planner",
+    "slug": "desk-planner",
+    "name": "Desk planner",
+    "description": "A dated weekly planner with goal pages and a cover in soft sage.",
+    "price": 1700,
+    "type": "physical",
+    "stock": 24,
+    "category": "stationery",
+    "sentiments": [
+      "good-luck",
+      "proud-of-you"
+    ],
+    "occasions": [
+      "graduation"
+    ],
+    "recipients": [
+      "colleague",
+      "sibling"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/desk-planner.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-poetry-collection",
+    "slug": "poetry-collection",
+    "name": "Poetry collection",
+    "description": "A hardback collection of ghazals and nazms, in Urdu with English translation.",
+    "price": 1500,
+    "type": "physical",
+    "stock": 19,
+    "category": "stationery",
+    "sentiments": [
+      "i-love-you",
+      "i-miss-you",
+      "thinking-of-you"
+    ],
+    "occasions": [
+      "birthday",
+      "eid"
+    ],
+    "recipients": [
+      "friend",
+      "partner",
+      "parent"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/poetry-collection.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-photo-book-20-pages",
+    "slug": "photo-book-20-pages",
+    "name": "Photo book (20 pages)",
+    "description": "A hardcover book printed with your photographs and captions. Made to order.",
+    "price": 4500,
+    "type": "physical",
+    "stock": 0,
+    "category": "stationery",
+    "sentiments": [
+      "i-miss-you",
+      "i-love-you",
+      "proud-of-you"
+    ],
+    "occasions": [
+      "anniversary",
+      "wedding",
+      "birthday"
+    ],
+    "recipients": [
+      "partner",
+      "parent",
+      "friend"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box"
+    ],
+    "isMadeToOrder": true,
+    "leadTimeMinDays": 6,
+    "leadTimeMaxDays": 8,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/photo-book-20-pages.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-calligraphy-starter-set",
+    "slug": "calligraphy-starter-set",
+    "name": "Calligraphy starter set",
+    "description": "Pens, ink, practice paper and a guide book, for beautiful handwriting.",
+    "price": 2600,
+    "type": "physical",
+    "stock": 13,
+    "category": "stationery",
+    "sentiments": [
+      "just-because",
+      "good-luck"
+    ],
+    "occasions": [
+      "birthday",
+      "eid"
+    ],
+    "recipients": [
+      "friend",
+      "child"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/calligraphy-starter-set.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-magnetic-bookmark-set",
+    "slug": "magnetic-bookmark-set",
+    "name": "Magnetic bookmark set",
+    "description": "Six magnetic bookmarks in a tin, in gold and enamel.",
+    "price": 800,
+    "type": "physical",
+    "stock": 50,
+    "category": "stationery",
+    "sentiments": [
+      "thank-you",
+      "just-because"
+    ],
+    "occasions": [
+      "birthday"
+    ],
+    "recipients": [
+      "friend",
+      "colleague"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/magnetic-bookmark-set.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-wireless-earbuds",
+    "slug": "wireless-earbuds",
+    "name": "Wireless earbuds",
+    "description": "True wireless earbuds with 20 hours of battery in the case and a pocket-sized charger.",
+    "price": 6900,
+    "offerPrice": 5900,
+    "type": "physical",
+    "stock": 14,
+    "category": "tech",
+    "sentiments": [
+      "proud-of-you",
+      "thank-you",
+      "youre-the-best"
+    ],
+    "occasions": [
+      "birthday",
+      "graduation"
+    ],
+    "recipients": [
+      "friend",
+      "sibling",
+      "partner"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/wireless-earbuds.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-bluetooth-speaker",
+    "slug": "bluetooth-speaker",
+    "name": "Bluetooth speaker",
+    "description": "A small, loud, water-resistant speaker with 12 hours of play time.",
+    "price": 5200,
+    "type": "physical",
+    "stock": 17,
+    "category": "tech",
+    "sentiments": [
+      "thank-you",
+      "congratulations"
+    ],
+    "occasions": [
+      "birthday",
+      "graduation"
+    ],
+    "recipients": [
+      "friend",
+      "sibling"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/bluetooth-speaker.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-power-bank-10-000-mah",
+    "slug": "power-bank-10-000-mah",
+    "name": "Power bank 10,000 mAh",
+    "description": "A slim power bank that charges a phone twice. Fast charging over USB-C.",
+    "price": 3400,
+    "type": "physical",
+    "stock": 30,
+    "category": "tech",
+    "sentiments": [
+      "thank-you",
+      "good-luck"
+    ],
+    "occasions": [
+      "birthday"
+    ],
+    "recipients": [
+      "colleague",
+      "friend"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/power-bank-10-000-mah.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-smart-fitness-band",
+    "slug": "smart-fitness-band",
+    "name": "Smart fitness band",
+    "description": "A fitness band tracking steps, heart rate and sleep, with a 10 day battery.",
+    "price": 5600,
+    "type": "physical",
+    "stock": 12,
+    "category": "tech",
+    "sentiments": [
+      "proud-of-you",
+      "get-well-soon"
+    ],
+    "occasions": [
+      "birthday"
+    ],
+    "recipients": [
+      "friend",
+      "parent"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/smart-fitness-band.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-personalised-phone-case",
+    "slug": "personalised-phone-case",
+    "name": "Personalised phone case",
+    "description": "A slim, shock-absorbing case with your photo or a name printed on the back.",
+    "price": 1700,
+    "type": "physical",
+    "stock": 0,
+    "category": "tech",
+    "sentiments": [
+      "i-miss-you",
+      "i-love-you",
+      "just-because"
+    ],
+    "occasions": [
+      "birthday"
+    ],
+    "recipients": [
+      "friend",
+      "partner",
+      "sibling"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box"
+    ],
+    "isMadeToOrder": true,
+    "leadTimeMinDays": 3,
+    "leadTimeMaxDays": 4,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/personalised-phone-case.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-charging-desk-organiser",
+    "slug": "charging-desk-organiser",
+    "name": "Charging desk organiser",
+    "description": "A wooden desk stand with a wireless charging pad and a slot for your pens and cards.",
+    "price": 4100,
+    "type": "physical",
+    "stock": 11,
+    "category": "tech",
+    "sentiments": [
+      "thank-you",
+      "proud-of-you"
+    ],
+    "occasions": [
+      "graduation",
+      "birthday"
+    ],
+    "recipients": [
+      "colleague",
+      "partner"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/charging-desk-organiser.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-mini-photo-printer",
+    "slug": "mini-photo-printer",
+    "name": "Mini photo printer",
+    "description": "A pocket printer that turns phone pictures into sticky-back prints in under a minute.",
+    "price": 8900,
+    "type": "physical",
+    "stock": 6,
+    "category": "tech",
+    "sentiments": [
+      "i-miss-you",
+      "just-because"
+    ],
+    "occasions": [
+      "birthday",
+      "graduation"
+    ],
+    "recipients": [
+      "friend",
+      "sibling",
+      "partner"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/mini-photo-printer.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-smart-led-night-light",
+    "slug": "smart-led-night-light",
+    "name": "Smart LED night light",
+    "description": "A colour-changing night light that you control from your phone.",
+    "price": 2600,
+    "type": "physical",
+    "stock": 21,
+    "category": "tech",
+    "sentiments": [
+      "thinking-of-you",
+      "welcome-home"
+    ],
+    "occasions": [
+      "birthday",
+      "new-baby"
+    ],
+    "recipients": [
+      "child",
+      "friend"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/smart-led-night-light.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-engraved-photo-lamp",
+    "slug": "engraved-photo-lamp",
+    "name": "Engraved photo lamp",
+    "description": "A glowing acrylic lamp engraved with your photograph. A gift that is hard to put down.",
+    "price": 4900,
+    "type": "physical",
+    "stock": 0,
+    "category": "keepsakes",
+    "sentiments": [
+      "i-miss-you",
+      "i-love-you",
+      "proud-of-you"
+    ],
+    "occasions": [
+      "anniversary",
+      "birthday"
+    ],
+    "recipients": [
+      "partner",
+      "parent"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box"
+    ],
+    "isMadeToOrder": true,
+    "leadTimeMinDays": 4,
+    "leadTimeMaxDays": 6,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/engraved-photo-lamp.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-memory-keepsake-box",
+    "slug": "memory-keepsake-box",
+    "name": "Memory keepsake box",
+    "description": "A wooden box with a hinged lid, engraved with a name and date, for letters and tickets.",
+    "price": 2600,
+    "type": "physical",
+    "stock": 0,
+    "category": "keepsakes",
+    "sentiments": [
+      "i-love-you",
+      "i-miss-you",
+      "proud-of-you"
+    ],
+    "occasions": [
+      "anniversary",
+      "wedding",
+      "new-baby"
+    ],
+    "recipients": [
+      "partner",
+      "parent",
+      "child"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box"
+    ],
+    "isMadeToOrder": true,
+    "leadTimeMinDays": 4,
+    "leadTimeMaxDays": 5,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/memory-keepsake-box.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-star-map-print",
+    "slug": "star-map-print",
+    "name": "Star map print",
+    "description": "The night sky exactly as it was on a date that matters to you, printed on heavy paper.",
+    "price": 3200,
+    "type": "physical",
+    "stock": 0,
+    "category": "keepsakes",
+    "sentiments": [
+      "i-love-you",
+      "happy-anniversary"
+    ],
+    "occasions": [
+      "anniversary",
+      "wedding",
+      "new-baby"
+    ],
+    "recipients": [
+      "partner",
+      "parent"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box"
+    ],
+    "isMadeToOrder": true,
+    "leadTimeMinDays": 3,
+    "leadTimeMaxDays": 5,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/star-map-print.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-couples-journal",
+    "slug": "couples-journal",
+    "name": "Couple's journal",
+    "description": "A shared journal with prompts, to write in by turns and keep for years.",
+    "price": 2200,
+    "type": "physical",
+    "stock": 17,
+    "category": "keepsakes",
+    "sentiments": [
+      "i-love-you",
+      "i-miss-you"
+    ],
+    "occasions": [
+      "anniversary",
+      "wedding"
+    ],
+    "recipients": [
+      "partner"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/couples-journal.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-love-coupon-book",
+    "slug": "love-coupon-book",
+    "name": "Love coupon book",
+    "description": "Twenty tear-out coupons: a night in, a long drive, a favourite dinner and more.",
+    "price": 1100,
+    "type": "physical",
+    "stock": 30,
+    "category": "keepsakes",
+    "sentiments": [
+      "i-love-you",
+      "im-sorry",
+      "just-because"
+    ],
+    "occasions": [
+      "anniversary",
+      "birthday"
+    ],
+    "recipients": [
+      "partner"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/love-coupon-book.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-time-capsule-box",
+    "slug": "time-capsule-box",
+    "name": "Time capsule box",
+    "description": "A sealed box with note cards and a ribbon, to be opened in five or ten years.",
+    "price": 3500,
+    "type": "physical",
+    "stock": 14,
+    "category": "keepsakes",
+    "sentiments": [
+      "proud-of-you",
+      "i-love-you",
+      "welcome-baby"
+    ],
+    "occasions": [
+      "new-baby",
+      "graduation",
+      "wedding"
+    ],
+    "recipients": [
+      "child",
+      "partner",
+      "parent"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box",
+      "express_same_day"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/time-capsule-box.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-name-jigsaw-puzzle",
+    "slug": "name-jigsaw-puzzle",
+    "name": "Name jigsaw puzzle",
+    "description": "A 120-piece wooden puzzle that, once solved, spells a name or a short message.",
+    "price": 2100,
+    "type": "physical",
+    "stock": 0,
+    "category": "keepsakes",
+    "sentiments": [
+      "just-because",
+      "i-love-you"
+    ],
+    "occasions": [
+      "birthday"
+    ],
+    "recipients": [
+      "child",
+      "partner",
+      "friend"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box"
+    ],
+    "isMadeToOrder": true,
+    "leadTimeMinDays": 3,
+    "leadTimeMaxDays": 4,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/name-jigsaw-puzzle.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-custom-caricature-portrait",
+    "slug": "custom-caricature-portrait",
+    "name": "Custom caricature portrait",
+    "description": "A hand-drawn caricature from your photo, framed and ready to hang. Made to order.",
+    "price": 5500,
+    "type": "physical",
+    "stock": 0,
+    "category": "keepsakes",
+    "sentiments": [
+      "congratulations",
+      "proud-of-you",
+      "youre-the-best"
+    ],
+    "occasions": [
+      "birthday",
+      "wedding"
+    ],
+    "recipients": [
+      "friend",
+      "colleague",
+      "parent"
+    ],
+    "allowedExtras": [
+      "premium_wrap",
+      "keepsake_box"
+    ],
+    "isMadeToOrder": true,
+    "leadTimeMinDays": 7,
+    "leadTimeMaxDays": 10,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/custom-caricature-portrait.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-e-gift-card-rs-1-000",
+    "slug": "e-gift-card-rs-1-000",
+    "name": "E-gift card Rs 1,000",
+    "description": "A digital gift card delivered by email, valid for 12 months. Redeem against anything in the shop.",
+    "price": 1000,
+    "type": "digital",
+    "digitalKind": "egift",
+    "stock": 9999,
+    "category": "digital",
+    "sentiments": [
+      "thank-you",
+      "just-because",
+      "youre-the-best"
+    ],
+    "occasions": [
+      "birthday",
+      "eid"
+    ],
+    "recipients": [
+      "friend",
+      "colleague"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/e-gift-card-rs-1-000.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-e-gift-card-rs-2-000",
+    "slug": "e-gift-card-rs-2-000",
+    "name": "E-gift card Rs 2,000",
+    "description": "A digital gift card delivered by email, valid for 12 months. Redeem against anything in the shop.",
+    "price": 2000,
+    "type": "digital",
+    "digitalKind": "egift",
+    "stock": 9999,
+    "category": "digital",
+    "sentiments": [
+      "thank-you",
+      "congratulations"
+    ],
+    "occasions": [
+      "birthday",
+      "eid",
+      "graduation"
+    ],
+    "recipients": [
+      "friend",
+      "sibling"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/e-gift-card-rs-2-000.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-e-gift-card-rs-3-000",
+    "slug": "e-gift-card-rs-3-000",
+    "name": "E-gift card Rs 3,000",
+    "description": "A digital gift card delivered by email, valid for 12 months. Redeem against anything in the shop.",
+    "price": 3000,
+    "type": "digital",
+    "digitalKind": "egift",
+    "stock": 9999,
+    "category": "digital",
+    "sentiments": [
+      "thank-you",
+      "i-love-you"
+    ],
+    "occasions": [
+      "birthday",
+      "anniversary"
+    ],
+    "recipients": [
+      "friend",
+      "partner"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/e-gift-card-rs-3-000.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-e-gift-card-rs-5-000",
+    "slug": "e-gift-card-rs-5-000",
+    "name": "E-gift card Rs 5,000",
+    "description": "A digital gift card delivered by email, valid for 12 months. Redeem against anything in the shop.",
+    "price": 5000,
+    "type": "digital",
+    "digitalKind": "egift",
+    "stock": 9999,
+    "category": "digital",
+    "sentiments": [
+      "proud-of-you",
+      "congratulations",
+      "i-love-you"
+    ],
+    "occasions": [
+      "wedding",
+      "birthday"
+    ],
+    "recipients": [
+      "partner",
+      "parent"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/e-gift-card-rs-5-000.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-e-gift-card-rs-10-000",
+    "slug": "e-gift-card-rs-10-000",
+    "name": "E-gift card Rs 10,000",
+    "description": "A digital gift card delivered by email, valid for 12 months. Redeem against anything in the shop.",
+    "price": 10000,
+    "type": "digital",
+    "digitalKind": "egift",
+    "stock": 9999,
+    "category": "digital",
+    "sentiments": [
+      "congratulations",
+      "thank-you"
+    ],
+    "occasions": [
+      "wedding",
+      "new-baby"
+    ],
+    "recipients": [
+      "parent",
+      "sibling"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/e-gift-card-rs-10-000.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-birthday-greeting-card",
+    "slug": "birthday-greeting-card",
+    "name": "Birthday greeting card",
+    "description": "An animated birthday card with your message, sent by email at the time you choose.",
+    "price": 400,
+    "type": "digital",
+    "digitalKind": "greeting",
+    "stock": 9999,
+    "category": "digital",
+    "sentiments": [
+      "youre-the-best",
+      "just-because"
+    ],
+    "occasions": [
+      "birthday"
+    ],
+    "recipients": [
+      "friend",
+      "sibling",
+      "colleague"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/birthday-greeting-card.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-anniversary-greeting-card",
+    "slug": "anniversary-greeting-card",
+    "name": "Anniversary greeting card",
+    "description": "An animated card for years together, with your words and a small slideshow.",
+    "price": 400,
+    "type": "digital",
+    "digitalKind": "greeting",
+    "stock": 9999,
+    "category": "digital",
+    "sentiments": [
+      "happy-anniversary",
+      "i-love-you"
+    ],
+    "occasions": [
+      "anniversary"
+    ],
+    "recipients": [
+      "partner",
+      "parent"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/anniversary-greeting-card.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-thank-you-greeting-card",
+    "slug": "thank-you-greeting-card",
+    "name": "Thank-you greeting card",
+    "description": "A warm animated thank-you card that arrives by email, with your own message.",
+    "price": 350,
+    "type": "digital",
+    "digitalKind": "greeting",
+    "stock": 9999,
+    "category": "digital",
+    "sentiments": [
+      "thank-you"
+    ],
+    "occasions": [
+      "birthday",
+      "eid"
+    ],
+    "recipients": [
+      "colleague",
+      "friend",
+      "parent"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/thank-you-greeting-card.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-get-well-greeting-card",
+    "slug": "get-well-greeting-card",
+    "name": "Get-well greeting card",
+    "description": "A gentle animated card to send comfort and good wishes to someone unwell.",
+    "price": 350,
+    "type": "digital",
+    "digitalKind": "greeting",
+    "stock": 9999,
+    "category": "digital",
+    "sentiments": [
+      "get-well-soon",
+      "thinking-of-you"
+    ],
+    "occasions": [
+      "birthday"
+    ],
+    "recipients": [
+      "friend",
+      "parent"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/get-well-greeting-card.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-eid-mubarak-greeting-card",
+    "slug": "eid-mubarak-greeting-card",
+    "name": "Eid Mubarak greeting card",
+    "description": "An animated Eid card with crescent moons and your personal wishes.",
+    "price": 400,
+    "type": "digital",
+    "digitalKind": "greeting",
+    "stock": 9999,
+    "category": "digital",
+    "sentiments": [
+      "just-because",
+      "youre-the-best"
+    ],
+    "occasions": [
+      "eid"
+    ],
+    "recipients": [
+      "friend",
+      "parent",
+      "colleague"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/eid-mubarak-greeting-card.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-congratulations-greeting-card",
+    "slug": "congratulations-greeting-card",
+    "name": "Congratulations greeting card",
+    "description": "A cheerful animated card for a new job, a degree, a new home or a new chapter.",
+    "price": 400,
+    "type": "digital",
+    "digitalKind": "greeting",
+    "stock": 9999,
+    "category": "digital",
+    "sentiments": [
+      "congratulations",
+      "proud-of-you"
+    ],
+    "occasions": [
+      "graduation",
+      "wedding",
+      "new-baby"
+    ],
+    "recipients": [
+      "friend",
+      "colleague",
+      "sibling"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/congratulations-greeting-card.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-sorry-greeting-card",
+    "slug": "sorry-greeting-card",
+    "name": "Sorry greeting card",
+    "description": "A sincere animated card to say sorry, with space for what you really mean.",
+    "price": 350,
+    "type": "digital",
+    "digitalKind": "greeting",
+    "stock": 9999,
+    "category": "digital",
+    "sentiments": [
+      "im-sorry"
+    ],
+    "occasions": [
+      "birthday"
+    ],
+    "recipients": [
+      "friend",
+      "partner",
+      "parent"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/sorry-greeting-card.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-love-note-greeting-card",
+    "slug": "love-note-greeting-card",
+    "name": "Love note greeting card",
+    "description": "An animated love note with drifting hearts and a message in your own words.",
+    "price": 450,
+    "type": "digital",
+    "digitalKind": "greeting",
+    "stock": 9999,
+    "category": "digital",
+    "sentiments": [
+      "i-love-you",
+      "i-miss-you",
+      "thinking-of-you"
+    ],
+    "occasions": [
+      "anniversary"
+    ],
+    "recipients": [
+      "partner"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/love-note-greeting-card.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  },
+  {
+    "id": "p-welcome-baby-greeting-card",
+    "slug": "welcome-baby-greeting-card",
+    "name": "Welcome baby greeting card",
+    "description": "A soft animated card to welcome a new baby and congratulate the family.",
+    "price": 400,
+    "type": "digital",
+    "digitalKind": "greeting",
+    "stock": 9999,
+    "category": "digital",
+    "sentiments": [
+      "welcome-baby",
+      "congratulations"
+    ],
+    "occasions": [
+      "new-baby"
+    ],
+    "recipients": [
+      "friend",
+      "parent",
+      "sibling"
+    ],
+    "isMadeToOrder": false,
+    "isPerishable": false,
+    "isActive": true,
+    "imageUrls": [
+      "/images/demo/welcome-baby-greeting-card.svg"
+    ],
+    "rating": null,
+    "reviewCount": 0,
+    "createdAt": "2026-10-16T15:48:21.304Z",
+    "updatedAt": "2026-10-16T15:48:21.304Z"
+  }
+]

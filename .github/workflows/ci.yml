@@ -1,0 +1,128 @@
+name: ci
+
+# One repository, two projects: sentimently-api (NestJS) and sentimently-web (React storefront + admin console).
+# Both must pass before a change is merged.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  api:
+    name: API
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sentimently-api
+    env:
+      JWT_SECRET: ci-only-secret-that-is-long-enough-for-the-tests
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: sentimently-api/package-lock.json
+      - run: npm ci
+      - run: npm run lint:check
+      - run: npm run build
+      - run: npm test
+      - run: npm run test:e2e
+      # Every business rule has a test (two are deferred on purpose, see the script).
+      - run: node scripts/check-rule-coverage.mjs
+      # The frozen API contract: fails if the code no longer matches openapi/openapi.v1.json.
+      # After an intended change run `npm run openapi` and commit the file.
+      - run: npm run openapi:check
+      # The demo catalogue must still import cleanly (checks the CSV format and every group reference).
+      - run: npm run import:catalogue -- --taxonomy samples/demo-taxonomy.csv --products samples/demo-products.csv --dry-run
+      # Shipped dependencies must have no known vulnerabilities. Build tooling is reported but does not block.
+      - run: npm audit --omit=dev --audit-level=low
+      - run: npm audit --audit-level=high
+        continue-on-error: true
+      # A short load run: fails if a journey collapses (slow, erroring) or the rate limit misbehaves.
+      - run: node scripts/load-test.mjs --seconds 4 --connections 10 --check
+
+  web:
+    name: Web (storefront and admin)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sentimently-web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: sentimently-web/package-lock.json
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm test
+      # Production builds of both apps (type check, then bundle).
+      - run: npm run build
+      - run: npm audit --omit=dev --audit-level=low
+      - name: Keep the built files for review
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-dist
+          path: |
+            sentimently-web/apps/storefront/dist
+            sentimently-web/apps/admin/dist
+          retention-days: 7
+
+  # Starts the real API and the built storefront data path together and walks a purchase through it.
+  smoke:
+    name: Smoke test (API + checkout)
+    runs-on: ubuntu-latest
+    needs: [api]
+    defaults:
+      run:
+        working-directory: sentimently-api
+    env:
+      JWT_SECRET: ci-only-secret-that-is-long-enough-for-the-tests
+      ADMIN_EMAIL: ci-admin@example.test
+      ADMIN_PASSWORD: ci-admin-password-1
+      RATE_LIMIT_MAX: '100000'
+      AUTH_RATE_LIMIT: '1000'
+      CHECKOUT_RATE_LIMIT: '1000'
+      PORT: '3000'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: sentimently-api/package-lock.json
+      - run: npm ci
+      - run: npm run build
+      - name: Start the API
+        run: |
+          node dist/main.js > api.log 2>&1 &
+          for i in $(seq 1 30); do curl -sf localhost:3000/api/v1/health && break; sleep 1; done
+          curl -sf localhost:3000/api/v1/health
+      - name: Catalogue is served
+        run: |
+          total=$(curl -sf "localhost:3000/api/v1/products?pageSize=1" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>console.log(JSON.parse(s).total))")
+          echo "gifts: $total"
+          test "$total" -ge 100
+      - name: Place a cash-on-delivery order and see it in the studio queue
+        run: |
+          set -e
+          pid=$(curl -sf "localhost:3000/api/v1/products?pageSize=1&category=home" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>console.log(JSON.parse(s).data[0].id))")
+          curl -sf -X POST localhost:3000/api/v1/checkout -H 'content-type: application/json' -H 'Idempotency-Key: ci-smoke-1' \
+            -d "{\"lines\":[{\"productId\":\"$pid\",\"quantity\":1}],\"delivery\":{\"city\":\"Karachi\",\"address\":\"House 4, Street 2, DHA Phase 5\",\"phone\":\"03001234567\"},\"contact\":{\"email\":\"smoke@example.test\",\"name\":\"Smoke\"},\"paymentMethod\":\"cod\"}" > order.json
+          node -e "const o=JSON.parse(require('fs').readFileSync('order.json','utf8'));if(!o.order||!o.order.number)process.exit(1);console.log('order',o.order.number)"
+          token=$(curl -sf -X POST localhost:3000/api/v1/auth/login -H 'content-type: application/json' -d '{"email":"ci-admin@example.test","password":"ci-admin-password-1"}' | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>console.log(JSON.parse(s).accessToken))")
+          curl -sf localhost:3000/api/v1/admin/orders -H "authorization: Bearer $token" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{const n=JSON.parse(s).total;console.log('queue',n);process.exit(n>=1?0:1)})"
+      - name: Show the API log if anything failed
+        if: failure()
+        run: cat api.log

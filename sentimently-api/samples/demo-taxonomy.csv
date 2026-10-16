@@ -1,0 +1,40 @@
+kind,slug,name,blurb,image,sortOrder
+sentiment,i-miss-you,I miss you,For someone far away,,1
+sentiment,thank-you,Thank you,Say it properly,,2
+sentiment,im-sorry,I'm sorry,When words are not enough,,3
+sentiment,i-love-you,I love you,For the one who has your heart,,4
+sentiment,congratulations,Congratulations,For wins big and small,,5
+sentiment,get-well-soon,Get well soon,Comfort for a hard week,,6
+sentiment,thinking-of-you,Thinking of you,A little reminder you matter,,7
+sentiment,good-luck,Good luck,Before the big day,,8
+sentiment,happy-anniversary,Happy anniversary,Years worth celebrating,,9
+sentiment,youre-the-best,You're the best,For someone who always shows up,,10
+sentiment,welcome-baby,"Welcome, little one",For new parents,,11
+sentiment,proud-of-you,Proud of you,For every milestone,,12
+sentiment,just-because,Just because,No reason needed,,13
+sentiment,welcome-home,Welcome home,For a new place or a safe return,,14
+occasion,birthday,Birthday,,,1
+occasion,eid,Eid,,,2
+occasion,anniversary,Anniversary,,,3
+occasion,wedding,Wedding,,,4
+occasion,new-baby,New baby,,,5
+occasion,graduation,Graduation,,,6
+occasion,mothers-day,Mother's Day,,,7
+occasion,fathers-day,Father's Day,,,8
+recipient,friend,Friend,,,1
+recipient,partner,Partner,,,2
+recipient,parent,Parent,,,3
+recipient,sibling,Sibling,,,4
+recipient,colleague,Colleague,,,5
+recipient,child,Child,,,6
+category,home,Home and living,,,1
+category,jewellery,Jewellery,,,2
+category,food,Food and sweets,,,3
+category,flowers,Flowers,,,4
+category,plants,Plants,,,5
+category,beauty,Beauty and fragrance,,,6
+category,accessories,Accessories,,,7
+category,stationery,Books and stationery,,,8
+category,tech,Tech,,,9
+category,keepsakes,Keepsakes,,,10
+category,digital,Digital gifts,,,11

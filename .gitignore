@@ -1,0 +1,22 @@
+# dependencies and build output
+node_modules/
+dist/
+coverage/
+.vercel/
+*.tsbuildinfo
+
+# secrets and local settings: never commit these
+.env
+.env.*
+!.env.example
+
+# local data written while developing with STORAGE_DRIVER=file is checked in on purpose (data/*.json is the seed)
+# logs, editors, operating system
+*.log
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# the Claude Code preview launcher is personal to each developer
+.claude/
