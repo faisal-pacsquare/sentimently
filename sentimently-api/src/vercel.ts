@@ -1,6 +1,8 @@
 import { NestFactory } from '@nestjs/core';
 import { ExpressAdapter } from '@nestjs/platform-express';
-import express from 'express';
+// This project compiles without esModuleInterop, so a default import would be undefined at run time.
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+import express = require('express');
 import type { IncomingMessage, ServerResponse } from 'node:http';
 import { AppModule } from './app.module';
 import { assertProductionConfig } from './common/security';
