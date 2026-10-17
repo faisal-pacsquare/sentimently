@@ -3,6 +3,7 @@ import { Component } from 'react';
 import type { ErrorInfo, ReactNode } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Layout } from './components/Layout';
+import { ScrollToTop } from './components/ScrollToTop';
 import { AuthProvider } from './lib/auth';
 import { Account, Details, OrderDetail, Orders, Reminders, Wishlist } from './pages/Account';
 import { ForgotPassword, Login, Register, ResetPassword, VerifyEmail } from './pages/Auth';
@@ -41,6 +42,7 @@ export function App() {
   return (
     <ErrorBoundary>
       <AuthProvider>
+        <ScrollToTop />
       <Routes>
         <Route element={<Layout />}>
           <Route index element={<Home />} />

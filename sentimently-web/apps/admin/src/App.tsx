@@ -3,6 +3,7 @@ import { Component } from 'react';
 import type { ErrorInfo, ReactNode } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { AdminOnly } from './components/AdminOnly';
+import { ScrollToTop } from './components/ScrollToTop';
 import { Shell } from './components/Shell';
 import { AuthProvider } from './lib/auth';
 import { Catalogue } from './pages/Catalogue';
@@ -38,6 +39,7 @@ export function App() {
   return (
     <ErrorBoundary>
       <AuthProvider>
+        <ScrollToTop />
         <Routes>
           <Route path="login" element={<Login />} />
           <Route element={<Shell />}>

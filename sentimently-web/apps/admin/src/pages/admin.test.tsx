@@ -1,7 +1,7 @@
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { http, HttpResponse } from 'msw';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { session } from '../lib/core';
 import { apiError, renderAdmin, staffUser } from '../test/render';
 import { BASE, server } from '../test/setup';
@@ -239,5 +239,21 @@ describe('signing out', () => {
     await userEvent.click(await screen.findByRole('button', { name: 'Sign out' }));
     expect(await screen.findByRole('heading', { name: 'Studio sign in' })).toBeInTheDocument();
     expect(session.get()).toBeNull();
+  });
+});
+
+describe('opening pages', () => {
+  it('scrolls to the top when you move to another screen', async () => {
+    server.use(
+      http.get(`${BASE}/admin/orders`, () => HttpResponse.json({ data: [], page: 1, pageSize: 25, total: 0 })),
+      http.get(`${BASE}/admin/production`, () => HttpResponse.json({ preparing: [], inProduction: [] })),
+    );
+    renderAdmin('/', 'staff');
+    await screen.findByRole('heading', { name: 'Orders' });
+    const scroll = window.scrollTo as unknown as ReturnType<typeof vi.fn>;
+    scroll.mockClear();
+    await userEvent.click(screen.getByRole('link', { name: 'Production' }));
+    await screen.findByRole('heading', { name: 'Production board' });
+    expect(scroll).toHaveBeenCalledWith({ top: 0, left: 0, behavior: 'instant' });
   });
 });

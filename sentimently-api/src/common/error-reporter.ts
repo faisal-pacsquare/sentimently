@@ -33,7 +33,7 @@ export class ErrorReporter {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({
-          text: `[Sentimently ${process.env.NODE_ENV ?? 'dev'}] ${ctx.status} on ${ctx.route ?? '?'}: ${message} (request ${ctx.requestId ?? '?'})`,
+          text: `[Bloomora ${process.env.NODE_ENV ?? 'dev'}] ${ctx.status} on ${ctx.route ?? '?'}: ${message} (request ${ctx.requestId ?? '?'})`,
         }),
         signal: AbortSignal.timeout(3000),
       });

@@ -95,6 +95,28 @@ Scheduled digital gifts, reminders, overdue-refund alerts and expiring gift link
 - In Vercel, delete `ADMIN_EMAIL` and `ADMIN_PASSWORD` from the API project and redeploy. The admin account stays in the database. Add other staff from the console's **Team and tools** page.
 - Change the sample content: gifts, prices, delivery rates, the announcement bar and the bank-transfer text (**Settings**).
 
+## Email (free): contact form, order emails, password resets
+Until this is set up, the API only prints emails in its log: nothing reaches anyone, including messages from the **Contact** and **Track an order** pages. It takes about 10 minutes and costs nothing (Brevo's free plan: 300 emails a day).
+
+1. Create a free account at **brevo.com**.
+2. In Brevo: **Senders, Domains & Dedicated IPs > Senders > Add a sender**. Use an address you can open (a Gmail address is fine), and click the confirmation link Brevo emails to it. Emails will be sent *from* this address.
+3. In Brevo: your name (top right) > **SMTP & API > API keys > Generate a new API key**. Copy it now; it is shown once.
+4. In the Vercel **API project > Settings > Environment Variables**, add:
+
+| Name | Value |
+|---|---|
+| `BREVO_API_KEY` | the key from step 3 |
+| `MAIL_FROM` | the sender address you verified in step 2 |
+| `MAIL_FROM_NAME` | `Bloomora` |
+| `CONTACT_TO` | the address that should receive messages from the Contact page (can be the same one) |
+
+5. **Redeploy** the API, then open `https://YOUR-API/api/v1/health`. It must say `"mail":"brevo"`. If it says `"mail":"console"`, a key or `MAIL_FROM` is missing.
+6. Test it: send a message from the shop's **Contact** page. It should arrive at `CONTACT_TO` within a minute, and **Reply** answers the customer directly. (Check Spam the first time.) The message is also always saved in the studio **Inbox**, even if email is down.
+
+Resend (resend.com) also works: set `RESEND_API_KEY` and `MAIL_FROM=onboarding@resend.dev`. Without your own domain it can only send to the address you signed up with, so it is fine for the contact form but not for customer emails. If both keys are set, `MAIL_PROVIDER=brevo` or `resend` chooses.
+
+If emails do not arrive: Brevo > **Transactional > Logs** shows every attempt and why one was refused. The API's **Logs** show `brevo refused the email (400)` with the reason. The usual cause is a sender address that has not been verified.
+
 ## Lost the admin password
 The admin is only created from `ADMIN_EMAIL` / `ADMIN_PASSWORD` when no admin exists, so changing `ADMIN_PASSWORD` later does nothing. To reset it:
 1. API project > **Settings > Environment Variables**: set `ADMIN_EMAIL` (the admin's email), `ADMIN_PASSWORD` (the new password, 12+ characters) and `ADMIN_RESET` = `true`.

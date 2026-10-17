@@ -18,7 +18,7 @@ export class AlertsService {
     try {
       await this.mailer.send({
         to,
-        subject: `[Sentimently alert] ${subject}`,
+        subject: `[Bloomora alert] ${subject}`,
         text: detail,
       });
     } catch (e) {

@@ -2,7 +2,7 @@ import { ApiError, dateTime, rupees } from '@sentimently/api';
 import type { Rate } from '@sentimently/api';
 import { Alert, Button, Container, ProblemList, SelectField, TextArea, TextField } from '@sentimently/ui';
 import { useMutation } from '@tanstack/react-query';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { useState } from 'react';
 import type { FormEvent } from 'react';
 import { api } from '../lib/api';
@@ -69,6 +69,8 @@ export function Track() {
   };
   const err = track.error instanceof ApiError ? track.error : null;
   const r = track.data;
+  // The order number is passed along, so the person does not have to type it again. Never the email.
+  const helpLink = `/contact?topic=order${number.trim() ? `&order=${encodeURIComponent(number.trim())}` : ''}`;
 
   return (
     <Container className="page prose">
@@ -79,7 +81,7 @@ export function Track() {
         <TextField label="Email address" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required autoComplete="email" />
         <Button type="submit" loading={track.isPending}>Track</Button>
       </form>
-      {err?.isNotFound && <Alert tone="error">We could not find an order with those details. Check the number and the email you used.</Alert>}
+      {err?.isNotFound && <Alert tone="error">We could not find an order with those details. Check the number and the email you used, or <Link to={helpLink}>write to us</Link> and we will look for it.</Alert>}
       {err && !err.isNotFound && <QueryError error={err} onRetry={() => track.mutate()} retrying={track.isPending} what="your order" />}
       {r && (
         <section aria-live="polite" className="track-result">
@@ -94,6 +96,10 @@ export function Track() {
           </ol>
         </section>
       )}
+      <aside className="track-help" aria-label="Need help?">
+        <h2>Need help with an order?</h2>
+        <p>If something looks wrong, or you cannot find your order, <Link to={helpLink}>write to us</Link>. It goes straight to our team by email.</p>
+      </aside>
     </Container>
   );
 }
@@ -108,7 +114,14 @@ const TOPICS = [
 ] as const;
 
 export function Contact() {
-  const [form, setForm] = useState({ name: '', email: '', phone: '', orderNumber: '', topic: 'other', subject: '', message: '' });
+  const [params] = useSearchParams();
+  const topicParam = params.get('topic');
+  const [form, setForm] = useState({
+    name: '', email: '', phone: '',
+    orderNumber: (params.get('order') ?? '').slice(0, 40),
+    topic: TOPICS.some(([v]) => v === topicParam) ? (topicParam as string) : 'other',
+    subject: '', message: '',
+  });
   const set = (k: keyof typeof form) => (e: { target: { value: string } }) => setForm((f) => ({ ...f, [k]: e.target.value }));
   const send = useMutation({
     mutationFn: () => api.contact({ ...form, phone: form.phone || undefined, orderNumber: form.orderNumber || undefined }),
@@ -121,6 +134,7 @@ export function Contact() {
         <title>Contact us | Bloomora</title>
         <h1>Thank you</h1>
         <Alert tone="info">{send.data.message}</Alert>
+        <p>Our team has been emailed and will reply to <strong>{form.email}</strong>.</p>
       </Container>
     );
   }
@@ -131,7 +145,9 @@ export function Contact() {
       <p>Questions, ideas, or planning a big order? Write to us.</p>
       <form className="narrow" onSubmit={(e) => { e.preventDefault(); send.mutate(); }}>
         <ProblemList problems={err?.status === 400 ? err.details : []} />
-        {err && err.status !== 400 && <Alert tone="error">{err.message}</Alert>}
+        {send.error && !(err && err.status === 400) && (
+          <QueryError error={send.error} onRetry={() => send.mutate()} retrying={send.isPending} what="your message" />
+        )}
         <TextField label="Your name" value={form.name} onChange={set('name')} required autoComplete="name" />
         <TextField label="Email" type="email" value={form.email} onChange={set('email')} required autoComplete="email" />
         <TextField label="Phone (optional)" type="tel" value={form.phone} onChange={set('phone')} autoComplete="tel" />

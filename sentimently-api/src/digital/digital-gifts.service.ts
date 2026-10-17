@@ -290,12 +290,12 @@ export class DigitalGiftsService {
     const lines =
       g.kind === 'egift'
         ? [
-            `${g.senderName} sent you a Sentimently e-gift card worth Rs ${g.amount.toLocaleString('en-PK')}.`,
+            `${g.senderName} sent you a Bloomora e-gift card worth Rs ${g.amount.toLocaleString('en-PK')}.`,
             `Your code: ${g.code}`,
             `Valid until ${g.expiresAt?.slice(0, 10)}.`,
           ]
         : [
-            `${g.senderName} sent you a Sentimently greeting card.`,
+            `${g.senderName} sent you a Bloomora greeting card.`,
             `Your reference: ${g.code}`,
           ];
     await this.mailer.send({

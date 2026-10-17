@@ -18,7 +18,7 @@ export function confirmationEmail(
         ? `Payment: bank transfer. Please pay ${rs(o.total)} quoting ${o.number}.\n${extra.bankInstructions ?? ''}`.trim()
         : 'Payment: card. Your order is confirmed once the payment completes.';
   return {
-    subject: `Your Sentimently order ${o.number}`,
+    subject: `Your Bloomora order ${o.number}`,
     text: [
       `Thank you${o.contactName ? `, ${o.contactName}` : ''}. We have your order ${o.number}.`,
       '',

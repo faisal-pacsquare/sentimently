@@ -107,7 +107,11 @@ describe('API (e2e)', () => {
 
     it('E1-1 health reports the store', async () => {
       const res = await request(server()).get('/api/v1/health').expect(200);
-      expect(res.body).toEqual({ status: 'ok', store: 'MemoryDriver' });
+      expect(res.body).toEqual({
+        status: 'ok',
+        store: 'MemoryDriver',
+        mail: 'console',
+      });
     });
 
     it('E1-1 errors use one shape with a request id', async () => {

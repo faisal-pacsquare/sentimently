@@ -339,3 +339,7 @@ a.orders__row:hover { transform: translateY(-3px); box-shadow: var(--shadow-lift
 .filters__toggle::-webkit-details-marker { display: none; }
 .filters__toggle::after { content: "+"; font-size: 1.4rem; color: var(--rose-dark); }
 details[open] > .filters__toggle::after { content: "–"; }
+
+.track-help { margin-top: var(--space-12); padding: var(--space-5) var(--space-6); background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-lg); box-shadow: var(--shadow); }
+.track-help h2 { font-size: 1.25rem; margin-top: 0; }
+.track-help p { margin: 0; color: var(--ink-soft); }

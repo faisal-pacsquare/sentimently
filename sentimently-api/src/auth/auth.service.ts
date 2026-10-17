@@ -264,11 +264,16 @@ export class AuthService implements OnModuleInit {
       resetExpiresAt: new Date(Date.now() + RESET_TTL_MS).toISOString(),
     });
     const base = process.env.APP_URL ?? 'http://localhost:3000';
-    await this.mailer.send({
-      to: email,
-      subject: 'Reset your Sentimently password',
-      text: `Use this link within one hour to choose a new password:\n${base}/reset-password?token=${token}\n\nIf you did not ask for this, ignore this email.`,
-    });
+    try {
+      await this.mailer.send({
+        to: email,
+        subject: 'Reset your Bloomora password',
+        text: `Use this link within one hour to choose a new password:\n${base}/reset-password?token=${token}\n\nIf you did not ask for this, ignore this email.`,
+      });
+    } catch (e) {
+      // Same answer whether or not the address has an account, and whether or not email is working.
+      this.logger.error(`Could not send the reset email: ${String(e)}`);
+    }
   }
 
   /** Using the emailed link proves control of the mailbox, so it also confirms the address. */
@@ -303,7 +308,7 @@ export class AuthService implements OnModuleInit {
       await this.mailer.send({
         to: email,
         subject: 'Confirm your email address',
-        text: `Welcome to Sentimently. Please confirm this is your email address (the link works for 24 hours):\n${base}/verify-email?token=${token}\n\nIf you did not create an account, ignore this email.`,
+        text: `Welcome to Bloomora. Please confirm this is your email address (the link works for 24 hours):\n${base}/verify-email?token=${token}\n\nIf you did not create an account, ignore this email.`,
       });
     } catch (e) {
       // The account exists and can ask for another email; do not fail the sign-up because email is down.

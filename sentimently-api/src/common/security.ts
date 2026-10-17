@@ -94,6 +94,11 @@ export function assertProductionConfig(env: NodeJS.ProcessEnv = process.env) {
       'no durable storage: set UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN (or ALLOW_MEMORY_STORAGE=true for a demo where orders can disappear)',
     );
   }
+  if ((env.BREVO_API_KEY || env.RESEND_API_KEY) && !env.MAIL_FROM) {
+    problems.push(
+      'MAIL_FROM must be set to the sender address you verified with the email service',
+    );
+  }
   if (problems.length)
     throw new Error(`Unsafe production configuration: ${problems.join('; ')}`);
 }

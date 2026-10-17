@@ -499,13 +499,13 @@ export class OrdersService {
       case 'dispatched':
         await this.text(
           order.delivery?.phone,
-          `Your Sentimently gift is on its way${order.delivery?.trackingRef ? ` (tracking ${order.delivery.trackingRef})` : ''}. Please keep your phone nearby for the courier.`,
+          `Your Bloomora gift is on its way${order.delivery?.trackingRef ? ` (tracking ${order.delivery.trackingRef})` : ''}. Please keep your phone nearby for the courier.`,
         );
         break;
       case 'failed_delivery':
         await this.text(
           order.delivery?.phone,
-          'We could not deliver your Sentimently gift today. We will be in touch to arrange another attempt.',
+          'We could not deliver your Bloomora gift today. We will be in touch to arrange another attempt.',
         );
         // OR-06: after two failed attempts the studio contacts the sender.
         if ((order.delivery?.attempts ?? 0) >= 2) {
