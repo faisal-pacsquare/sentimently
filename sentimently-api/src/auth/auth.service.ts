@@ -58,20 +58,46 @@ export class AuthService implements OnModuleInit {
     @Inject(MAILER) private readonly mailer: Mailer,
   ) {}
 
-  /** Creates the first admin from ADMIN_EMAIL / ADMIN_PASSWORD, if set and no admin exists yet. */
+  /**
+   * Creates the first admin from ADMIN_EMAIL / ADMIN_PASSWORD, if set and no admin exists yet.
+   *
+   * Lost the admin password? Set ADMIN_RESET=true together with ADMIN_EMAIL and the new ADMIN_PASSWORD and
+   * restart. The admin with that email gets the new password (or is created if there is none). Remove
+   * ADMIN_RESET afterwards: while it stays on, every start puts that password back.
+   */
   async onModuleInit() {
     const email = process.env.ADMIN_EMAIL;
     const password = process.env.ADMIN_PASSWORD;
     if (!email || !password) return;
+    const reset = process.env.ADMIN_RESET === 'true';
     const existing = await this.store.findOne<Customer>(
       'customers',
       (c) => c.role === 'admin',
     );
-    if (existing) return;
+    if (existing && !reset) return;
     const passwordHash = await hashPassword(password);
     const address = normalise(email);
     const now = new Date().toISOString();
-    await this.store.mutate('customers', (docs) => {
+    const result = await this.store.mutate('customers', (docs) => {
+      if (reset) {
+        const admin = docs.find(
+          (d) =>
+            (d as Customer).role === 'admin' &&
+            (d as Customer).email === address,
+        ) as Customer | undefined;
+        if (admin) {
+          Object.assign(admin, {
+            passwordHash,
+            authProvider: 'email',
+            emailVerified: true,
+            deletedAt: undefined,
+            verifyTokenHash: undefined,
+            resetTokenHash: undefined,
+            updatedAt: now,
+          });
+          return 'reset';
+        }
+      }
       const old = docs.find(
         (d) => isAccount(d as Customer) && (d as Customer).email === address,
       ) as Customer | undefined;
@@ -87,8 +113,13 @@ export class AuthService implements OnModuleInit {
         createdAt: now,
         updatedAt: now,
       } as Customer);
+      return 'created';
     });
-    this.logger.log(`Admin account ready for ${address}`);
+    this.logger.log(
+      result === 'reset'
+        ? `Admin password reset for ${address}. Remove ADMIN_RESET now.`
+        : `Admin account ready for ${address}`,
+    );
   }
 
   async register(dto: { email: string; password: string; name?: string }) {

@@ -95,6 +95,14 @@ Scheduled digital gifts, reminders, overdue-refund alerts and expiring gift link
 - In Vercel, delete `ADMIN_EMAIL` and `ADMIN_PASSWORD` from the API project and redeploy. The admin account stays in the database. Add other staff from the console's **Team and tools** page.
 - Change the sample content: gifts, prices, delivery rates, the announcement bar and the bank-transfer text (**Settings**).
 
+## Lost the admin password
+The admin is only created from `ADMIN_EMAIL` / `ADMIN_PASSWORD` when no admin exists, so changing `ADMIN_PASSWORD` later does nothing. To reset it:
+1. API project > **Settings > Environment Variables**: set `ADMIN_EMAIL` (the admin's email), `ADMIN_PASSWORD` (the new password, 12+ characters) and `ADMIN_RESET` = `true`.
+2. **Redeploy** the API, then sign in to the console.
+3. Delete `ADMIN_RESET`, `ADMIN_EMAIL` and `ADMIN_PASSWORD`, and redeploy again. While `ADMIN_RESET` is on, every start puts that password back.
+
+A different `ADMIN_EMAIL` with `ADMIN_RESET=true` adds that person as an extra admin.
+
 ## Custom domains
 Add them in each project's **Settings > Domains**, then update the API's `APP_URL` and `CORS_ORIGINS` and the two apps' `VITE_API_URL` if the API address changes, and redeploy all three.
 

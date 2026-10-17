@@ -140,6 +140,7 @@ describe('Accounts and engagement (e2e)', () => {
       'RATE_LIMIT_MAX',
       'ADMIN_EMAIL',
       'ADMIN_PASSWORD',
+      'ADMIN_RESET',
     ])
       delete process.env[k];
   });
@@ -685,6 +686,89 @@ describe('Accounts and engagement (e2e)', () => {
         .get(api('/admin/products'))
         .set(bearer(token))
         .expect(200);
+    });
+
+    describe('a lost admin password', () => {
+      // an admin already exists in the database, with a password nobody remembers
+      async function bootWithAdmin(env: Record<string, string>) {
+        Object.assign(
+          process.env,
+          {
+            AUTH_RATE_LIMIT: '1000',
+            RATE_LIMIT_MAX: '1000',
+            JWT_SECRET: 'test-secret',
+          },
+          env,
+        );
+        const old = await hashPassword('forgotten-password-1');
+        const moduleRef = await Test.createTestingModule({
+          imports: [AppModule],
+        })
+          .overrideProvider(STORAGE_DRIVER)
+          .useValue(
+            new MemoryDriver({
+              taxonomy,
+              extras,
+              products,
+              customers: [
+                doc({
+                  id: 'admin1',
+                  email: 'owner@sentimently.pk',
+                  role: 'admin',
+                  authProvider: 'email',
+                  isGuest: false,
+                  emailVerified: true,
+                  passwordHash: old,
+                }),
+              ],
+              orders: [],
+            }),
+          )
+          .overrideProvider(GoogleVerifier)
+          .useValue({ verify: jest.fn() })
+          .compile();
+        app = moduleRef.createNestApplication();
+        setupApp(app);
+        await app.init();
+      }
+
+      it('is NOT changed just by changing ADMIN_PASSWORD (the account already exists)', async () => {
+        await bootWithAdmin({
+          ADMIN_EMAIL: 'owner@sentimently.pk',
+          ADMIN_PASSWORD: 'brand-new-password-1',
+        });
+        await login('owner@sentimently.pk', 'brand-new-password-1').expect(401);
+        await login('owner@sentimently.pk', 'forgotten-password-1').expect(200);
+      });
+
+      it('is replaced when ADMIN_RESET=true, keeping the same account', async () => {
+        await bootWithAdmin({
+          ADMIN_EMAIL: 'owner@sentimently.pk',
+          ADMIN_PASSWORD: 'brand-new-password-1',
+          ADMIN_RESET: 'true',
+        });
+        const res = await login(
+          'owner@sentimently.pk',
+          'brand-new-password-1',
+        ).expect(200);
+        expect(res.body.customer).toMatchObject({
+          id: 'admin1',
+          role: 'admin',
+        });
+        await login('owner@sentimently.pk', 'forgotten-password-1').expect(401);
+      });
+
+      it('with ADMIN_RESET and a different email, adds that person as an admin and leaves the other one alone', async () => {
+        await bootWithAdmin({
+          ADMIN_EMAIL: 'new-owner@sentimently.pk',
+          ADMIN_PASSWORD: 'brand-new-password-1',
+          ADMIN_RESET: 'true',
+        });
+        await login('new-owner@sentimently.pk', 'brand-new-password-1').expect(
+          200,
+        );
+        await login('owner@sentimently.pk', 'forgotten-password-1').expect(200);
+      });
     });
   });
   describe('email ownership and guest orders', () => {
