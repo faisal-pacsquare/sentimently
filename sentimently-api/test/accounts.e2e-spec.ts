@@ -771,6 +771,34 @@ describe('Accounts and engagement (e2e)', () => {
       });
     });
   });
+  describe('email that does not leave the building', () => {
+    beforeEach(() => boot());
+
+    it('tells a signed-in person the truth when the confirmation email could not be delivered', async () => {
+      const me = await register('newbie@example.pk').expect(201);
+      const res = await request(server())
+        .post(api('/auth/resend-verification'))
+        .set(bearerOf(me.body.accessToken))
+        .expect(202);
+      // the test mailer only logs, so nothing really went out
+      expect(res.body.sent).toBe(false);
+      expect(res.body.message).toMatch(/could not send the email/i);
+    });
+
+    it('the admin test-email tool says plainly that no email service is set up', async () => {
+      const staff = await tokenFor('staff@sentimently.pk');
+      await request(server())
+        .post(api('/admin/mail/test'))
+        .send({ to: 'a@b.pk' })
+        .expect(401);
+      await request(server())
+        .post(api('/admin/mail/test'))
+        .set(bearer(staff))
+        .send({ to: 'a@b.pk' })
+        .expect(403); // staff are not admins
+    });
+  });
+
   describe('email ownership and guest orders', () => {
     beforeEach(() => boot());
 

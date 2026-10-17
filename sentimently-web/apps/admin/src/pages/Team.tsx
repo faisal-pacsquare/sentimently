@@ -70,6 +70,24 @@ function AddMember() {
   );
 }
 
+function TestEmail() {
+  const { user } = useAuth();
+  const [to, setTo] = useState(user?.email ?? '');
+  const test = useMutation({ mutationFn: () => adminApi.testEmail(to.trim()) });
+  return (
+    <section aria-labelledby="mail">
+      <h2 id="mail">Send a test email</h2>
+      <p className="muted">Customers and your own team get order confirmations, confirmation links and messages by email. If something is not arriving, send a test here: it shows which email service is connected and, if it refuses, why.</p>
+      <form className="auth-form" onSubmit={(e) => { e.preventDefault(); if (emailOk(to)) test.mutate(); }} noValidate>
+        <TextField label="Send it to" type="email" value={to} onChange={(e) => { setTo(e.target.value); test.reset(); }} />
+        <Button type="submit" variant="secondary" loading={test.isPending} disabled={!emailOk(to)}>Send test email</Button>
+      </form>
+      <ActionError error={test.error} />
+      {test.data && <Alert tone={test.data.sent ? 'info' : 'warn'}><strong>{test.data.sent ? 'Sent' : 'Not sent'}</strong> ({test.data.provider === 'console' ? 'no email service connected' : test.data.provider}). {test.data.message}</Alert>}
+    </section>
+  );
+}
+
 function Tools() {
   const [email, setEmail] = useState('');
   const [confirm, setConfirm] = useState(false);
@@ -77,6 +95,8 @@ function Tools() {
   const jobs = useMutation({ mutationFn: () => adminApi.runJobs() });
   return (
     <>
+      <TestEmail />
+
       <section aria-labelledby="jobs">
         <h2 id="jobs">Run the daily jobs now</h2>
         <p className="muted">Sends reminders, scheduled digital gifts, overdue-refund alerts and expires old gift links. They also run by themselves on a schedule; this is for when you do not want to wait.</p>

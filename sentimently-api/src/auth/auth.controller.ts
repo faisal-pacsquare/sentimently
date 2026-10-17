@@ -78,9 +78,12 @@ export class AccountAuthController {
   @Post('resend-verification')
   @HttpCode(202)
   async resend(@CurrentUser() user: AuthUser) {
-    await this.auth.resendVerification(user.id);
+    const sent = await this.auth.resendVerification(user.id);
     return {
-      message: 'If your email is not confirmed yet, a new link is on its way.',
+      message: sent
+        ? 'If your email is not confirmed yet, a new link is on its way.'
+        : 'We could not send the email just now. Please try again in a few minutes, or write to us.',
+      sent,
     };
   }
 }

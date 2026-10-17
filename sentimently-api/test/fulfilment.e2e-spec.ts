@@ -159,6 +159,7 @@ describe('Fulfilment, scheduler, refunds and reports (e2e)', () => {
       'GIFT_LINK_RATE_LIMIT',
       'CRON_SECRET',
       'ALERT_EMAIL',
+      'CONTACT_TO',
     ])
       delete process.env[k];
   });
@@ -782,6 +783,75 @@ describe('Fulfilment, scheduler, refunds and reports (e2e)', () => {
       });
       await processRefund(refund.id);
       expect((await adminOrder(o.id)).order.status).toBe('returned'); // partial: delivery fee kept
+    });
+
+    describe('the studio is emailed', () => {
+      const toStudio = () =>
+        mailer.outbox.filter((m) => m.to === 'owner@bloomora.pk');
+
+      it('when a customer fills in the return form, with their reason, the amount, and reply-to set to the customer', async () => {
+        process.env.CONTACT_TO = 'owner@bloomora.pk';
+        const o = await place(cod());
+        await deliver(o.id);
+        await ask(returnBody(o.number)).expect(201);
+        expect(toStudio()).toHaveLength(1);
+        const m = toStudio()[0]!;
+        expect(m.subject).toBe(`[Return request] Order ${o.number}`);
+        expect(m.replyTo).toBe('zara@example.pk');
+        expect(m.text).toContain('Not the right colour');
+        expect(m.text).toContain('Rs 800');
+        expect(m.text).toContain('zara@example.pk');
+        // the customer still gets their own confirmation
+        expect(
+          mailer.outbox.some(
+            (x) =>
+              x.to === 'zara@example.pk' &&
+              /We have your request/.test(x.subject),
+          ),
+        ).toBe(true);
+      });
+
+      it('for a damage report, including the photo links', async () => {
+        process.env.CONTACT_TO = 'owner@bloomora.pk';
+        const o = await place(cod());
+        await deliver(o.id);
+        now = hoursAfter(T0, 5);
+        await ask(
+          returnBody(o.number, {
+            kind: 'damaged',
+            confirmUnused: undefined,
+            reason: 'The handle snapped',
+            photoUrls: ['https://photos.example/mug.jpg'],
+          }),
+        ).expect(201);
+        const m = toStudio()[0]!;
+        expect(m.subject).toBe(`[Damage report] Order ${o.number}`);
+        expect(m.text).toContain('The handle snapped');
+        expect(m.text).toContain('https://photos.example/mug.jpg');
+      });
+
+      it('not when the request is refused (nothing for the studio to decide)', async () => {
+        process.env.CONTACT_TO = 'owner@bloomora.pk';
+        const o = await place(cod());
+        await deliver(o.id);
+        now = hoursAfter(T0, 24 * 9);
+        await ask(returnBody(o.number)).expect(409);
+        expect(toStudio()).toHaveLength(0);
+      });
+
+      it('and the request still goes through when the studio email cannot be sent', async () => {
+        process.env.CONTACT_TO = 'owner@bloomora.pk';
+        mailer.failFor.add('owner@bloomora.pk');
+        const o = await place(cod());
+        await deliver(o.id);
+        const req = await ask(returnBody(o.number)).expect(201);
+        expect(req.body.status).toBe('requested');
+        const list = await request(server())
+          .get(api('/admin/returns'))
+          .set('Authorization', `Bearer ${staff}`)
+          .expect(200);
+        expect(list.body).toHaveLength(1);
+      });
     });
 
     it('OR-04 a faulty return also refunds delivery, which closes the order', async () => {

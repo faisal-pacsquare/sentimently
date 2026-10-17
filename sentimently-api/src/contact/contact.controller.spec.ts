@@ -1,3 +1,4 @@
+import { AdminNotifier } from '../mail/admin-notifier';
 import { ConsoleMailer, Mail, Mailer } from '../mail/mailer';
 import { ContactController, ContactDto } from './contact.controller';
 
@@ -48,9 +49,10 @@ describe('contact form email', () => {
     await withEnv({ CONTACT_TO: 'owner@bloomora.pk' }, async () => {
       const { store, saved } = fakeStore();
       const mailer = new ConsoleMailer();
-      const res = await new ContactController(store as never, mailer).create(
-        dto,
-      );
+      const res = await new ContactController(
+        store as never,
+        new AdminNotifier(store as never, mailer),
+      ).create(dto);
       expect(res.message).toMatch(/Thank you/);
       expect(saved).toHaveLength(1);
       expect(mailer.outbox).toHaveLength(1);
@@ -67,7 +69,10 @@ describe('contact form email', () => {
   it('marks bulk-gifting enquiries so they stand out', async () => {
     await withEnv({ CONTACT_TO: 'owner@bloomora.pk' }, async () => {
       const mailer = new ConsoleMailer();
-      await new ContactController(fakeStore().store as never, mailer).create({
+      await new ContactController(
+        fakeStore().store as never,
+        new AdminNotifier(fakeStore().store as never, mailer),
+      ).create({
         ...dto,
         topic: 'bulk_gifting',
         subject: '50 boxes',
@@ -88,7 +93,7 @@ describe('contact form email', () => {
         const mailer = new ConsoleMailer();
         await new ContactController(
           fakeStore(shopEmail).store as never,
-          mailer,
+          new AdminNotifier(fakeStore(shopEmail).store as never, mailer),
         ).create(dto);
         to = mailer.outbox[0]?.to;
       });
@@ -116,9 +121,10 @@ describe('contact form email', () => {
           throw new Error('brevo refused the email (401)');
         },
       };
-      const res = await new ContactController(store as never, broken).create(
-        dto,
-      );
+      const res = await new ContactController(
+        store as never,
+        new AdminNotifier(store as never, broken),
+      ).create(dto);
       expect(res.message).toMatch(/Thank you/);
       expect(saved).toHaveLength(1);
     });
@@ -129,7 +135,7 @@ describe('contact form email', () => {
       const mailer = new ConsoleMailer();
       const res = await new ContactController(
         fakeStore(null).store as never,
-        mailer,
+        new AdminNotifier(fakeStore(null).store as never, mailer),
       ).create(dto);
       expect(res.id).toBe('m1');
       expect(mailer.outbox).toHaveLength(0);

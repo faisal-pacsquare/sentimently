@@ -36,11 +36,14 @@ export function Account() {
       </div>
       {!me.emailVerified && (
         <Alert tone="warn">
-          <strong>Please confirm your email.</strong> We sent a link to {me.email}. It keeps your account safe and lets you reset your password.{' '}
-          {resend.isSuccess ? (
+          <strong>Please confirm your email.</strong> We emailed a link to {me.email}. It keeps your account safe and lets you reset your password. If it has not arrived after a few minutes, check your spam folder or ask for a new one.{' '}
+          {resend.isSuccess && resend.data.sent ? (
             <span>{resend.data.message}</span>
           ) : (
-            <Button variant="ghost" size="small" loading={resend.isPending} onClick={() => resend.mutate()}>Send the link again</Button>
+            <>
+              <Button variant="ghost" size="small" loading={resend.isPending} onClick={() => resend.mutate()}>{resend.isSuccess ? 'Try again' : 'Send the link again'}</Button>
+              {resend.isSuccess && <span role="status"> {resend.data.message} <Link to="/contact?topic=other">Write to us</Link> if it keeps happening.</span>}
+            </>
           )}
           {resend.error && <span> We could not send it just now. Please try again.</span>}
         </Alert>

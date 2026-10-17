@@ -3,8 +3,6 @@ import {
   Controller,
   Get,
   HttpCode,
-  Inject,
-  Logger,
   Module,
   NotFoundException,
   Param,
@@ -20,7 +18,7 @@ import {
   MaxLength,
 } from 'class-validator';
 import { Public, Roles } from '../auth/auth.decorators';
-import { MAILER, Mailer } from '../mail/mailer';
+import { AdminNotifier } from '../mail/admin-notifier';
 import { JsonStore } from '../storage/json-store.service';
 import { Doc } from '../storage/storage.types';
 
@@ -65,63 +63,10 @@ const TOPIC_LABEL: Record<string, string> = {
 
 @Controller()
 export class ContactController {
-  private readonly logger = new Logger('Contact');
-
   constructor(
     private readonly store: JsonStore,
-    @Inject(MAILER) private readonly mailer: Mailer,
+    private readonly notifier: AdminNotifier,
   ) {}
-
-  /** Who is told about a new message: CONTACT_TO, else ALERT_EMAIL, else the shop email in Settings, else the admin. */
-  private async recipient(): Promise<string | undefined> {
-    const config = await this.store.get<Doc & { contactEmail?: string | null }>(
-      'storeConfig',
-      'main',
-    );
-    return (
-      process.env.CONTACT_TO ||
-      process.env.ALERT_EMAIL ||
-      config?.contactEmail ||
-      process.env.ADMIN_EMAIL ||
-      undefined
-    );
-  }
-
-  /** The message is already safe in the studio inbox; an email is a nudge, so a failure never fails the form. */
-  private async notify(m: ContactMessage) {
-    try {
-      const to = await this.recipient();
-      if (!to) {
-        this.logger.warn(
-          'No address to email new messages to (set CONTACT_TO)',
-        );
-        return;
-      }
-      const label = TOPIC_LABEL[m.topic] ?? m.topic;
-      await this.mailer.send({
-        to,
-        replyTo: m.email,
-        subject: `${m.topic === 'bulk_gifting' ? '[Bulk enquiry]' : '[Contact]'} ${label}: ${m.subject}`,
-        text: [
-          `A new message from the shop's contact form.`,
-          ``,
-          `From:    ${m.name} <${m.email}>`,
-          m.phone ? `Phone:   ${m.phone}` : undefined,
-          m.orderNumber ? `Order:   ${m.orderNumber}` : undefined,
-          `Topic:   ${label}`,
-          `Subject: ${m.subject}`,
-          ``,
-          m.message,
-          ``,
-          `Reply to this email to answer ${m.name}. The message is also in the studio inbox.`,
-        ]
-          .filter((l) => l !== undefined)
-          .join('\n'),
-      });
-    } catch (e) {
-      this.logger.error(`Could not email the new message: ${String(e)}`);
-    }
-  }
 
   /** Contact form and bulk-gifting enquiries (topic bulk_gifting). Tight limit: it is a public write. */
   @Post('contact')
@@ -139,7 +84,26 @@ export class ContactController {
       email: dto.email.toLowerCase(),
       status: 'new',
     });
-    await this.notify(m);
+    const label = TOPIC_LABEL[m.topic] ?? m.topic;
+    await this.notifier.notify({
+      replyTo: m.email,
+      subject: `${m.topic === 'bulk_gifting' ? '[Bulk enquiry]' : '[Contact]'} ${label}: ${m.subject}`,
+      text: [
+        `A new message from the shop's contact form.`,
+        ``,
+        `From:    ${m.name} <${m.email}>`,
+        m.phone ? `Phone:   ${m.phone}` : undefined,
+        m.orderNumber ? `Order:   ${m.orderNumber}` : undefined,
+        `Topic:   ${label}`,
+        `Subject: ${m.subject}`,
+        ``,
+        m.message,
+        ``,
+        `Reply to this email to answer ${m.name}. The message is also in the studio inbox.`,
+      ]
+        .filter((l) => l !== undefined)
+        .join('\n'),
+    });
     return { id: m.id, message: 'Thank you. We will get back to you soon.' };
   }
 

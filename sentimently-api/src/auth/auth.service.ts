@@ -241,13 +241,13 @@ export class AuthService implements OnModuleInit {
   /** For a signed-in customer whose confirmation email never arrived. Replaces the earlier link. */
   async resendVerification(customerId: string) {
     const c = await this.store.get<Customer>('customers', customerId);
-    if (!c || c.emailVerified) return;
+    if (!c || c.emailVerified) return true; // nothing to send
     const token = newToken();
     await this.store.update<Customer>('customers', customerId, {
       verifyTokenHash: sha256(token),
       verifyExpiresAt: new Date(Date.now() + VERIFY_TTL_MS).toISOString(),
     });
-    await this.sendVerification(c.email, token);
+    return this.sendVerification(c.email, token);
   }
 
   /** Always answers the same way, so the endpoint does not reveal which emails have accounts. */
@@ -302,7 +302,11 @@ export class AuthService implements OnModuleInit {
 
   // ---------- helpers ----------
 
-  private async sendVerification(email: string, token: string) {
+  /** True when the email was really handed to a mail service (not just logged, and not refused). */
+  private async sendVerification(
+    email: string,
+    token: string,
+  ): Promise<boolean> {
     const base = process.env.APP_URL ?? 'http://localhost:3000';
     try {
       await this.mailer.send({
@@ -315,7 +319,9 @@ export class AuthService implements OnModuleInit {
       this.logger.error(
         `Could not send the confirmation email to ${email}: ${String(e)}`,
       );
+      return false;
     }
+    return this.mailer.delivers !== false;
   }
 
   private async session(customer: Customer) {

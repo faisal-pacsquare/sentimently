@@ -113,7 +113,7 @@ export function ReturnOrder() {
       {send.isSuccess ? (
         <>
           <Alert tone="info">
-            Thank you, we have your request{send.data.refundAmount ? ` for a refund of up to ${rupees(send.data.refundAmount)}` : ''}. We will email you once we have looked at it.
+            Thank you, we have your request{send.data.refundAmount ? ` for a refund of up to ${rupees(send.data.refundAmount)}` : ''}. Our team has been emailed and we will reply to you by email once we have looked at it.
           </Alert>
           <p><Button as={Link} to="/shop">Keep shopping</Button></p>
         </>

@@ -237,3 +237,44 @@ describe('team and tools', () => {
     expect(await screen.findByText('Done.')).toBeInTheDocument();
   });
 });
+
+describe('send a test email', () => {
+  const people = [{ id: 'u1', email: 'staff@studio.pk', name: 'Sana', role: 'staff', createdAt: '2026-10-01T00:00:00Z' }];
+
+  it('starts with your own address and says which email service answered', async () => {
+    let sent: unknown;
+    server.use(
+      http.get(`${BASE}/admin/staff`, () => HttpResponse.json(people)),
+      http.post(`${BASE}/admin/mail/test`, async ({ request }) => { sent = await request.json(); return HttpResponse.json({ sent: true, provider: 'brevo', message: 'Handed to brevo. It should arrive within a minute; check the spam folder too.' }); }),
+    );
+    renderAdmin('/team', 'admin');
+    const box = await screen.findByLabelText('Send it to');
+    expect(box).toHaveValue('staff@studio.pk');
+    await userEvent.click(screen.getByRole('button', { name: 'Send test email' }));
+    expect(await screen.findByText(/Handed to brevo/)).toBeInTheDocument();
+    expect(sent).toEqual({ to: 'staff@studio.pk' });
+  });
+
+  it('explains when no email service is connected, and shows the reason when one refuses', async () => {
+    server.use(
+      http.get(`${BASE}/admin/staff`, () => HttpResponse.json(people)),
+      http.post(`${BASE}/admin/mail/test`, () => HttpResponse.json({ sent: false, provider: 'console', message: 'No email service is set up on this API, so nothing can be delivered.' })),
+    );
+    renderAdmin('/team', 'admin');
+    await userEvent.click(await screen.findByRole('button', { name: 'Send test email' }));
+    expect(await screen.findByText(/No email service is set up/)).toBeInTheDocument();
+    expect(screen.getByText('Not sent')).toBeInTheDocument();
+    server.use(http.post(`${BASE}/admin/mail/test`, () => HttpResponse.json({ sent: false, provider: 'brevo', message: 'brevo refused the email (400)' })));
+    await userEvent.click(screen.getByRole('button', { name: 'Send test email' }));
+    expect(await screen.findByText(/brevo refused the email \(400\)/)).toBeInTheDocument();
+  });
+
+  it('will not send to something that is not an email address', async () => {
+    server.use(http.get(`${BASE}/admin/staff`, () => HttpResponse.json(people)));
+    renderAdmin('/team', 'admin');
+    const box = await screen.findByLabelText('Send it to');
+    await userEvent.clear(box);
+    await userEvent.type(box, 'nope');
+    expect(screen.getByRole('button', { name: 'Send test email' })).toBeDisabled();
+  });
+});

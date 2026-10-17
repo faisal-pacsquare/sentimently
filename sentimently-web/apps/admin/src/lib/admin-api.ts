@@ -135,6 +135,7 @@ export const adminApi = {
   addTeamMember: (body: { email: string; name?: string; password: string; role: 'staff' | 'admin' }) => client.post<TeamMember>('/admin/staff', body),
   removeTeamMember: (id: string) => client.delete<TeamMember>(`/admin/staff/${encodeURIComponent(id)}`),
   erasePerson: (email: string) => client.post<{ erased: boolean }>('/admin/privacy/erase', { email }),
+  testEmail: (to: string) => client.post<{ sent: boolean; provider: string; message: string }>('/admin/mail/test', { to }),
   runJobs: () => client.post<Record<string, unknown>>('/admin/scheduler/run'),
 
   summary: (q: { from?: string; to?: string }, o?: Opts) => client.get<Summary>('/admin/reports/summary', { query: { ...q }, ...o }),

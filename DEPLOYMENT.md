@@ -111,7 +111,16 @@ Until this is set up, the API only prints emails in its log: nothing reaches any
 | `CONTACT_TO` | the address that should receive messages from the Contact page (can be the same one) |
 
 5. **Redeploy** the API, then open `https://YOUR-API/api/v1/health`. It must say `"mail":"brevo"`. If it says `"mail":"console"`, a key or `MAIL_FROM` is missing.
-6. Test it: send a message from the shop's **Contact** page. It should arrive at `CONTACT_TO` within a minute, and **Reply** answers the customer directly. (Check Spam the first time.) The message is also always saved in the studio **Inbox**, even if email is down.
+6. Check it from the studio: sign in to the admin console, open **Team and tools**, and press **Send test email**. It names the service that answered and, if it refuses, says why. This is the quickest way to find out why nothing arrives.
+7. Also try the shop: send a message from the **Contact** page. It should arrive at `CONTACT_TO` within a minute, and **Reply** answers the customer directly. (Check Spam the first time.) The message is also always saved in the studio **Inbox**, even if email is down.
+
+**Also emailed to the team** (to `CONTACT_TO`): every Contact message, and every **return or damage request** a customer submits (with the order, items, reason and photo links; **Reply** goes to the customer). Add `ADMIN_URL` (your studio address) to put a direct link to the Returns screen in those emails.
+
+**If a customer says a confirmation email never came:**
+- Ask them to check spam, then press **Send the link again** in their account. If the shop could not send it, the page now says so instead of promising.
+- A Gmail (or Yahoo) address as the sender is the usual culprit: those providers tell other servers to distrust mail sent on their behalf, so it is often filtered or dropped. It works for testing. For real customers use an address at your own domain, and authenticate the domain in Brevo (**Senders, Domains > Domains > Add a domain**, then add the DNS records Brevo shows).
+- Throw-away inbox sites (yopmail, mailinator) are fine for testing but some mail services refuse them.
+- Brevo's **Transactional > Logs** shows each email and whether it was delivered, deferred or blocked.
 
 Resend (resend.com) also works: set `RESEND_API_KEY` and `MAIL_FROM=onboarding@resend.dev`. Without your own domain it can only send to the address you signed up with, so it is fine for the contact form but not for customer emails. If both keys are set, `MAIL_PROVIDER=brevo` or `resend` chooses.
 

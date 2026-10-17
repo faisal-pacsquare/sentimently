@@ -7,6 +7,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { randomUUID } from 'node:crypto';
+import { AdminNotifier } from '../mail/admin-notifier';
 import { MAILER, Mailer } from '../mail/mailer';
 import { CLOCK, Clock } from '../pricing/pricing.service';
 import { JsonStore } from '../storage/json-store.service';
@@ -51,6 +52,7 @@ export class ReturnsService {
     private readonly orders: OrdersService,
     private readonly refunds: RefundsService,
     @Inject(MAILER) private readonly mailer: Mailer,
+    private readonly notifier: AdminNotifier,
     @Inject(CLOCK) private readonly clock: Clock,
   ) {}
 
@@ -152,7 +154,46 @@ export class ReturnsService {
       'We have your request',
       `We received your ${dto.kind === 'damaged' ? 'damage report' : 'return request'} for order ${order.number}. We will reply soon.`,
     );
+    await this.tellAdmin(order, request);
     return { id: request.id, status: request.status, refundAmount };
+  }
+
+  /** The studio needs to act on this (decide within the policy window), so it is emailed as well as listed. */
+  private async tellAdmin(order: Order, request: ReturnRequest) {
+    const damaged = request.kind === 'damaged';
+    const items = request.lineIndexes
+      .map((i) => order.lines[i])
+      .filter(Boolean)
+      .map((l) => `  - ${l.quantity} x ${l.name}`);
+    const console = process.env.ADMIN_URL
+      ? `Decide here: ${process.env.ADMIN_URL.replace(/\/+$/, '')}/returns`
+      : 'Decide in the studio console: Returns and refunds.';
+    await this.notifier.notify({
+      replyTo: order.contactEmail,
+      subject: `[${damaged ? 'Damage report' : 'Return request'}] Order ${order.number}`,
+      text: [
+        damaged
+          ? 'A customer reported damage. Policy: reported within 48 hours with a photo; replace or refund in full.'
+          : 'A customer asked to return an order. Policy: unused, within 7 days of delivery.',
+        '',
+        `Order:    ${order.number}`,
+        `Customer: ${order.contactName ?? '(no name)'} <${order.contactEmail}>`,
+        order.contactPhone ? `Phone:    ${order.contactPhone}` : undefined,
+        `Refund:   up to Rs ${request.refundAmount.toLocaleString('en-PK')}`,
+        items.length ? `Items:\n${items.join('\n')}` : undefined,
+        '',
+        'What they said:',
+        request.reason,
+        request.photoUrls.length
+          ? `\nPhotos:\n${request.photoUrls.map((u) => `  ${u}`).join('\n')}`
+          : undefined,
+        '',
+        console,
+        'Reply to this email to write to the customer.',
+      ]
+        .filter((l) => l !== undefined)
+        .join('\n'),
+    });
   }
 
   // ---------- staff ----------

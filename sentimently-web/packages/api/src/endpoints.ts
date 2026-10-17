@@ -48,7 +48,7 @@ export function createApi(c: ApiClient) {
     login: (body: { email: string; password: string }) => c.post<Session>('/auth/login', body, { auth: false }),
     google: (idToken: string) => c.post<Session>('/auth/google', { idToken }, { auth: false }),
     verifyEmail: (token: string) => c.post<{ message: string; customer: Customer }>('/auth/verify-email', { token }, { auth: false }),
-    resendVerification: () => c.post<{ message: string }>('/auth/resend-verification'),
+    resendVerification: () => c.post<{ message: string; sent: boolean }>('/auth/resend-verification'),
     forgotPassword: (email: string) => c.post<{ message: string }>('/auth/forgot-password', { email }, { auth: false }),
     resetPassword: (token: string, password: string) => c.post<{ message: string }>('/auth/reset-password', { token, password }, { auth: false }),
 

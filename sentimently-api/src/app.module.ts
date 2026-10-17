@@ -9,7 +9,7 @@ import { CatalogueModule } from './catalogue/catalogue.module';
 import { ContactModule } from './contact/contact.controller';
 import { FulfilmentModule } from './fulfilment/fulfilment.module';
 import { HealthController } from './health/health.controller';
-import { MailModule } from './mail/mailer';
+import { MailModule } from './mail/mail.module';
 import { MeModule } from './me/me.module';
 import { MessagingModule } from './messaging/messenger';
 import { OrdersModule } from './orders/orders.module';

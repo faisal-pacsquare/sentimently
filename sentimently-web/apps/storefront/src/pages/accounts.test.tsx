@@ -234,3 +234,33 @@ describe('signing out from anywhere', () => {
     expect(screen.getByRole('link', { name: 'Sign in' })).toBeInTheDocument();
   });
 });
+
+describe('confirmation email that does not arrive', () => {
+  const unverified = { ...customer, emailVerified: false };
+  const open = () => {
+    session.set('tok-1');
+    server.use(
+      http.get(`${BASE}/me`, () => HttpResponse.json(unverified)),
+      http.get(`${BASE}/orders`, () => HttpResponse.json([])),
+    );
+  };
+
+  it('does not claim it was sent when the shop could not send it, and offers another try and a way to ask for help', async () => {
+    open();
+    server.use(http.post(`${BASE}/auth/resend-verification`, () => HttpResponse.json({ message: 'We could not send the email just now. Please try again in a few minutes, or write to us.', sent: false }, { status: 202 })));
+    renderApp('/account');
+    await userEvent.click(await screen.findByRole('button', { name: 'Send the link again' }));
+    expect(await screen.findByText(/could not send the email just now/)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Try again' })).toBeInTheDocument();
+    expect(document.querySelector('[role=status] a[href="/contact?topic=other"]')).not.toBeNull(); // the help link beside the message
+  });
+
+  it('confirms when it really was sent', async () => {
+    open();
+    server.use(http.post(`${BASE}/auth/resend-verification`, () => HttpResponse.json({ message: 'If your email is not confirmed yet, a new link is on its way.', sent: true }, { status: 202 })));
+    renderApp('/account');
+    await userEvent.click(await screen.findByRole('button', { name: 'Send the link again' }));
+    expect(await screen.findByText(/a new link is on its way/)).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: 'Try again' })).toBeNull();
+  });
+});

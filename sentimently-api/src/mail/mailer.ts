@@ -1,4 +1,4 @@
-import { Global, Logger, Module } from '@nestjs/common';
+import { Logger } from '@nestjs/common';
 
 export interface Mail {
   to: string;
@@ -10,6 +10,8 @@ export interface Mail {
 
 export interface Mailer {
   send(mail: Mail): Promise<void>;
+  /** False for a mailer that only logs (nothing reaches anyone). Absent means it does deliver. */
+  readonly delivers?: boolean;
 }
 
 export const MAILER = Symbol('MAILER');
@@ -19,6 +21,7 @@ export const MAILER = Symbol('MAILER');
  * Outside production the message body is logged so reset links can be copied.
  */
 export class ConsoleMailer implements Mailer {
+  readonly delivers = false;
   readonly outbox: Mail[] = [];
   private readonly logger = new Logger('Mailer');
 
@@ -55,6 +58,7 @@ const oneLine = (s: string) =>
  * A failed send throws, so callers can decide whether it matters (a sign-up must not fail because email is down).
  */
 export class HttpMailer implements Mailer {
+  readonly delivers = true;
   private readonly logger = new Logger('Mailer');
 
   constructor(
@@ -150,10 +154,3 @@ export function createMailer(env: NodeJS.ProcessEnv = process.env): Mailer {
     fromName: env.MAIL_FROM_NAME || 'Bloomora',
   });
 }
-
-@Global()
-@Module({
-  providers: [{ provide: MAILER, useFactory: () => createMailer() }],
-  exports: [MAILER],
-})
-export class MailModule {}

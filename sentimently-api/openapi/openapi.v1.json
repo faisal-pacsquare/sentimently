@@ -866,6 +866,10 @@
         ],
         "type": "object"
       },
+      "TestEmailDto": {
+        "properties": {},
+        "type": "object"
+      },
       "TrackDto": {
         "properties": {
           "email": {
@@ -1410,6 +1414,37 @@
         "summary": "AdminSettingsController.updateExtra",
         "tags": [
           "AdminSettings"
+        ],
+        "x-access": "roles: admin"
+      }
+    },
+    "/api/v1/admin/mail/test": {
+      "post": {
+        "operationId": "MailAdminController_test",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TestEmailDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "MailAdminController.test",
+        "tags": [
+          "MailAdmin"
         ],
         "x-access": "roles: admin"
       }
