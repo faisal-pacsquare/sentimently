@@ -1864,6 +1864,50 @@
           }
         },
         {
+          "name": "DELETE /admin/taxonomy/{id}",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "description": "Access: roles: admin",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admin/taxonomy/:id?moveTo=",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "taxonomy",
+                ":id"
+              ],
+              "query": [
+                {
+                  "key": "moveTo",
+                  "value": "",
+                  "disabled": true
+                }
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "{{orderId}}"
+                }
+              ]
+            }
+          }
+        },
+        {
           "name": "PATCH /admin/taxonomy/{id}",
           "event": [
             {

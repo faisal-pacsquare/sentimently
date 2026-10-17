@@ -2574,6 +2574,42 @@
       }
     },
     "/api/v1/admin/taxonomy/{id}": {
+      "delete": {
+        "operationId": "AdminCatalogueController_removeTaxonomy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "moveTo",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "AdminCatalogueController.removeTaxonomy",
+        "tags": [
+          "AdminCatalogue"
+        ],
+        "x-access": "roles: admin"
+      },
       "patch": {
         "operationId": "AdminCatalogueController_updateTaxonomy",
         "parameters": [

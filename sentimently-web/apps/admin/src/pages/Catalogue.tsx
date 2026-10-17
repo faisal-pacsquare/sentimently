@@ -2,10 +2,10 @@ import { rupees } from '@sentimently/api';
 import { Alert, Badge, Button, Chip, EmptyState, SafeImage, TextField } from '@sentimently/ui';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { adminApi } from '../lib/admin-api';
 import { useAuth } from '../lib/auth';
-import type { AdminProduct } from '../lib/admin-api';
+import type { AdminProduct, GroupKind } from '../lib/admin-api';
 import { photoSrc } from '../lib/photos';
 import { ActionError, QueryError } from '../lib/present';
 
@@ -19,7 +19,22 @@ function stockText(p: AdminProduct) {
   return p.stock <= 0 ? 'Sold out' : `${p.stock} left`;
 }
 
+const GROUP_KINDS = [['category', 'Category', 'categories'], ['sentiment', 'Feeling', 'sentiments'], ['occasion', 'Occasion', 'occasions'], ['recipient', 'For', 'recipients']] as const;
+
+function inGroup(p: AdminProduct, kind: GroupKind, slug: string) {
+  if (kind === 'category') return p.category === slug;
+  return (kind === 'sentiment' ? p.sentiments : kind === 'occasion' ? p.occasions : p.recipients)?.includes(slug) ?? false;
+}
+
 export function Catalogue() {
+  const [params, setParams] = useSearchParams();
+  const group = GROUP_KINDS.map(([kind, label, path]) => ({ kind: kind as GroupKind, label, path, slug: params.get(kind) })).find((g) => g.slug);
+  const groupName = useQuery({
+    queryKey: ['groups', group?.path],
+    enabled: !!group,
+    queryFn: ({ signal }) => adminApi.groups(group!.path, { signal }),
+    select: (items) => items.find((t) => t.slug === group!.slug)?.name,
+  });
   const q = useQuery({ queryKey: ['products'], queryFn: ({ signal }) => adminApi.products({ signal }) });
   const [filter, setFilter] = useState<Filter>('all');
   const [search, setSearch] = useState('');
@@ -31,6 +46,7 @@ export function Catalogue() {
   const needle = search.trim().toLowerCase();
   const rows = (q.data ?? [])
     .filter((p) => filter === 'all' || (filter === 'active' && p.isActive !== false) || (filter === 'hidden' && p.isActive === false) || (filter === 'low' && p.type === 'physical' && !p.isMadeToOrder && p.isActive !== false && p.stock <= LOW))
+    .filter((p) => !group || inGroup(p, group.kind, group.slug!))
     .filter((p) => !needle || `${p.name} ${p.slug}`.toLowerCase().includes(needle))
     .sort((a, b) => a.name.localeCompare(b.name));
 
@@ -52,6 +68,13 @@ export function Catalogue() {
         <Button as={Link} to="/catalogue/groups" variant="secondary">Feelings, occasions and categories</Button>
         <Button as={Link} to="/catalogue/import" variant="secondary">Add from a spreadsheet</Button>
       </div>
+      {group && (
+        <p className="group-filter">
+          <strong>{group.label}: {groupName.data ?? group.slug}</strong>
+          {' '}<Button size="small" variant="ghost" onClick={() => setParams({})}>Show all gifts</Button>
+          {' '}<Button size="small" variant="secondary" as={Link} to={`/catalogue/new?${group.kind}=${encodeURIComponent(group.slug!)}`}>Add a gift here</Button>
+        </p>
+      )}
       <div className="presets" role="group" aria-label="Show">
         {FILTERS.map(([k, label]) => <Chip key={k} pressed={filter === k} onClick={() => setFilter(k)}>{label}</Chip>)}
       </div>

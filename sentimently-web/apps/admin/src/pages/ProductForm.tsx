@@ -3,7 +3,7 @@ import { Alert, Button, Container, ErrorState, ProblemList, SelectField, TextAre
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useRef, useState } from 'react';
 import type { FormEvent } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { adminApi } from '../lib/admin-api';
 import type { AdminProduct, ProductInput } from '../lib/admin-api';
 import { useAuth } from '../lib/auth';
@@ -36,6 +36,7 @@ function Form({ product }: { product?: AdminProduct }) {
   const navigate = useNavigate();
   const qc = useQueryClient();
   const { isAdmin } = useAuth();
+  const [startIn] = useSearchParams(); // /catalogue/new?category=home starts the gift inside that group
   const sentiments = useQuery({ queryKey: ['groups', 'sentiments'], queryFn: ({ signal }) => adminApi.groups('sentiments', { signal }) });
   const occasions = useQuery({ queryKey: ['groups', 'occasions'], queryFn: ({ signal }) => adminApi.groups('occasions', { signal }) });
   const recipients = useQuery({ queryKey: ['groups', 'recipients'], queryFn: ({ signal }) => adminApi.groups('recipients', { signal }) });
@@ -58,10 +59,10 @@ function Form({ product }: { product?: AdminProduct }) {
   const [leadMax, setLeadMax] = useState(product?.leadTimeMaxDays != null ? String(product.leadTimeMaxDays) : '');
   const [perishable, setPerishable] = useState(!!product?.isPerishable);
   const [active, setActive] = useState(product?.isActive !== false);
-  const [category, setCategory] = useState(product?.category ?? '');
-  const [sent, setSent] = useState(product?.sentiments ?? []);
-  const [occ, setOcc] = useState(product?.occasions ?? []);
-  const [rec, setRec] = useState(product?.recipients ?? []);
+  const [category, setCategory] = useState(product?.category ?? (startIn.get('category') ?? ''));
+  const [sent, setSent] = useState(product?.sentiments ?? (startIn.get('sentiment') ? [startIn.get('sentiment')!] : []));
+  const [occ, setOcc] = useState(product?.occasions ?? (startIn.get('occasion') ? [startIn.get('occasion')!] : []));
+  const [rec, setRec] = useState(product?.recipients ?? (startIn.get('recipient') ? [startIn.get('recipient')!] : []));
   const [extras, setExtras] = useState(product?.allowedExtras ?? []);
   const savedPhotos = product?.imageUrls ?? [];
   const [images, setImages] = useState<string[]>(savedPhotos);

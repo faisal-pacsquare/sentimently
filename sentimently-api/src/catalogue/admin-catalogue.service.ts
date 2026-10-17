@@ -262,6 +262,65 @@ export class AdminCatalogueService {
     return item;
   }
 
+  /**
+   * Deletes a category, feeling, occasion or recipient group.
+   * A category that still has gifts (hidden ones too) can only be deleted by naming another category to move them to.
+   * For the other kinds the gifts stay and simply lose that tag.
+   */
+  async removeTaxonomy(id: string, moveTo?: string) {
+    const [group, products] = await Promise.all([
+      this.store.get<TaxonomyItem>('taxonomy', id),
+      this.store.all<Product>('products'),
+    ]);
+    if (!group) throw new NotFoundException('Group not found');
+    const FIELD = {
+      sentiment: 'sentiments',
+      occasion: 'occasions',
+      recipient: 'recipients',
+    } as const;
+    const uses = (p: Product) =>
+      group.kind === 'category'
+        ? p.category === group.slug
+        : (p[FIELD[group.kind]] ?? []).includes(group.slug);
+    const using = products.filter(uses);
+
+    if (group.kind === 'category' && using.length) {
+      if (!moveTo)
+        throw new ConflictException(
+          `${using.length} ${using.length === 1 ? 'gift is' : 'gifts are'} in this category. Choose another category to move ${using.length === 1 ? 'it' : 'them'} to first.`,
+        );
+      if (moveTo === group.slug)
+        throw new BadRequestException(
+          'Choose a different category to move the gifts to',
+        );
+      const target = await this.store.findOne<TaxonomyItem>(
+        'taxonomy',
+        (t) => t.kind === 'category' && t.slug === moveTo,
+      );
+      if (!target)
+        throw new BadRequestException(
+          'The category to move the gifts to does not exist',
+        );
+    }
+
+    const ids = new Set(using.map((p) => p.id));
+    if (ids.size)
+      await this.store.mutate('products', (docs) => {
+        for (const d of docs) {
+          if (!ids.has(d.id)) continue;
+          const p = d as Product;
+          if (group.kind === 'category') p.category = moveTo as string;
+          else {
+            const f = FIELD[group.kind];
+            p[f] = (p[f] ?? []).filter((s) => s !== group.slug);
+          }
+          p.updatedAt = new Date().toISOString();
+        }
+      });
+    await this.store.remove('taxonomy', id);
+    return { giftsUpdated: ids.size };
+  }
+
   async updateTaxonomy(id: string, dto: UpdateTaxonomyDto) {
     const t = await this.store.update<TaxonomyItem>(
       'taxonomy',

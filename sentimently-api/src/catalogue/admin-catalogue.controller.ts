@@ -7,6 +7,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
 } from '@nestjs/common';
 import { Roles } from '../auth/auth.decorators';
 import { AdminCatalogueService } from './admin-catalogue.service';
@@ -80,6 +81,14 @@ export class AdminCatalogueController {
   @Post('taxonomy')
   createTaxonomy(@Body() dto: TaxonomyDto) {
     return this.admin.createTaxonomy(dto);
+  }
+
+  /** Administrators only. A category with gifts needs ?moveTo=<another category slug>. */
+  @Delete('taxonomy/:id')
+  @Roles('admin')
+  @HttpCode(200)
+  removeTaxonomy(@Param('id') id: string, @Query('moveTo') moveTo?: string) {
+    return this.admin.removeTaxonomy(id, moveTo);
   }
 
   @Patch('taxonomy/:id')

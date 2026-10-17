@@ -137,6 +137,7 @@ export const adminApi = {
     client.get<TaxonomyItem[]>(`/taxonomy/${kind}`, { query: { fresh: Date.now() }, ...o }),
   createGroup: (body: GroupInput) => client.post<TaxonomyItem>('/admin/taxonomy', body),
   updateGroup: (id: string, body: Partial<GroupInput>) => client.patch<TaxonomyItem>(`/admin/taxonomy/${encodeURIComponent(id)}`, body),
+  deleteGroup: (id: string, moveTo?: string) => client.delete<{ giftsUpdated: number }>(`/admin/taxonomy/${encodeURIComponent(id)}`, undefined, { query: moveTo ? { moveTo } : {} }),
   options: (o?: Opts) => client.get<PersonalisationOptions>('/personalisation/options', o),
 
   store: (o?: Opts) => client.get<AdminStore>('/admin/store', o),
