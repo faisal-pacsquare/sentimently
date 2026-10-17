@@ -128,6 +128,12 @@ export function buildCatalogue(input: {
   productsCsv: string;
   extraCodes: string[];
   existingProducts?: Product[];
+  /**
+   * For a shop that already exists and may have renamed or deleted some feelings, occasions or recipients:
+   * a gift that names one the shop does not have is added without that tag, with a warning, instead of the whole
+   * file being refused. A missing category is still an error, because a gift cannot exist without one.
+   */
+  dropUnknownTags?: boolean;
   now?: string;
 }): ImportResult {
   const errors: string[] = [];
@@ -184,6 +190,7 @@ export function buildCatalogue(input: {
   const products: Product[] = [];
   const used = new Set<string>();
 
+  const dropped = new Map<string, string[]>();
   for (const r of records(input.productsCsv, 'products.csv', errors)) {
     const where = `products.csv line ${r.line}`;
     const slug = text(r, 'slug');
@@ -252,13 +259,20 @@ export function buildCatalogue(input: {
       ['occasions', 'occasion'],
       ['recipients', 'recipient'],
     ] as const) {
+      const kept: string[] = [];
       for (const slugValue of tags[field]) {
-        if (!has(kind, slugValue))
+        if (has(kind, slugValue)) {
+          kept.push(slugValue);
+          used.add(`${kind}/${slugValue}`);
+        } else if (input.dropUnknownTags) {
+          const key = `${kind} "${slugValue}"`;
+          dropped.set(key, [...(dropped.get(key) ?? []), text(r, 'name')]);
+        } else
           errors.push(
             `${where}: ${kind} "${slugValue}" is not in taxonomy.csv`,
           );
-        else used.add(`${kind}/${slugValue}`);
       }
+      tags[field] = kept;
     }
     used.add(`category/${category}`);
     const allowedExtras = list(text(r, 'allowedExtras'));
@@ -325,6 +339,10 @@ export function buildCatalogue(input: {
     });
   }
 
+  for (const [tag, names] of dropped)
+    warnings.push(
+      `${tag} is not in your shop, so ${names.length} ${names.length === 1 ? 'gift was' : 'gifts were'} added without it (${names.slice(0, 3).join(', ')}${names.length > 3 ? ', …' : ''})`,
+    );
   for (const t of taxonomy)
     if (!used.has(`${t.kind}/${t.slug}`))
       warnings.push(

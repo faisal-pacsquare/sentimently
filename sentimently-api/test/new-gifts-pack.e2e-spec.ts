@@ -45,7 +45,9 @@ describe('The new gifts spreadsheets (e2e)', () => {
       taxonomy: seed('taxonomy').filter(
         (t) =>
           !(t.kind === 'category' && NEW_CATEGORIES.includes(t.slug)) &&
-          !(t.kind === 'occasion' && NEW_OCCASIONS.includes(t.slug)),
+          !(t.kind === 'occasion' && NEW_OCCASIONS.includes(t.slug)) &&
+          // this shop has no "just because" feeling (deleted or renamed): the import must cope
+          !(t.kind === 'sentiment' && t.slug === 'just-because'),
       ),
       products: seed('products').filter(
         (p) => !NEW_CATEGORIES.includes(p.category),
@@ -101,7 +103,11 @@ describe('The new gifts spreadsheets (e2e)', () => {
       .expect(200);
     expect(check.body.addedGifts).toHaveLength(26);
     expect(check.body.addedGroups).toHaveLength(5);
-    expect(check.body.warnings).toEqual([]);
+    expect(check.body.warnings).toEqual([
+      expect.stringMatching(
+        /sentiment "just-because" is not in your shop, so \d+ gifts were added without it/,
+      ),
+    ]);
 
     await request(server())
       .post(api('/admin/catalogue/import'))

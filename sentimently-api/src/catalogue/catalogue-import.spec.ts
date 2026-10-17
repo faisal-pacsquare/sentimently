@@ -78,6 +78,47 @@ describe('CSV reading', () => {
   });
 });
 
+describe('a shop that is missing some feelings (dropUnknownTags)', () => {
+  const input = {
+    taxonomyCsv: 'kind,slug,name\ncategory,home,Home\nsentiment,love,Love',
+    productsCsv: [
+      'slug,name,description,price,type,stock,category,sentiments',
+      'mug,Mug,A lovely ceramic mug for tea,1200,physical,5,home,love|just-because',
+      'candle,Candle,A lovely soy candle for evenings,900,physical,5,home,just-because',
+      'frame,Frame,A lovely wooden photo frame,1500,physical,5,home,love',
+    ].join('\n'),
+    extraCodes: [],
+  };
+  it('is an error by default (the command-line import stays strict)', () => {
+    const r = buildCatalogue(input);
+    expect(r.errors).toHaveLength(2);
+    expect(r.errors[0]).toMatch(
+      /sentiment "just-because" is not in taxonomy\.csv/,
+    );
+  });
+  it('adds the gifts without the missing tag and says so once', () => {
+    const r = buildCatalogue({ ...input, dropUnknownTags: true });
+    expect(r.errors).toEqual([]);
+    expect(r.products.map((p) => p.sentiments)).toEqual([
+      ['love'],
+      [],
+      ['love'],
+    ]);
+    expect(r.warnings.filter((w) => /added without it/.test(w))).toEqual([
+      'sentiment "just-because" is not in your shop, so 2 gifts were added without it (Mug, Candle)',
+    ]);
+  });
+  it('still refuses a missing category', () => {
+    const r = buildCatalogue({
+      ...input,
+      productsCsv:
+        'slug,name,description,price,type,stock,category\nmug,Mug,A lovely ceramic mug for tea,1200,physical,5,nowhere',
+      dropUnknownTags: true,
+    });
+    expect(r.errors[0]).toMatch(/category "nowhere" is not in taxonomy\.csv/);
+  });
+});
+
 describe('choosing the wrong file', () => {
   const taxonomyCsv = 'kind,slug,name\ncategory,home,Home';
   it('gives one clear message, not an error for every row', () => {

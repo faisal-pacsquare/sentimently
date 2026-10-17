@@ -204,6 +204,7 @@ export class AdminCatalogueService {
       productsCsv: dto.productsCsv,
       extraCodes: extras.map((e) => e.id),
       existingProducts: products,
+      dropUnknownTags: true,
     });
     if (result.errors.length)
       throw new BadRequestException({ message: result.errors.slice(0, 30) });
@@ -239,7 +240,9 @@ export class AdminCatalogueService {
       addedGifts: newGifts.map((p) => p.name),
       skippedGifts: skipped.map((p) => p.name),
       addedGroups: newGroups.map((g) => `${g.kind}: ${g.name}`),
-      warnings: result.warnings.filter((w) => /no image/.test(w)),
+      warnings: result.warnings.filter((w) =>
+        /no image|added without it/.test(w),
+      ),
     };
   }
 
