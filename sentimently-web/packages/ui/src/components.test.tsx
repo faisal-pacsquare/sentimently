@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
 import { fireEvent } from '@testing-library/react';
 import { Button, Chip, ErrorState, Price, ProblemList, ProductCard, SafeImage, SelectField, Stars, TextField } from './components';
+import { Logo, LogoMark } from './Logo';
 
 describe('Price', () => {
   it('shows one price normally', () => {
@@ -138,5 +139,32 @@ describe('SafeImage', () => {
     const { container } = render(<SafeImage name="Candle" />);
     expect(container.querySelector('img')).toBeNull();
     expect(container).toHaveTextContent('C');
+  });
+});
+
+describe('Logo', () => {
+  it('shows the name, and the tagline and sub-title only when asked', () => {
+    const { rerender } = render(<Logo />);
+    expect(screen.getByText('Bloomora')).toBeInTheDocument();
+    expect(screen.queryByText(/handmade bouquets/i)).toBeNull();
+    rerender(<Logo layout="stacked" tagline sub="studio" tone="dark" />);
+    expect(screen.getByText(/handmade bouquets/i)).toBeInTheDocument();
+    expect(screen.getByText('studio')).toBeInTheDocument();
+  });
+
+  it('draws its picture as decoration, and gives every copy its own gradient ids', () => {
+    const { container } = render(<><Logo /><Logo tone="dark" /></>);
+    const svgs = container.querySelectorAll('svg');
+    expect(svgs).toHaveLength(2);
+    svgs.forEach((s) => expect(s).toHaveAttribute('aria-hidden', 'true'));
+    const ids = [...container.querySelectorAll('linearGradient, radialGradient')].map((g) => g.id);
+    expect(ids.length).toBeGreaterThan(4);
+    expect(new Set(ids).size).toBe(ids.length);
+    expect(container.innerHTML).not.toContain('__ID__');
+  });
+
+  it('can be a labelled picture on its own', () => {
+    render(<LogoMark title="Bloomora" />);
+    expect(screen.getByRole('img', { name: 'Bloomora' })).toBeInTheDocument();
   });
 });

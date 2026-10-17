@@ -96,7 +96,7 @@ function ProductView({ product }: { product: ProductT }) {
 
   return (
     <Container className="page">
-      <title>{`${product.name} | Sentimently`}</title>
+      <title>{`${product.name} | Bloomora`}</title>
       <nav aria-label="Breadcrumb" className="crumbs">
         <Link to="/shop">All gifts</Link> / <span aria-current="page">{product.name}</span>
       </nav>

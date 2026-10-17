@@ -47,7 +47,7 @@ export function Orders() {
 
   return (
     <>
-      <title>Orders | Sentimently studio</title>
+      <title>Orders | Bloomora studio</title>
       <h1>Orders</h1>
       <div className="presets" role="group" aria-label="Show">
         {(Object.keys(PRESETS) as Preset[]).map((k) => (

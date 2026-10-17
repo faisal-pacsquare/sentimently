@@ -35,7 +35,7 @@ export function Box() {
   if (!basket.lines.length) {
     return (
       <Container className="page">
-        <title>Your gift box | Sentimently</title>
+        <title>Your gift box | Bloomora</title>
         <h1>Your gift box</h1>
         <EmptyState title="Your gift box is empty" message="Find something that says what you mean.">
           <Button as={Link} to="/shop">Browse gifts</Button>
@@ -46,7 +46,7 @@ export function Box() {
 
   return (
     <Container className="page">
-      <title>Your gift box | Sentimently</title>
+      <title>Your gift box | Bloomora</title>
       <h1>Your gift box</h1>
       <div className="box">
         <section aria-label="Items">

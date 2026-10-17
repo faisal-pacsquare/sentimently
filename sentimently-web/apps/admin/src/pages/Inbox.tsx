@@ -49,7 +49,7 @@ export function Inbox() {
   const rows = [...q.data].sort((a, b) => b.createdAt.localeCompare(a.createdAt)).filter((m) => (show === 'open' ? m.status !== 'closed' : m.status === 'closed'));
   return (
     <>
-      <title>Inbox | Sentimently studio</title>
+      <title>Inbox | Bloomora studio</title>
       <h1>Inbox</h1>
       <div className="presets" role="group" aria-label="Show">
         {FILTERS.map(([k, label]) => <Chip key={k} pressed={show === k} onClick={() => setShow(k)}>{label}</Chip>)}

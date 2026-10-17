@@ -22,7 +22,7 @@ export function Reports() {
   const s = q.data;
   return (
     <>
-      <title>Reports | Sentimently studio</title>
+      <title>Reports | Bloomora studio</title>
       <h1>Reports</h1>
       <div className="toolbar">
         <TextField label="From" type="date" value={from} onChange={(e) => setFrom(e.target.value)} />

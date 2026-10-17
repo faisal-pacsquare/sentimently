@@ -1,4 +1,4 @@
-import { Button, Container, ErrorState, SkipLink } from '@sentimently/ui';
+import { Button, Container, ErrorState, Logo, SkipLink } from '@sentimently/ui';
 import { Navigate, NavLink, Outlet, useLocation } from 'react-router-dom';
 import { useAuth } from '../lib/auth';
 import { QueryError } from '../lib/present';
@@ -64,12 +64,7 @@ export function Shell() {
       <SkipLink href="#main" />
       <aside className="shell__side">
         <p className="brand">
-          <svg className="brand__mark" viewBox="0 0 32 32" width="28" height="28" aria-hidden="true">
-            <defs><linearGradient id="am" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#e0577f" /><stop offset="1" stopColor="#9d2c52" /></linearGradient></defs>
-            <rect width="32" height="32" rx="10" fill="url(#am)" />
-            <path d="M16 24.5c-5.6-4-8-7-8-10.3a4.4 4.4 0 0 1 8-2.5 4.4 4.4 0 0 1 8 2.5c0 3.3-2.4 6.3-8 10.3z" fill="#fff" />
-          </svg>
-          <span>Sentimently <span className="brand__sub">studio</span></span>
+          <Logo tone="dark" sub="studio" />
         </p>
         <nav aria-label="Studio">
           {NAV.map(([to, label, end, icon]) => <NavLink key={to} to={to} end={end}><Icon name={icon} />{label}</NavLink>)}

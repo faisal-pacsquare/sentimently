@@ -45,7 +45,7 @@ function CardReturn({ res, cancelled }: { res: CheckoutResponse; cancelled: bool
   if (cancelled) {
     return (
       <Container className="page">
-        <title>Payment cancelled | Sentimently</title>
+        <title>Payment cancelled | Bloomora</title>
         <h1>Payment not completed</h1>
         <p>No money was taken.{released ? ` Order ${number} has been cancelled.` : ''} Your gift box is still here if you would like to try again.</p>
         <p><Button as={Link} to="/box">Back to gift box</Button></p>
@@ -57,7 +57,7 @@ function CardReturn({ res, cancelled }: { res: CheckoutResponse; cancelled: bool
   const waited = Date.now() - started.current >= POLL_FOR_MS;
   return (
     <Container className="page">
-      <title>{paid ? 'Order placed' : 'Confirming payment'} | Sentimently</title>
+      <title>{paid ? 'Order placed' : 'Confirming payment'} | Bloomora</title>
       {paid ? (
         <>
           <h1>Thank you, we have your payment</h1>
@@ -91,7 +91,7 @@ export function OrderPlaced() {
   if (!res) {
     return (
       <Container className="page">
-        <title>Order | Sentimently</title>
+        <title>Order | Bloomora</title>
         <h1>Looking for an order?</h1>
         <p>Use your order number and email to see where it is.</p>
         <Button as={Link} to="/track">Track an order</Button>
@@ -113,7 +113,7 @@ export function OrderPlaced() {
   };
   return (
     <Container className="page">
-      <title>Order placed | Sentimently</title>
+      <title>Order placed | Bloomora</title>
       <h1>Thank you, your order is placed</h1>
       <p>Order number <strong>{order.number}</strong>. We sent the details to {order.contactEmail}.</p>
       <p>Total <strong>{rupees(order.total)}</strong>.{order.estimatedBy ? ` Expected by ${shortDate(order.estimatedBy)}.` : ''}</p>

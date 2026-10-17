@@ -309,7 +309,7 @@ export function Settings() {
   const store = useQuery({ queryKey: ['store'], queryFn: ({ signal }) => adminApi.store({ signal }), enabled: tab === 'shop' || tab === 'delivery' });
   return (
     <>
-      <title>Settings | Sentimently studio</title>
+      <title>Settings | Bloomora studio</title>
       <h1>Settings</h1>
       <p className="muted">Changes go live on the shop straight away.</p>
       <div className="presets" role="group" aria-label="Settings">

@@ -34,7 +34,7 @@ export function Reviews() {
   const rows = [...q.data].sort((a, b) => b.createdAt.localeCompare(a.createdAt)).filter((r) => show === 'all' || r.status === show);
   return (
     <>
-      <title>Reviews | Sentimently studio</title>
+      <title>Reviews | Bloomora studio</title>
       <h1>Reviews</h1>
       <p className="muted">Only published, verified reviews count towards a gift's rating.</p>
       <div className="presets" role="group" aria-label="Show">

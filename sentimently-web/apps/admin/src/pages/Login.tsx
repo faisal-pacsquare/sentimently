@@ -1,5 +1,5 @@
 import { ApiError } from '@sentimently/api';
-import { Alert, Button, Container, ErrorState, TextField } from '@sentimently/ui';
+import { Alert, Button, Container, ErrorState, Logo, TextField } from '@sentimently/ui';
 import { useMutation } from '@tanstack/react-query';
 import { useState } from 'react';
 import type { FormEvent } from 'react';
@@ -33,12 +33,8 @@ export function Login() {
   const e = login.error instanceof ApiError ? login.error : null;
   return (
     <Container className="page page--narrow">
-      <title>Sign in | Sentimently studio</title>
-      <svg className="login-mark" viewBox="0 0 32 32" width="52" height="52" aria-hidden="true">
-        <defs><linearGradient id="lm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#e0577f" /><stop offset="1" stopColor="#9d2c52" /></linearGradient></defs>
-        <rect width="32" height="32" rx="10" fill="url(#lm)" />
-        <path d="M16 24.5c-5.6-4-8-7-8-10.3a4.4 4.4 0 0 1 8-2.5 4.4 4.4 0 0 1 8 2.5c0 3.3-2.4 6.3-8 10.3z" fill="#fff" />
-      </svg>
+      <title>Sign in | Bloomora studio</title>
+      <p className="login-logo"><Logo layout="stacked" tagline sub="studio" /></p>
       <h1>Studio sign in</h1>
       <form className="auth-form" onSubmit={submit} noValidate>
         <TextField label="Email" type="email" autoComplete="username" value={email} onChange={(ev) => setEmail(ev.target.value)} error={submitted && !email.trim() ? 'Enter your email.' : ''} />

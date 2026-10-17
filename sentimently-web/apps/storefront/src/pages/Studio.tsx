@@ -67,7 +67,7 @@ function StudioForm({ product, options, editing }: { product: ProductT; options:
 
   return (
     <Container className="page">
-      <title>{`Personalise ${product.name} | Sentimently`}</title>
+      <title>{`Personalise ${product.name} | Bloomora`}</title>
       <nav aria-label="Breadcrumb" className="crumbs">
         <Link to="/shop">All gifts</Link> / <Link to={`/gifts/${product.slug}`}>{product.name}</Link> / <span aria-current="page">Personalise</span>
       </nav>

@@ -111,7 +111,7 @@ function Detail({ d }: { d: AdminOrderDetail }) {
   const stages = o.events.filter((e) => e.type === 'created' || e.type === 'status' || e.type === 'note');
   return (
     <>
-      <title>{`${o.number} | Sentimently studio`}</title>
+      <title>{`${o.number} | Bloomora studio`}</title>
       <p><Link to="/">All orders</Link></p>
       <h1>{o.number} <StatusBadge status={o.status} /></h1>
       <p className="muted">Placed {dateTime(o.createdAt)}</p>

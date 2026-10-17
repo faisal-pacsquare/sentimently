@@ -128,7 +128,7 @@ function Form({ product }: { product?: AdminProduct }) {
 
   return (
     <>
-      <title>{`${product ? product.name : 'New gift'} | Sentimently studio`}</title>
+      <title>{`${product ? product.name : 'New gift'} | Bloomora studio`}</title>
       <p><Link to="/catalogue">All gifts</Link></p>
       <h1>{product ? product.name : 'New gift'}</h1>
       <form className="auth-form product-form" onSubmit={submit} noValidate>

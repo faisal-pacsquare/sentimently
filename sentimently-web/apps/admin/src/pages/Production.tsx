@@ -45,7 +45,7 @@ export function Production() {
   const { preparing, inProduction } = q.data;
   return (
     <>
-      <title>Production | Sentimently studio</title>
+      <title>Production | Bloomora studio</title>
       <h1>Production board</h1>
       {!preparing.length && !inProduction.length && <EmptyState title="Nothing to make or pack" message="New paid orders will appear here once they are started." />}
       <section aria-labelledby="pp">

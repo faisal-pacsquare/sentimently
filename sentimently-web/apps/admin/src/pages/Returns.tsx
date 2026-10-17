@@ -88,7 +88,7 @@ export function Returns() {
   const pending = refunds.data?.filter((f) => f.status === 'pending') ?? [];
   return (
     <>
-      <title>Returns and refunds | Sentimently studio</title>
+      <title>Returns and refunds | Bloomora studio</title>
       <h1>Returns and refunds</h1>
 
       <section aria-labelledby="rf">

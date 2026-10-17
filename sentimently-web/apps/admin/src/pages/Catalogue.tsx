@@ -30,7 +30,7 @@ export function Catalogue() {
 
   return (
     <>
-      <title>Catalogue | Sentimently studio</title>
+      <title>Catalogue | Bloomora studio</title>
       <h1>Catalogue</h1>
       <div className="actions">
         <Button as={Link} to="/catalogue/new">New gift</Button>

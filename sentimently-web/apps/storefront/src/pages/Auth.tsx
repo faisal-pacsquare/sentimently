@@ -28,7 +28,7 @@ function Failure({ error, retry }: { error: unknown; retry?: () => void }) {
 function Page({ title, children }: { title: string; children: ReactNode }) {
   return (
     <Container className="page page--narrow">
-      <title>{`${title} | Sentimently`}</title>
+      <title>{`${title} | Bloomora`}</title>
       <h1>{title}</h1>
       {children}
     </Container>

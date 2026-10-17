@@ -110,7 +110,7 @@ export function Team() {
   const q = useQuery({ queryKey: ['team'], queryFn: ({ signal }) => adminApi.team({ signal }) });
   return (
     <>
-      <title>Team | Sentimently studio</title>
+      <title>Team | Bloomora studio</title>
       <h1>Team and tools</h1>
       <div className="cols">
         <section aria-labelledby="tm">

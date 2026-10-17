@@ -51,7 +51,7 @@ export function CancelOrder() {
 
   return (
     <Container className="page page--narrow">
-      <title>Cancel an order | Sentimently</title>
+      <title>Cancel an order | Bloomora</title>
       <h1>Cancel an order</h1>
       {cancel.isSuccess ? (
         <>
@@ -108,7 +108,7 @@ export function ReturnOrder() {
 
   return (
     <Container className="page page--narrow">
-      <title>Return or report damage | Sentimently</title>
+      <title>Return or report damage | Bloomora</title>
       <h1>Return or report damage</h1>
       {send.isSuccess ? (
         <>

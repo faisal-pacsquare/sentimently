@@ -13,7 +13,7 @@ export function Dispatch() {
 
   return (
     <>
-      <title>Dispatch | Sentimently studio</title>
+      <title>Dispatch | Bloomora studio</title>
       <h1>Dispatch</h1>
       <div className="toolbar">
         <TextField label="Date" type="date" value={date} onChange={(e) => setDate(e.target.value)} />

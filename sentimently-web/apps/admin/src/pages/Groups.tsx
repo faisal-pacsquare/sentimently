@@ -83,7 +83,7 @@ export function Groups() {
 
   return (
     <>
-      <title>Groups | Sentimently studio</title>
+      <title>Groups | Bloomora studio</title>
       <p><Link to="/catalogue">All gifts</Link></p>
       <h1>Feelings, occasions and categories</h1>
       <p className="muted">These are how shoppers browse. A gift can belong to several feelings, occasions and recipients, and to one category.</p>

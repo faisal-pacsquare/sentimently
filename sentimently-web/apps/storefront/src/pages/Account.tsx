@@ -28,7 +28,7 @@ export function Account() {
   const me = auth.customer;
   return (
     <Container className="page">
-      <title>My account | Sentimently</title>
+      <title>My account | Bloomora</title>
       <h1>{me.name ? `Hello, ${me.name}` : 'My account'}</h1>
       {!me.emailVerified && (
         <Alert tone="warn">

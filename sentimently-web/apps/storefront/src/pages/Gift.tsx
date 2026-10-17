@@ -43,7 +43,7 @@ export function GiftLink() {
 
   return (
     <Container className="page page--narrow">
-      <title>Your gift | Sentimently</title>
+      <title>Your gift | Bloomora</title>
       {status === 'expired' && (
         <>
           <h1>This gift link has expired</h1>
@@ -93,7 +93,7 @@ export function CheckCard() {
   };
   return (
     <Container className="page page--narrow">
-      <title>Check a gift card | Sentimently</title>
+      <title>Check a gift card | Bloomora</title>
       <h1>Check a gift card</h1>
       <form className="auth-form" onSubmit={submit}>
         <TextField label="Gift card code" value={code} onChange={(e) => setCode(e.target.value)} autoCapitalize="characters" autoComplete="off" />

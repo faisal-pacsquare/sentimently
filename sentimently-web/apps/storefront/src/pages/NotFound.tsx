@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 export function NotFound({ what = 'that page' }: { what?: string }) {
   return (
     <Container className="page">
-      <title>Not found | Sentimently</title>
+      <title>Not found | Bloomora</title>
       <div className="sy-state">
         <h1>We could not find {what}</h1>
         <p>It may have moved, or the link may be mistyped.</p>

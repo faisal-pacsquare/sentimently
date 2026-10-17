@@ -1,4 +1,4 @@
-import { Container, SkipLink } from '@sentimently/ui';
+import { Container, Logo, SkipLink } from '@sentimently/ui';
 import { useState } from 'react';
 import type { FormEvent } from 'react';
 import { Link, NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
@@ -45,13 +45,8 @@ function Header() {
   return (
     <header className="site-header">
       <Container className="site-header__bar">
-        <Link to="/" className="brand" aria-label="Sentimently, home">
-          <svg className="brand__mark" viewBox="0 0 32 32" width="30" height="30" aria-hidden="true">
-            <defs><linearGradient id="bm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e0577f" /><stop offset="1" stop-color="#9d2c52" /></linearGradient></defs>
-            <rect width="32" height="32" rx="10" fill="url(#bm)" />
-            <path d="M16 24.5c-5.6-4-8-7-8-10.3a4.4 4.4 0 0 1 8-2.5 4.4 4.4 0 0 1 8 2.5c0 3.3-2.4 6.3-8 10.3z" fill="#fff" />
-          </svg>
-          <span>Sentimently</span>
+        <Link to="/" className="brand" aria-label="Bloomora, home">
+          <Logo />
         </Link>
         <SearchBox />
         <Link to={status === 'out' ? '/login' : '/account'} className="box-link" aria-label={status === 'out' ? 'Sign in' : 'My account'}>
@@ -89,7 +84,7 @@ function Footer() {
     <footer className="site-footer">
       <Container className="site-footer__grid">
         <div>
-          <p className="brand brand--footer"><span>Sentimently</span></p>
+          <Logo tone="dark" tagline className="brand--footer" />
           <p>Gifts that start from the feeling, delivered across Pakistan.</p>
         </div>
         <nav aria-label="Help">

@@ -46,7 +46,7 @@ function ShopView({ title, intro, lock, crumbs }: ViewProps) {
 
   return (
     <Container className="page">
-      <title>{`${title} | Sentimently`}</title>
+      <title>{`${title} | Bloomora`}</title>
       {crumbs && (
         <nav aria-label="Breadcrumb" className="crumbs">
           {crumbs.map((c) => (
@@ -123,7 +123,7 @@ function BrowseIndexInner({ kind }: { kind: KindRoute }) {
   const k = KINDS[kind];
   return (
     <Container className="page">
-      <title>{`${k.title} | Sentimently`}</title>
+      <title>{`${k.title} | Bloomora`}</title>
       <h1>{k.title}</h1>
       <p className="lead">{k.blurb}</p>
       {error ? (

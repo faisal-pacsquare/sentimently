@@ -149,7 +149,7 @@ export function Checkout() {
   if (!basket.lines.length && !place.isSuccess) {
     return (
       <Container className="page">
-        <title>Checkout | Sentimently</title>
+        <title>Checkout | Bloomora</title>
         <h1>Checkout</h1>
         <EmptyState title="Your gift box is empty" message="Add a gift before checking out.">
           <Button as={Link} to="/shop">Browse gifts</Button>
@@ -160,7 +160,7 @@ export function Checkout() {
   if (hasPhysical && !cityName) {
     return (
       <Container className="page">
-        <title>Checkout | Sentimently</title>
+        <title>Checkout | Bloomora</title>
         <h1>Checkout</h1>
         <Alert tone="warn">Choose a delivery city in your gift box first, so we can work out delivery and dates.</Alert>
         <Button as={Link} to="/box">Back to gift box</Button>
@@ -172,7 +172,7 @@ export function Checkout() {
   const digitalLines = lines.filter((l) => l.digital);
   return (
     <Container className="page">
-      <title>Checkout | Sentimently</title>
+      <title>Checkout | Bloomora</title>
       <h1>Checkout</h1>
       <div className="box">
         <form className="checkout" onSubmit={submit} noValidate>

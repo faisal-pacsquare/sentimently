@@ -40,7 +40,7 @@ function Trust() {
     { icon: '✉', title: 'Digital in minutes', text: 'E-gift and greeting cards by email.' },
   ];
   return (
-    <section className="trust" aria-label="Why Sentimently">
+    <section className="trust" aria-label="Why Bloomora">
       <Container>
         <ul role="list" className="trust__list">
           {items.map((t) => (
@@ -135,7 +135,7 @@ function Popular() {
 export function Home() {
   return (
     <>
-      <title>Sentimently: gifts that say it for you</title>
+      <title>Bloomora: luxury gifts and handmade bouquets</title>
       <section className="hero">
         <Container className="hero__grid">
           <div className="hero__copy">

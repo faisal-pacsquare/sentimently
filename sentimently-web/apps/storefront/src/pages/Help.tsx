@@ -20,7 +20,7 @@ export function Delivery() {
   const cutoff = data ? (data.sameDayCutoffHour > 12 ? `${data.sameDayCutoffHour - 12}pm` : `${data.sameDayCutoffHour}am`) : '1pm';
   return (
     <Container className="page prose">
-      <title>Delivery and returns | Sentimently</title>
+      <title>Delivery and returns | Bloomora</title>
       <h1>Delivery and returns</h1>
       {error ? (
         <QueryError error={error} onRetry={() => refetch()} retrying={isFetching} what="the delivery rates" />
@@ -72,7 +72,7 @@ export function Track() {
 
   return (
     <Container className="page prose">
-      <title>Track an order | Sentimently</title>
+      <title>Track an order | Bloomora</title>
       <h1>Track an order</h1>
       <form onSubmit={submit} className="narrow">
         <TextField label="Order number" hint="From your confirmation email, like SN-7K3M9Q2X" value={number} onChange={(e) => setNumber(e.target.value)} required autoCapitalize="characters" />
@@ -118,7 +118,7 @@ export function Contact() {
   if (send.isSuccess) {
     return (
       <Container className="page prose">
-        <title>Contact us | Sentimently</title>
+        <title>Contact us | Bloomora</title>
         <h1>Thank you</h1>
         <Alert tone="info">{send.data.message}</Alert>
       </Container>
@@ -126,7 +126,7 @@ export function Contact() {
   }
   return (
     <Container className="page prose">
-      <title>Contact us | Sentimently</title>
+      <title>Contact us | Bloomora</title>
       <h1>Contact us</h1>
       <p>Questions, ideas, or planning a big order? Write to us.</p>
       <form className="narrow" onSubmit={(e) => { e.preventDefault(); send.mutate(); }}>
