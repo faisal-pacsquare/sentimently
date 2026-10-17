@@ -173,7 +173,7 @@ describe('my account', () => {
   it('signs out and forgets the account', async () => {
     signedIn();
     renderApp('/account/details');
-    await userEvent.click(await screen.findByRole('button', { name: 'Sign out' }));
+    await userEvent.click((await screen.findAllByRole('button', { name: 'Sign out' }))[0]!);
     expect(session.get()).toBeNull();
     expect(await screen.findByRole('link', { name: /Sign in/ })).toBeInTheDocument();
   });
@@ -214,5 +214,23 @@ describe('gift page extras', () => {
     await userEvent.click(screen.getByRole('button', { name: 'Post review' }));
     expect(await screen.findByText('Thank you for your review.')).toBeInTheDocument();
     expect(sent).toEqual({ rating: 5, text: 'Lovely' });
+  });
+});
+
+describe('signing out from anywhere', () => {
+  it('shows a Sign out button in the header once signed in, and not before', async () => {
+    renderApp('/shop');
+    await screen.findByRole('heading', { name: 'All gifts' });
+    expect(screen.queryByRole('button', { name: 'Sign out' })).toBeNull();
+  });
+
+  it('signs out from the header on any page and goes back to the home page', async () => {
+    signedIn();
+    renderApp('/shop');
+    await userEvent.click(await screen.findByRole('button', { name: 'Sign out' }));
+    expect(session.get()).toBeNull();
+    expect(await screen.findByRole('heading', { level: 1, name: /every feeling deserves a gift/i })).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: 'Sign out' })).toBeNull();
+    expect(screen.getByRole('link', { name: 'Sign in' })).toBeInTheDocument();
   });
 });

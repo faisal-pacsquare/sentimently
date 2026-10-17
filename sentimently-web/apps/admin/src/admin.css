@@ -95,3 +95,41 @@ li:nth-child(4n+4) > .stat::before { background: linear-gradient(90deg, #6d4a8f,
 
 .shell__side .sy-logo__mark { width: 3rem; height: 3rem; }
 .shell__side .sy-logo__name { font-size: 1.1rem; }
+
+/* The sidebar scrolls in the middle, so "Sign out" at the bottom is always on screen, however short the window */
+@media (min-width: 56rem) {
+  .shell__side { grid-template-rows: auto minmax(0, 1fr) auto; align-content: stretch; overflow: hidden; }
+  .shell__side nav { overflow-y: auto; min-height: 0; scrollbar-width: thin; scrollbar-color: rgb(255 255 255 / 0.25) transparent; }
+  .shell__who { margin-top: 0; }
+}
+
+/* ---------- phones and tablets ---------- */
+@media (max-width: 55.99rem) {
+  .shell__side { padding: var(--space-3) var(--space-4); gap: var(--space-2); }
+  .shell__side nav { margin-inline: calc(var(--space-4) * -1); padding-inline: var(--space-4); }
+  .shell__who { flex-wrap: nowrap; padding-top: var(--space-2); gap: var(--space-3); }
+  .shell__who p { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .shell__who .sy-btn { flex: 0 0 auto; width: auto; min-height: var(--tap); padding-inline: var(--space-4); }
+  .shell__main { padding: var(--space-4) var(--space-4) var(--space-12); }
+  .shell__main > * { max-width: 100%; }
+  .sy-btn--small, .pager .sy-btn { min-height: var(--tap); }
+  .table a { display: inline-flex; align-items: center; min-height: var(--tap); }
+  .toolbar > * { min-width: 0; flex: 1 1 10rem; }
+  .actions > .sy-btn { flex: 1 1 auto; }
+  .card { padding: var(--space-4); }
+  .cards { grid-template-columns: 1fr; }
+  .totals { padding: var(--space-3) var(--space-4); }
+}
+
+/* On a phone, long lists become one card per row instead of a wide table to scroll sideways. */
+@media (max-width: 39.99rem) {
+  .table--stack thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .table--stack, .table--stack tbody, .table--stack tr, .table--stack th, .table--stack td { display: block; }
+  .table-wrap:has(.table--stack) { background: transparent; border: 0; box-shadow: none; overflow: visible; }
+  .table--stack tr { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-lg); box-shadow: var(--shadow); padding: var(--space-3) var(--space-4); margin-bottom: var(--space-3); }
+  .table--stack tbody tr:hover { background: var(--white); }
+  .table--stack th[scope='row'] { padding: 0 0 var(--space-2); border: 0; background: none; }
+  .table--stack td { display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-4); padding: var(--space-1) 0; border: 0; text-align: right; }
+  .table--stack td::before { content: attr(data-label); flex: none; color: var(--ink-soft); font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.07em; font-weight: 650; text-align: left; }
+  .table--stack td.num { text-align: right; }
+}

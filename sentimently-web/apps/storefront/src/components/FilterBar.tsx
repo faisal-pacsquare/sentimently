@@ -52,12 +52,19 @@ export function FilterBar({ query, onChange, locked }: Props) {
     onChange(withFilter(query, { q: text.trim() || undefined }));
   };
   const lockedParam = (k: string) => locked === k;
-  const filtered = Object.keys(query).some((k) => k !== 'page' && k !== 'sort' && k !== locked);
+  const activeKeys = Object.keys(query).filter((k) => k !== 'page' && k !== 'pageSize' && k !== 'sort' && k !== locked);
+  const filtered = activeKeys.length > 0;
+  // On a phone the panel starts folded so the gifts are on the first screen; it opens by itself when filters are on.
+  // (Where the browser cannot tell the screen size, as in tests, it stays open.)
+  const [open, setOpen] = useState(() => typeof window.matchMedia !== 'function' || window.matchMedia('(min-width: 60rem)').matches || filtered);
 
   return (
     <section className="filters" aria-label="Filter gifts">
-      <details className="filters__panel" open>
-        <summary className="filters__toggle">Filters and sorting</summary>
+      <details className="filters__panel" open={open} onToggle={(e) => setOpen((e.currentTarget as HTMLDetailsElement).open)}>
+        <summary className="filters__toggle">
+          Filters and sorting
+          {filtered && <span className="filters__count"> · {activeKeys.length} on</span>}
+        </summary>
         <form className="filters__row" onSubmit={searchSubmit} role="search" aria-label="Search and sort">
           <div className="filter-field filter-field--wide">
             <label htmlFor="f-q">Search these gifts</label>

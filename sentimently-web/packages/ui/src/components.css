@@ -91,3 +91,7 @@ a:hover > .sy-logo .sy-logo__mark, a.sy-logo:hover .sy-logo__mark { transform: r
 .sy-logo--stacked .sy-logo__mark { width: 8rem; height: 8rem; }
 .sy-logo--stacked .sy-logo__words { align-items: center; }
 .sy-logo--stacked .sy-logo__name { font-size: 2rem; letter-spacing: 0.2em; }
+
+/* A price never breaks between "Rs" and the number; the old price drops to its own line if it must. */
+.sy-price { flex-wrap: wrap; column-gap: var(--space-2); row-gap: 0; }
+.sy-price > *, .sy-price del { white-space: nowrap; }

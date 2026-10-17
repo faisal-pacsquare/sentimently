@@ -40,7 +40,8 @@ function SearchBox() {
 
 function Header() {
   const { count } = useBasket();
-  const { status, customer } = useAuth();
+  const { status, customer, signOut } = useAuth();
+  const navigate = useNavigate();
   const digitalOnly = new URLSearchParams(useLocation().search).get('type') === 'digital';
   return (
     <header className="site-header">
@@ -53,6 +54,12 @@ function Header() {
           <span aria-hidden="true">👤</span>
           <span className="box-link__label">{status === 'out' ? 'Sign in' : customer?.name?.split(' ')[0] ?? 'Account'}</span>
         </Link>
+        {status !== 'out' && (
+          <button type="button" className="box-link box-link--button" aria-label="Sign out" onClick={() => { signOut(); navigate('/'); }}>
+            <span aria-hidden="true">↩</span>
+            <span className="box-link__label">Sign out</span>
+          </button>
+        )}
         <Link to="/box" className="box-link" aria-label={`Gift box, ${count} ${count === 1 ? 'item' : 'items'}`}>
           <span aria-hidden="true">🎁</span>
           <span className="box-link__label">Gift box</span>

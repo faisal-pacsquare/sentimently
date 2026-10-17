@@ -51,17 +51,17 @@ export function Catalogue() {
         <EmptyState title="No gifts match" message="Try another filter or search." />
       ) : (
         <div className="table-wrap">
-          <table className="table">
+          <table className="table table--stack">
             <caption className="sy-sr-only">Gifts</caption>
             <thead><tr><th scope="col">Gift</th><th scope="col">Category</th><th scope="col" className="num">Price</th><th scope="col">Stock</th><th scope="col">Shop</th></tr></thead>
             <tbody>
               {rows.map((p) => (
                 <tr key={p.id}>
                   <th scope="row"><Link to={`/catalogue/${p.id}`}>{p.name}</Link><br /><span className="muted">{p.slug}</span></th>
-                  <td>{p.category}</td>
-                  <td className="num">{p.offerPrice != null && p.offerPrice < p.price ? <>{rupees(p.offerPrice)} <del className="muted">{rupees(p.price)}</del></> : rupees(p.price)}</td>
-                  <td>{stockText(p)}{p.type === 'physical' && !p.isMadeToOrder && p.stock > 0 && p.stock <= LOW && <> <Badge tone="warn">Low</Badge></>}</td>
-                  <td>{p.isActive === false ? <Badge tone="offer">Hidden</Badge> : <Badge tone="digital">Live</Badge>}</td>
+                  <td data-label="Category">{p.category}</td>
+                  <td className="num" data-label="Price">{p.offerPrice != null && p.offerPrice < p.price ? <>{rupees(p.offerPrice)} <del className="muted">{rupees(p.price)}</del></> : rupees(p.price)}</td>
+                  <td data-label="Stock">{stockText(p)}{p.type === 'physical' && !p.isMadeToOrder && p.stock > 0 && p.stock <= LOW && <> <Badge tone="warn">Low</Badge></>}</td>
+                  <td data-label="Shop">{p.isActive === false ? <Badge tone="offer">Hidden</Badge> : <Badge tone="digital">Live</Badge>}</td>
                 </tr>
               ))}
             </tbody>

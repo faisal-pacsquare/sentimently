@@ -71,7 +71,7 @@ export function Orders() {
         <>
           <p className="muted" aria-live="polite">{orders.data.total} order{orders.data.total === 1 ? '' : 's'}</p>
           <div className="table-wrap" aria-busy={orders.isFetching}>
-            <table className="table">
+            <table className="table table--stack">
               <caption className="sy-sr-only">Orders</caption>
               <thead>
                 <tr><th scope="col">Order</th><th scope="col">Status</th><th scope="col">Customer</th><th scope="col">City</th><th scope="col">Deliver on</th><th scope="col">Payment</th><th scope="col" className="num">Total</th></tr>
@@ -83,12 +83,12 @@ export function Orders() {
                       <Link to={`/orders/${o.id}`}>{o.number}</Link><br />
                       <span className="muted">{shortDate(o.createdAt)} · {o.itemCount} item{o.itemCount === 1 ? '' : 's'}{o.personalised ? ' · personalised' : ''}</span>
                     </th>
-                    <td><StatusBadge status={o.status} /></td>
-                    <td>{o.contactName ?? '—'}<br /><span className="muted">{o.contactEmail}</span></td>
-                    <td>{o.city ?? 'Digital'}</td>
-                    <td>{o.deliveryDate ? shortDate(o.deliveryDate) : '—'}</td>
-                    <td>{PAYMENT_LABEL[o.paymentMethod]}</td>
-                    <td className="num">{rupees(o.total)}</td>
+                    <td data-label="Status"><StatusBadge status={o.status} /></td>
+                    <td data-label="Customer">{o.contactName ?? '—'}<br /><span className="muted">{o.contactEmail}</span></td>
+                    <td data-label="City">{o.city ?? 'Digital'}</td>
+                    <td data-label="Deliver on">{o.deliveryDate ? shortDate(o.deliveryDate) : '—'}</td>
+                    <td data-label="Payment">{PAYMENT_LABEL[o.paymentMethod]}</td>
+                    <td className="num" data-label="Total">{rupees(o.total)}</td>
                   </tr>
                 ))}
               </tbody>

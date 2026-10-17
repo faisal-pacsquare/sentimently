@@ -231,3 +231,13 @@ describe('other desks', () => {
     expect(screen.getByRole('rowheader', { name: 'Photo mug' })).toBeInTheDocument();
   });
 });
+
+describe('signing out', () => {
+  it('has a Sign out button on every page, which ends the session and returns to the sign-in page', async () => {
+    server.use(http.get(`${BASE}/admin/orders`, () => HttpResponse.json({ data: [], page: 1, pageSize: 25, total: 0 })));
+    renderAdmin('/', 'staff');
+    await userEvent.click(await screen.findByRole('button', { name: 'Sign out' }));
+    expect(await screen.findByRole('heading', { name: 'Studio sign in' })).toBeInTheDocument();
+    expect(session.get()).toBeNull();
+  });
+});

@@ -14,6 +14,7 @@ import { NotFound } from './NotFound';
 export function Account() {
   const auth = useAuth();
   const here = useLocation();
+  const navigate = useNavigate();
   const resend = useMutation({ mutationFn: () => api.resendVerification() });
 
   if (auth.status === 'out') {
@@ -29,7 +30,10 @@ export function Account() {
   return (
     <Container className="page">
       <title>My account | Bloomora</title>
-      <h1>{me.name ? `Hello, ${me.name}` : 'My account'}</h1>
+      <div className="account-head">
+        <h1>{me.name ? `Hello, ${me.name}` : 'My account'}</h1>
+        <Button variant="secondary" size="small" onClick={() => { auth.signOut(); navigate('/'); }}>Sign out</Button>
+      </div>
       {!me.emailVerified && (
         <Alert tone="warn">
           <strong>Please confirm your email.</strong> We sent a link to {me.email}. It keeps your account safe and lets you reset your password.{' '}
