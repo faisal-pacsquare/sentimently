@@ -1,4 +1,4 @@
-import { promises as fs } from 'node:fs';
+import { existsSync, promises as fs } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { Doc, StorageDriver } from './storage.types';
@@ -8,15 +8,34 @@ import { Doc, StorageDriver } from './storage.types';
  * Locally the writable directory is `data/` itself. On Vercel the deployed files are read-only,
  * so writes go to the OS temp dir. That area is NOT durable (see Phase0/09_Decisions_Log.md).
  */
+/**
+ * Where the seed files live. Locally and on a normal server that is ./data. On Vercel the function may not
+ * have that folder, so the build also copies it next to the compiled code (dist/data), which is always deployed.
+ * The first folder that holds the store settings wins.
+ */
+export function findSeedDir(
+  env: NodeJS.ProcessEnv = process.env,
+  cwd: string = process.cwd(),
+  compiledDir: string = __dirname,
+  exists: (path: string) => boolean = existsSync,
+): string {
+  if (env.DATA_DIR) return env.DATA_DIR;
+  const candidates = [
+    join(cwd, 'data'),
+    join(compiledDir, '..', 'data'), // dist/data, from dist/storage
+    join(compiledDir, '..', '..', 'data'), // data, from src/storage in tests
+  ];
+  return (
+    candidates.find((d) => exists(join(d, 'storeConfig.json'))) ?? candidates[0]
+  );
+}
+
 export class FileDriver implements StorageDriver {
   readonly cacheTtlMs = Infinity;
   private readonly seedDir: string;
   private readonly writeDir: string;
 
-  constructor(
-    seedDir = process.env.DATA_DIR ?? join(process.cwd(), 'data'),
-    writeDir?: string,
-  ) {
+  constructor(seedDir = findSeedDir(), writeDir?: string) {
     this.seedDir = seedDir;
     this.writeDir =
       writeDir ??
