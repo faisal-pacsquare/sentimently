@@ -33,3 +33,44 @@ describe('Vercel entry point (e2e)', () => {
     expect(res.body.total).toBeGreaterThan(100);
   });
 });
+
+describe('Vercel entry point, bad configuration (e2e)', () => {
+  const saved = { ...process.env };
+  afterEach(() => {
+    process.env = { ...saved };
+    jest.resetModules();
+  });
+
+  const call = async (env: Record<string, string>) => {
+    Object.assign(process.env, env);
+    delete process.env.UPSTASH_REDIS_REST_URL;
+    delete process.env.KV_REST_API_URL;
+    jest.resetModules();
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const fresh = require('../src/vercel').default as typeof handler;
+    const server = createServer((req, res) => {
+      void fresh(req, res);
+    });
+    try {
+      return await request(server).get('/api/v1/health');
+    } finally {
+      server.close();
+    }
+  };
+
+  it('says which setting is wrong, in words, with no secret values in the answer', async () => {
+    const res = await call({
+      NODE_ENV: 'production',
+      VERCEL: '1',
+      JWT_SECRET: 'too-short-SECRETVALUE',
+      ADMIN_EMAIL: 'a@b.pk',
+      ADMIN_PASSWORD: 'PWVALUE1',
+    });
+    expect(res.status).toBe(503);
+    expect(res.body.error.code).toBe('misconfigured');
+    expect(res.body.error.message).toMatch(/JWT_SECRET/);
+    expect(res.body.error.message).toMatch(/ADMIN_PASSWORD/);
+    expect(res.body.error.message).toMatch(/durable storage/);
+    expect(JSON.stringify(res.body)).not.toMatch(/SECRETVALUE|PWVALUE1/);
+  });
+});
