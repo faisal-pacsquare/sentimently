@@ -78,6 +78,33 @@ describe('CSV reading', () => {
   });
 });
 
+describe('choosing the wrong file', () => {
+  const taxonomyCsv = 'kind,slug,name\ncategory,home,Home';
+  it('gives one clear message, not an error for every row', () => {
+    const r = buildCatalogue({
+      taxonomyCsv,
+      productsCsv:
+        'slug,name,main photo file name,second photo file name\nmug,Mug,mug_1.jpg,mug_2.jpg\ncandle,Candle,candle_1.jpg,candle_2.jpg',
+      extraCodes: [],
+    });
+    expect(r.errors).toHaveLength(1);
+    expect(r.errors[0]).toMatch(
+      /not the right kind of file.*missing: description, price, category/,
+    );
+    expect(r.errors[0]).toMatch(/new-gifts\.csv/);
+    expect(r.products).toEqual([]);
+  });
+
+  it('does the same for a groups file', () => {
+    const r = buildCatalogue({
+      taxonomyCsv: 'slug,title\nhome,Home',
+      productsCsv: 'slug,name,description,price,category\n',
+      extraCodes: [],
+    });
+    expect(r.errors[0]).toMatch(/taxonomy\.csv: .*missing: kind, name/);
+  });
+});
+
 describe('catalogue import', () => {
   it('turns a valid row into a gift, with the numbers and lists read correctly', () => {
     const r = run([

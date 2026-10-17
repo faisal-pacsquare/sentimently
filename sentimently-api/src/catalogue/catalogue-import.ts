@@ -43,9 +43,30 @@ export function parseCsv(text: string): string[][] {
   return rows;
 }
 
+/** The columns a file must have to be the right kind of file at all. */
+export const REQUIRED_COLUMNS = {
+  'taxonomy.csv': ['kind', 'slug', 'name'],
+  'products.csv': ['slug', 'name', 'description', 'price', 'category'],
+} as const;
+
+/** One clear sentence instead of an error for every row, when the wrong file was chosen. */
+export function wrongFile(
+  header: string[],
+  label: keyof typeof REQUIRED_COLUMNS,
+): string | undefined {
+  const have = new Set(header.map((h) => h.trim()));
+  const missing = REQUIRED_COLUMNS[label].filter((c) => !have.has(c));
+  if (!missing.length) return undefined;
+  return `${label}: this is not the right kind of file. Its first row must name the columns, and these are missing: ${missing.join(', ')}. ${
+    label === 'products.csv'
+      ? 'Choose the gifts spreadsheet (for example new-gifts.csv), not another list.'
+      : 'Choose the groups spreadsheet (for example new-groups.csv).'
+  }`;
+}
+
 function records(
   csv: string,
-  label: string,
+  label: keyof typeof REQUIRED_COLUMNS,
   errors: string[],
 ): { line: number; [column: string]: string | number }[] {
   const rows = parseCsv(csv);
@@ -54,6 +75,11 @@ function records(
     return [];
   }
   const header = rows[0].map((h) => h.trim());
+  const wrong = wrongFile(header, label);
+  if (wrong) {
+    errors.push(wrong);
+    return [];
+  }
   return rows.slice(1).map((r, i) => {
     const rec: { line: number; [column: string]: string | number } = {
       line: i + 2,

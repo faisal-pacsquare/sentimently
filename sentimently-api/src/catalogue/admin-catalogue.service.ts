@@ -7,7 +7,7 @@ import {
 } from '@nestjs/common';
 import { randomUUID } from 'node:crypto';
 import { JsonStore } from '../storage/json-store.service';
-import { buildCatalogue, parseCsv } from './catalogue-import';
+import { buildCatalogue, parseCsv, wrongFile } from './catalogue-import';
 import {
   CreateProductDto,
   ImportCatalogueDto,
@@ -175,6 +175,10 @@ export class AdminCatalogueService {
     // New groups from the file are added after the shop's own, so the products can refer to either.
     const incoming = dto.taxonomyCsv ? parseCsv(dto.taxonomyCsv) : [];
     const header = (incoming[0] ?? []).map((h) => h.trim());
+    const wrong = dto.taxonomyCsv
+      ? wrongFile(header, 'taxonomy.csv')
+      : undefined;
+    if (wrong) throw new BadRequestException({ message: [wrong] });
     const col = (row: string[], name: string) =>
       (row[header.indexOf(name)] ?? '').trim();
     for (const row of incoming.slice(1)) {
