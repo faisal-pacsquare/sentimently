@@ -210,16 +210,23 @@ describe('Add gifts from a spreadsheet (e2e)', () => {
   });
 
   it('says in one line that the wrong file was chosen (for example the photo shot list)', async () => {
-    const shotList =
-      'slug,name,main photo file name,second photo file name,suggested shots
-' +
-      'mug,Mug,mug_1.jpg,mug_2.jpg,"1: front"
-candle,Candle,candle_1.jpg,candle_2.jpg,"1: front"';
+    const shotList = [
+      'slug,name,main photo file name,second photo file name,suggested shots',
+      'mug,Mug,mug_1.jpg,mug_2.jpg,"1: front"',
+      'candle,Candle,candle_1.jpg,candle_2.jpg,"1: front"',
+    ].join('\n');
     const res = await send({ productsCsv: shotList }).expect(400);
     expect(res.body.error.details).toHaveLength(1);
-    expect(res.body.error.details[0]).toMatch(/not the right kind of file.*new-gifts\.csv/);
-    const groups = await send({ taxonomyCsv: shotList, productsCsv: HEAD }).expect(400);
-    expect(groups.body.error.details[0]).toMatch(/taxonomy\.csv: .*missing: kind/);
+    expect(res.body.error.details[0]).toMatch(
+      /not the right kind of file.*new-gifts\.csv/,
+    );
+    const groups = await send({
+      taxonomyCsv: shotList,
+      productsCsv: HEAD,
+    }).expect(400);
+    expect(groups.body.error.details[0]).toMatch(
+      /taxonomy\.csv: .*missing: kind/,
+    );
   });
 
   it('refuses a request without a products file', async () => {
