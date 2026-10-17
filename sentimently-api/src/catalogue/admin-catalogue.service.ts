@@ -103,6 +103,29 @@ export class AdminCatalogueService {
   }
 
   /**
+   * Deletes a gift for good, with what hangs off it: wishlist entries, reviews and the photos uploaded for it.
+   * Past orders are not touched: each order line keeps its own copy of the gift's name, price and slug.
+   */
+  async remove(id: string) {
+    const gone = await this.store.mutate('products', (docs) => {
+      const i = docs.findIndex((d) => d.id === id);
+      return i < 0 ? undefined : (docs.splice(i, 1)[0] as Product);
+    });
+    if (!gone) throw new NotFoundException('Gift not found');
+    await this.store.mutate('wishlists', (docs) => {
+      for (let i = docs.length - 1; i >= 0; i--)
+        if ((docs[i] as { productId?: string }).productId === id)
+          docs.splice(i, 1);
+    });
+    await this.store.mutate('reviews', (docs) => {
+      for (let i = docs.length - 1; i >= 0; i--)
+        if ((docs[i] as { productId?: string }).productId === id)
+          docs.splice(i, 1);
+    });
+    await this.dropPhotos(gone.imageUrls, []);
+  }
+
+  /**
    * Adds new gifts (and any new groups) from the studio's two spreadsheets, with every row checked first.
    * Nothing is saved unless every row is valid. A gift whose slug is already in the shop is left exactly as it is,
    * so photos and prices edited here are never overwritten, and running the same files twice adds nothing new.

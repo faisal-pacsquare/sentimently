@@ -1899,6 +1899,36 @@
         "x-access": "roles: staff, admin"
       }
     },
+    "/api/v1/admin/products/{id}/permanent": {
+      "delete": {
+        "operationId": "AdminCatalogueController_remove",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "AdminCatalogueController.remove",
+        "tags": [
+          "AdminCatalogue"
+        ],
+        "x-access": "roles: admin"
+      }
+    },
     "/api/v1/admin/promo-codes": {
       "get": {
         "operationId": "AdminSettingsController_promos",

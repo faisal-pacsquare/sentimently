@@ -6,6 +6,7 @@ import type { FormEvent } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { adminApi } from '../lib/admin-api';
 import type { AdminProduct, ProductInput } from '../lib/admin-api';
+import { useAuth } from '../lib/auth';
 import { PhotoManager } from '../components/PhotoManager';
 import { QueryError } from '../lib/present';
 
@@ -34,6 +35,7 @@ function Picker({ legend, items, value, onChange }: { legend: string; items: Gro
 function Form({ product }: { product?: AdminProduct }) {
   const navigate = useNavigate();
   const qc = useQueryClient();
+  const { isAdmin } = useAuth();
   const sentiments = useQuery({ queryKey: ['groups', 'sentiments'], queryFn: ({ signal }) => adminApi.groups('sentiments', { signal }) });
   const occasions = useQuery({ queryKey: ['groups', 'occasions'], queryFn: ({ signal }) => adminApi.groups('occasions', { signal }) });
   const recipients = useQuery({ queryKey: ['groups', 'recipients'], queryFn: ({ signal }) => adminApi.groups('recipients', { signal }) });
@@ -109,6 +111,15 @@ function Form({ product }: { product?: AdminProduct }) {
       if (active) await adminApi.hideProduct(product!.id);
       else await adminApi.updateProduct(product!.id, { isActive: true });
     },
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['products'] });
+      navigate('/catalogue');
+    },
+  });
+
+  const [confirmDelete, setConfirmDelete] = useState(false);
+  const erase = useMutation({
+    mutationFn: () => adminApi.deleteProduct(product!.id),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['products'] });
       navigate('/catalogue');
@@ -194,6 +205,23 @@ function Form({ product }: { product?: AdminProduct }) {
         </div>
         {toggle.error && <Alert tone="error">That did not go through. Please try again.</Alert>}
       </form>
+      {product && isAdmin && (
+        <section aria-labelledby="danger" className="danger-zone">
+          <h2 id="danger">Delete this gift</h2>
+          <p className="muted">Hiding keeps the gift and its photos so you can show it again later. Deleting removes it for good, together with its photos, reviews and wishlist entries. Past orders keep their own record of it. This cannot be undone.</p>
+          {!confirmDelete && <Button variant="secondary" onClick={() => setConfirmDelete(true)}>Delete this gift…</Button>}
+          {confirmDelete && (
+            <Alert tone="error">
+              <p><strong>Delete “{product.name}” for good?</strong></p>
+              <div className="actions">
+                <Button loading={erase.isPending} onClick={() => erase.mutate()}>Yes, delete it</Button>
+                <Button variant="ghost" onClick={() => setConfirmDelete(false)}>Keep it</Button>
+              </div>
+            </Alert>
+          )}
+          {erase.error && <Alert tone="error">That did not go through. Nothing was deleted; please try again.</Alert>}
+        </section>
+      )}
     </>
   );
 }

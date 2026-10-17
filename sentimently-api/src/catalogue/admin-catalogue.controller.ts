@@ -46,6 +46,14 @@ export class AdminCatalogueController {
   }
 
   /** Adds the gifts and groups in two spreadsheets. Gifts already in the shop (same slug) are never changed. */
+  /** Permanent. Hiding (the route above) is reversible; this is not, so it is for administrators only. */
+  @Delete('products/:id/permanent')
+  @Roles('admin')
+  @HttpCode(204)
+  remove(@Param('id') id: string) {
+    return this.admin.remove(id);
+  }
+
   @Post('catalogue/import')
   @HttpCode(200)
   importSpreadsheet(@Body() dto: ImportCatalogueDto) {
