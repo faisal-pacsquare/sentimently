@@ -1,6 +1,47 @@
 {
   "components": {
     "schemas": {
+      "BulkGiftsDto": {
+        "properties": {
+          "ids": {
+            "items": {
+              "maxLength": 100,
+              "type": "string"
+            },
+            "maxItems": 200,
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "ids"
+        ],
+        "type": "object"
+      },
+      "BulkVisibilityDto": {
+        "properties": {
+          "ids": {
+            "items": {
+              "maxLength": 100,
+              "type": "string"
+            },
+            "maxItems": 200,
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "visible": {
+            "description": "true shows the gifts on the shop, false hides them.",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "visible",
+          "ids"
+        ],
+        "type": "object"
+      },
       "CancelDto": {
         "properties": {
           "email": {
@@ -1927,6 +1968,68 @@
           "AdminCatalogue"
         ],
         "x-access": "roles: admin"
+      }
+    },
+    "/api/v1/admin/products/bulk-delete": {
+      "post": {
+        "operationId": "AdminCatalogueController_removeMany",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BulkGiftsDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "AdminCatalogueController.removeMany",
+        "tags": [
+          "AdminCatalogue"
+        ],
+        "x-access": "roles: admin"
+      }
+    },
+    "/api/v1/admin/products/bulk-visibility": {
+      "post": {
+        "operationId": "AdminCatalogueController_setVisibility",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BulkVisibilityDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "AdminCatalogueController.setVisibility",
+        "tags": [
+          "AdminCatalogue"
+        ],
+        "x-access": "roles: staff, admin"
       }
     },
     "/api/v1/admin/promo-codes": {

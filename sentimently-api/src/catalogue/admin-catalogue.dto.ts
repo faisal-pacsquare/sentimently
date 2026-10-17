@@ -2,6 +2,8 @@ import { PartialType } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import {
   ArrayMaxSize,
+  ArrayMinSize,
+  ArrayUnique,
   IsArray,
   IsBoolean,
   IsIn,
@@ -79,6 +81,22 @@ export class TaxonomyDto {
 }
 
 export class UpdateTaxonomyDto extends PartialType(TaxonomyDto) {}
+
+/** Gifts picked together in the catalogue list. */
+export class BulkGiftsDto {
+  @IsArray()
+  @ArrayMinSize(1)
+  @ArrayMaxSize(200)
+  @ArrayUnique()
+  @IsString({ each: true })
+  @MaxLength(100, { each: true })
+  ids!: string[];
+}
+
+export class BulkVisibilityDto extends BulkGiftsDto {
+  /** true shows the gifts on the shop, false hides them. */
+  @IsBoolean() visible!: boolean;
+}
 
 /** The catalogue spreadsheets, as text. The same two files the `import:catalogue` command reads. */
 export class ImportCatalogueDto {

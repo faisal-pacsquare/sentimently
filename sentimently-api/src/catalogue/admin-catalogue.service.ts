@@ -103,26 +103,51 @@ export class AdminCatalogueService {
   }
 
   /**
-   * Deletes a gift for good, with what hangs off it: wishlist entries, reviews and the photos uploaded for it.
+   * Deletes gifts for good, with what hangs off them: wishlist entries, reviews and the photos uploaded for them.
    * Past orders are not touched: each order line keeps its own copy of the gift's name, price and slug.
+   * Ids that are not in the shop are skipped, so a second click or a stale list does no harm.
    */
-  async remove(id: string) {
+  async removeMany(ids: string[]) {
+    const wanted = new Set(ids);
     const gone = await this.store.mutate('products', (docs) => {
-      const i = docs.findIndex((d) => d.id === id);
-      return i < 0 ? undefined : (docs.splice(i, 1)[0] as Product);
-    });
-    if (!gone) throw new NotFoundException('Gift not found');
-    await this.store.mutate('wishlists', (docs) => {
+      const removed: Product[] = [];
       for (let i = docs.length - 1; i >= 0; i--)
-        if ((docs[i] as { productId?: string }).productId === id)
-          docs.splice(i, 1);
+        if (wanted.has(docs[i].id))
+          removed.push(...(docs.splice(i, 1) as Product[]));
+      return removed;
     });
-    await this.store.mutate('reviews', (docs) => {
-      for (let i = docs.length - 1; i >= 0; i--)
-        if ((docs[i] as { productId?: string }).productId === id)
-          docs.splice(i, 1);
+    if (gone.length) {
+      const gift = new Set(gone.map((p) => p.id));
+      for (const collection of ['wishlists', 'reviews'] as const)
+        await this.store.mutate(collection, (docs) => {
+          for (let i = docs.length - 1; i >= 0; i--)
+            if (gift.has((docs[i] as { productId?: string }).productId ?? ''))
+              docs.splice(i, 1);
+        });
+      for (const p of gone) await this.dropPhotos(p.imageUrls, []);
+    }
+    return { deleted: gone.length, notFound: wanted.size - gone.length };
+  }
+
+  async remove(id: string) {
+    const { deleted } = await this.removeMany([id]);
+    if (!deleted) throw new NotFoundException('Gift not found');
+  }
+
+  /** Shows or hides several gifts at once. Hidden gifts keep everything and can be shown again. */
+  async setVisibility(ids: string[], visible: boolean) {
+    const wanted = new Set(ids);
+    const changed = await this.store.mutate('products', (docs) => {
+      let n = 0;
+      for (const d of docs)
+        if (wanted.has(d.id) && (d as Product).isActive !== visible) {
+          (d as Product).isActive = visible;
+          d.updatedAt = new Date().toISOString();
+          n++;
+        }
+      return n;
     });
-    await this.dropPhotos(gone.imageUrls, []);
+    return { changed };
   }
 
   /**
