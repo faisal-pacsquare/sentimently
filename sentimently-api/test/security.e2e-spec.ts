@@ -30,6 +30,7 @@ const EXPECTED_PUBLIC = [
   'GET /api/v1/internal/scheduler/run',
   'GET /api/v1/gift-links/:token',
   'GET /api/v1/personalisation/options',
+  'GET /api/v1/uploads/:file', // photos saved on this computer while developing
   'GET /api/v1/products',
   'GET /api/v1/products/:slug',
   'GET /api/v1/products/:slug/reviews',

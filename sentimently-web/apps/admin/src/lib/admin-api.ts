@@ -116,6 +116,13 @@ export const adminApi = {
   products: (o?: Opts) => client.get<AdminProduct[]>('/admin/products', o),
   createProduct: (body: ProductInput) => client.post<AdminProduct>('/admin/products', body),
   updateProduct: (id: string, body: Partial<ProductInput>) => client.patch<AdminProduct>(`/admin/products/${encodeURIComponent(id)}`, body),
+  /** Uploads one photo; returns the address to save on the gift. */
+  uploadPhoto: (file: Blob, name: string) => {
+    const form = new FormData();
+    form.append('file', file, name);
+    return client.post<{ url: string }>('/admin/images', form);
+  },
+  deletePhoto: (url: string) => client.delete<void>('/admin/images', { url }),
   hideProduct: (id: string) => client.delete<void>(`/admin/products/${encodeURIComponent(id)}`),
   /** The shop's group lists are cached for a minute at the edge; the extra query value makes the studio always see the latest. */
   groups: (kind: 'sentiments' | 'occasions' | 'recipients' | 'categories', o?: Opts) =>

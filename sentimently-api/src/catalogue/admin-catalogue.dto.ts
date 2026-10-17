@@ -57,7 +57,12 @@ export class CreateProductDto {
   @IsOptional()
   @IsArray()
   @ArrayMaxSize(10)
-  @IsUrl({ require_tld: false }, { each: true })
+  // A full https:// link, or an address on this site (a photo uploaded in local development).
+  @Matches(/^(https?:\/\/\S+|\/[^\s]*)$/, {
+    each: true,
+    message: 'each photo must be a web link or an uploaded photo',
+  })
+  @MaxLength(500, { each: true })
   imageUrls?: string[];
 }
 

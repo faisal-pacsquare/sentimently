@@ -308,6 +308,103 @@
       ]
     },
     {
+      "name": "admin / images",
+      "item": [
+        {
+          "name": "DELETE /admin/images",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "description": "Access: roles: staff, admin",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/images",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "images"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"url\": \"string\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /admin/images",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "description": "Access: roles: staff, admin",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/images",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "images"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "null",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
       "name": "admin / mail",
       "item": [
         {
@@ -3555,6 +3652,51 @@
                 {
                   "key": "slug",
                   "value": "sample-photo-mug"
+                }
+              ]
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "uploads",
+      "item": [
+        {
+          "name": "GET /uploads/{file}",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "description": "Access: public",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/uploads/:file",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "uploads",
+                ":file"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "file",
+                  "value": "example"
                 }
               ]
             },

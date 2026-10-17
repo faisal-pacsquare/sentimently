@@ -1,10 +1,11 @@
 import { rupees } from '@sentimently/api';
-import { Badge, Button, Chip, EmptyState, TextField } from '@sentimently/ui';
+import { Badge, Button, Chip, EmptyState, SafeImage, TextField } from '@sentimently/ui';
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { adminApi } from '../lib/admin-api';
 import type { AdminProduct } from '../lib/admin-api';
+import { photoSrc } from '../lib/photos';
 import { QueryError } from '../lib/present';
 
 const LOW = 5;
@@ -57,7 +58,7 @@ export function Catalogue() {
             <tbody>
               {rows.map((p) => (
                 <tr key={p.id}>
-                  <th scope="row"><Link to={`/catalogue/${p.id}`}>{p.name}</Link><br /><span className="muted">{p.slug}</span></th>
+                  <th scope="row"><span className="thumb-cell"><span className="thumb"><SafeImage src={p.imageUrls?.[0] ? photoSrc(p.imageUrls[0]) : undefined} name={p.name} /></span><span><Link to={`/catalogue/${p.id}`}>{p.name}</Link><br /><span className="muted">{p.slug}{(p.imageUrls?.length ?? 0) > 1 ? ` · ${p.imageUrls!.length} photos` : ''}</span></span></span></th>
                   <td data-label="Category">{p.category}</td>
                   <td className="num" data-label="Price">{p.offerPrice != null && p.offerPrice < p.price ? <>{rupees(p.offerPrice)} <del className="muted">{rupees(p.price)}</del></> : rupees(p.price)}</td>
                   <td data-label="Stock">{stockText(p)}{p.type === 'physical' && !p.isMadeToOrder && p.stock > 0 && p.stock <= LOW && <> <Badge tone="warn">Low</Badge></>}</td>

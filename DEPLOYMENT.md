@@ -95,6 +95,20 @@ Scheduled digital gifts, reminders, overdue-refund alerts and expiring gift link
 - In Vercel, delete `ADMIN_EMAIL` and `ADMIN_PASSWORD` from the API project and redeploy. The admin account stays in the database. Add other staff from the console's **Team and tools** page.
 - Change the sample content: gifts, prices, delivery rates, the announcement bar and the bank-transfer text (**Settings**).
 
+## Gift photos (free): upload from the studio console
+In the studio console, a gift's **Photos** panel lets staff upload pictures from a computer or phone, drop several at once, choose the main photo, reorder, and remove. Big photos are shrunk in the browser first (to at most 1600 pixels), so a 10 MB phone photo uploads in seconds. Photos live in **Vercel Blob** (free plan: 1 GB), which needs a one-time setup:
+
+1. In Vercel: **Storage > Create Database > Blob**. Name it (for example `bloomora-photos`); keep it **Public**.
+2. **Connect Project:** choose the **API project** (the same way you connected Upstash). Vercel adds `BLOB_READ_WRITE_TOKEN` to it by itself.
+3. **Redeploy** the API, then open `https://YOUR-API/api/v1/health`. It must say `"images":"blob"`. If it says `"images":"none"`, the token is missing.
+4. In the studio console, open a gift, add a photo, press **Save changes**, and open that gift in the shop.
+
+Removing a photo from a gift and saving also deletes the file, so storage does not fill up. A photo that was uploaded but never saved on a gift is deleted when you leave the page. Links to pictures on other websites still work and are never deleted.
+
+**Optional:** so thumbnails of the old demo pictures (which live on the shop's website, not the console's) show in the studio, add `VITE_SHOP_URL` (the shop's address, no trailing slash) to the **admin** project and redeploy it.
+
+While developing on your own computer no setup is needed: photos are saved in an `uploads` folder next to the API and served by it.
+
 ## Email (free): contact form, order emails, password resets
 Until this is set up, the API only prints emails in its log: nothing reaches anyone, including messages from the **Contact** and **Track an order** pages. It takes about 10 minutes and costs nothing (Brevo's free plan: 300 emails a day).
 

@@ -144,3 +144,17 @@ describe('format', () => {
     expect(queryString()).toBe('');
   });
 });
+
+describe('ApiClient: sending a file', () => {
+  it('sends FormData as it is, with no JSON content type, so the browser adds the multipart boundary', async () => {
+    const f = vi.fn(async () => json({ url: '/x.jpg' }, { status: 201 }));
+    const { c } = client(f as never, { getToken: () => 'tok' });
+    const form = new FormData();
+    form.append('file', new Blob(['abc'], { type: 'image/jpeg' }), 'a.jpg');
+    await c.post('/admin/images', form);
+    const [, init] = f.mock.calls[0] as unknown as [string, RequestInit];
+    expect(init.body).toBe(form);
+    expect(init.headers).not.toHaveProperty('Content-Type');
+    expect(init.headers).toMatchObject({ Authorization: 'Bearer tok' });
+  });
+});

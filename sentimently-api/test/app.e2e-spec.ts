@@ -111,6 +111,7 @@ describe('API (e2e)', () => {
         status: 'ok',
         store: 'MemoryDriver',
         mail: 'console',
+        images: 'local',
       });
     });
 

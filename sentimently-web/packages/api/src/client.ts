@@ -113,7 +113,9 @@ export class ApiClient {
   private async once<T>(method: string, path: string, opts: RequestOptions): Promise<T> {
     const token = opts.auth === false ? null : (this.options.getToken?.() ?? null);
     const headers: Record<string, string> = { Accept: 'application/json', ...opts.headers };
-    if (opts.body !== undefined) headers['Content-Type'] = 'application/json';
+    // A file upload (FormData) sets its own content type, with the boundary the server needs.
+    const isForm = typeof FormData !== 'undefined' && opts.body instanceof FormData;
+    if (opts.body !== undefined && !isForm) headers['Content-Type'] = 'application/json';
     if (token) headers.Authorization = `Bearer ${token}`;
     if (opts.idempotencyKey) headers['Idempotency-Key'] = opts.idempotencyKey;
 
@@ -122,7 +124,7 @@ export class ApiClient {
       res = await this.doFetch(`${this.options.baseUrl}${path}${queryString(opts.query)}`, {
         method,
         headers,
-        body: opts.body !== undefined ? JSON.stringify(opts.body) : undefined,
+        body: opts.body === undefined ? undefined : isForm ? (opts.body as FormData) : JSON.stringify(opts.body),
         signal: opts.signal,
       });
     } catch (e) {

@@ -1,5 +1,6 @@
 import {
   BadRequestException,
+  Inject,
   ConflictException,
   Injectable,
   NotFoundException,
@@ -12,11 +13,34 @@ import {
   UpdateProductDto,
   UpdateTaxonomyDto,
 } from './admin-catalogue.dto';
+import { Logger } from '@nestjs/common';
+import { IMAGE_STORE, ImageStore } from '../images/image-store';
 import { Product, TaxonomyItem, TaxonomyKind } from './product.types';
 
 @Injectable()
 export class AdminCatalogueService {
-  constructor(private readonly store: JsonStore) {}
+  private readonly logger = new Logger('AdminCatalogue');
+
+  constructor(
+    private readonly store: JsonStore,
+    @Inject(IMAGE_STORE) private readonly images: ImageStore,
+  ) {}
+
+  /** Photos a gift no longer lists are deleted from the photo store (links to other sites are left alone). */
+  private async dropPhotos(
+    before: string[] | undefined,
+    after: string[] | undefined,
+  ) {
+    const kept = new Set(after ?? []);
+    for (const url of before ?? []) {
+      if (kept.has(url) || !this.images.owns(url)) continue;
+      try {
+        await this.images.remove(url);
+      } catch (e) {
+        this.logger.warn(`Could not delete the photo ${url}: ${String(e)}`);
+      }
+    }
+  }
 
   /** Includes inactive gifts, which the public catalogue hides. */
   all() {
@@ -50,7 +74,7 @@ export class AdminCatalogueService {
     if (!current) throw new NotFoundException('Gift not found');
     const next = { ...current, ...dto };
     await this.validate(next as CreateProductDto);
-    return this.store.mutate('products', (docs) => {
+    const saved = await this.store.mutate('products', (docs) => {
       if (
         dto.slug &&
         docs.some((d) => d.id !== id && (d as Product).slug === dto.slug)
@@ -64,6 +88,8 @@ export class AdminCatalogueService {
       docs[i] = { ...docs[i], ...dto, id, updatedAt: new Date().toISOString() };
       return docs[i] as Product;
     });
+    if (dto.imageUrls) await this.dropPhotos(current.imageUrls, dto.imageUrls);
+    return saved;
   }
 
   /** Gifts are hidden, not deleted, so past orders keep pointing at them. */

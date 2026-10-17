@@ -287,7 +287,8 @@
           },
           "imageUrls": {
             "items": {
-              "format": "uri",
+              "maxLength": 500,
+              "pattern": "^(https?:\\/\\/\\S+|\\/[^\\s]*)$",
               "type": "string"
             },
             "maxItems": 10,
@@ -516,6 +517,18 @@
             "type": "string"
           }
         },
+        "type": "object"
+      },
+      "DeleteImageDto": {
+        "properties": {
+          "url": {
+            "maxLength": 500,
+            "type": "string"
+          }
+        },
+        "required": [
+          "url"
+        ],
         "type": "object"
       },
       "DeliveryDto": {
@@ -966,7 +979,8 @@
           },
           "imageUrls": {
             "items": {
-              "format": "uri",
+              "maxLength": 500,
+              "pattern": "^(https?:\\/\\/\\S+|\\/[^\\s]*)$",
               "type": "string"
             },
             "maxItems": 10,
@@ -1416,6 +1430,72 @@
           "AdminSettings"
         ],
         "x-access": "roles: admin"
+      }
+    },
+    "/api/v1/admin/images": {
+      "delete": {
+        "operationId": "ImagesController_remove",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteImageDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "ImagesController.remove",
+        "tags": [
+          "Images"
+        ],
+        "x-access": "roles: staff, admin"
+      },
+      "post": {
+        "operationId": "ImagesController_upload",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "properties": {
+                  "file": {
+                    "format": "binary",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "ImagesController.upload",
+        "tags": [
+          "Images"
+        ],
+        "x-access": "roles: staff, admin"
       }
     },
     "/api/v1/admin/mail/test": {
@@ -3637,6 +3717,32 @@
         "summary": "CatalogueController.hub",
         "tags": [
           "Catalogue"
+        ],
+        "x-access": "public"
+      }
+    },
+    "/api/v1/uploads/{file}": {
+      "get": {
+        "operationId": "ImagesController_serve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "file",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [],
+        "summary": "ImagesController.serve",
+        "tags": [
+          "Images"
         ],
         "x-access": "public"
       }

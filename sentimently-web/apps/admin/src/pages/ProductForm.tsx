@@ -1,17 +1,17 @@
 import { ApiError } from '@sentimently/api';
 import { Alert, Button, Container, ErrorState, ProblemList, SelectField, TextArea, TextField } from '@sentimently/ui';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import type { FormEvent } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { adminApi } from '../lib/admin-api';
 import type { AdminProduct, ProductInput } from '../lib/admin-api';
+import { PhotoManager } from '../components/PhotoManager';
 import { QueryError } from '../lib/present';
 
 const SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 100);
 const whole = (s: string) => /^\d+$/.test(s.trim());
-const isUrl = (s: string) => /^https?:\/\/\S+$/i.test(s);
 
 interface Group { slug: string; name: string }
 
@@ -61,11 +61,12 @@ function Form({ product }: { product?: AdminProduct }) {
   const [occ, setOcc] = useState(product?.occasions ?? []);
   const [rec, setRec] = useState(product?.recipients ?? []);
   const [extras, setExtras] = useState(product?.allowedExtras ?? []);
-  const [images, setImages] = useState((product?.imageUrls ?? []).join('\n'));
+  const savedPhotos = product?.imageUrls ?? [];
+  const [images, setImages] = useState<string[]>(savedPhotos);
+  const freshPhotos = useRef(new Set<string>()); // uploaded in this visit
   const [submitted, setSubmitted] = useState(false);
 
-  const imageList = images.split('\n').map((s) => s.trim()).filter(Boolean);
-  const imagesChanged = imageList.join('\n') !== (product?.imageUrls ?? []).join('\n');
+  const imagesChanged = images.join('\n') !== savedPhotos.join('\n');
   const physical = type === 'physical';
 
   const errors = {
@@ -77,7 +78,7 @@ function Form({ product }: { product?: AdminProduct }) {
     stock: whole(stock) ? '' : 'Enter how many are in stock (0 if none).',
     lead: madeToOrder && ((leadMin && !whole(leadMin)) || (leadMax && !whole(leadMax)) || (leadMin && leadMax && Number(leadMin) > Number(leadMax))) ? 'Check the lead times: whole days, with the shortest not longer than the longest.' : '',
     category: category ? '' : 'Choose a category.',
-    images: imageList.length > 10 ? 'At most 10 photos.' : imagesChanged && imageList.some((u) => !isUrl(u)) ? 'Each photo must be a full link starting with https://.' : '',
+    images: images.length > 10 ? 'At most 10 photos.' : '',
   };
   const valid = Object.values(errors).every((e) => !e);
 
@@ -93,7 +94,7 @@ function Form({ product }: { product?: AdminProduct }) {
     ...(physical && madeToOrder && leadMin ? { leadTimeMinDays: Number(leadMin) } : {}),
     ...(physical && madeToOrder && leadMax ? { leadTimeMaxDays: Number(leadMax) } : {}),
     // Photos already stored are left as they are unless they were edited, so an old relative path is never re-validated.
-    ...(imagesChanged || !product ? { imageUrls: imageList } : {}),
+    ...(imagesChanged || !product ? { imageUrls: images } : {}),
   });
 
   const save = useMutation({
@@ -179,7 +180,8 @@ function Form({ product }: { product?: AdminProduct }) {
         <Picker legend="Who it is for" items={recipients.data!} value={rec} onChange={setRec} />
         {physical && <Picker legend="Extras that can be added" items={options.data!.extras.map((x) => ({ slug: x.code, name: `${x.name} (Rs ${x.price})` }))} value={extras} onChange={setExtras} />}
 
-        <TextArea label="Photo links (one per line)" rows={4} value={images} onChange={(e) => setImages(e.target.value)} hint="Full links starting with https://. The first is the main photo. Uploading files is not available yet." error={show(errors.images)} />
+        <PhotoManager value={images} onChange={setImages} saved={savedPhotos} fresh={freshPhotos} name={name} />
+        {submitted && errors.images && <p role="alert" className="sy-field__error">{errors.images}</p>}
 
         <label className="studio__design"><input type="checkbox" checked={active} onChange={(e) => setActive(e.target.checked)} /> <span>Show this gift on the shop</span></label>
 
