@@ -1701,6 +1701,34 @@
       }
     },
     "/api/v1/admin/orders/{id}": {
+      "delete": {
+        "operationId": "AdminOrdersController_remove",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "AdminOrdersController.remove",
+        "tags": [
+          "AdminOrders"
+        ],
+        "x-access": "roles: admin"
+      },
       "get": {
         "operationId": "AdminOrdersController_one",
         "parameters": [
@@ -2352,6 +2380,34 @@
       }
     },
     "/api/v1/admin/reviews/{id}": {
+      "delete": {
+        "operationId": "ReviewsController_remove",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "ReviewsController.remove",
+        "tags": [
+          "Reviews"
+        ],
+        "x-access": "roles: admin"
+      },
       "patch": {
         "operationId": "ReviewsController_moderate",
         "parameters": [

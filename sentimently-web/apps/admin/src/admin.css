@@ -159,3 +159,5 @@ li:nth-child(4n+4) > .stat::before { background: linear-gradient(90deg, #6d4a8f,
 @media (max-width: 40rem) { .table--stack td.pick { display: flex; justify-content: flex-start; } }
 
 .group-filter { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); margin: var(--space-3) 0; padding: var(--space-3); border-radius: var(--radius); background: var(--rose-tint); }
+
+.danger-zone { margin-top: var(--space-6); padding-top: var(--space-4); border-top: 1px solid var(--line-strong); }

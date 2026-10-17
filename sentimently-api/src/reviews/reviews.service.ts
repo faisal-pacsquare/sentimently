@@ -132,6 +132,16 @@ export class ReviewsService {
     return r;
   }
 
+  /** Deletes a review for good and updates the gift's rating without it. */
+  async remove(id: string) {
+    const gone = await this.store.mutate('reviews', (docs) => {
+      const i = docs.findIndex((d) => d.id === id);
+      return i < 0 ? undefined : (docs.splice(i, 1)[0] as Review);
+    });
+    if (!gone) throw new NotFoundException('Review not found');
+    await this.recompute(gone.productId);
+  }
+
   /** rating and reviewCount come only from published, verified reviews. */
   private async recompute(productId: string) {
     const counted = await this.store.find<Review>(

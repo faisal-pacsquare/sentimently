@@ -581,6 +581,44 @@
           }
         },
         {
+          "name": "DELETE /admin/orders/{id}",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "description": "Access: roles: admin",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admin/orders/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "orders",
+                ":id"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "{{orderId}}"
+                }
+              ]
+            }
+          }
+        },
+        {
           "name": "GET /admin/orders/{id}",
           "event": [
             {
@@ -1515,6 +1553,44 @@
               ],
               "query": [],
               "variable": []
+            }
+          }
+        },
+        {
+          "name": "DELETE /admin/reviews/{id}",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Responds quickly', () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "if (pm.response.code >= 400) { pm.test('Error has the standard shape', () => { const e = pm.response.json().error; pm.expect(e).to.have.property('code'); pm.expect(e).to.have.property('message'); pm.expect(e).to.have.property('requestId'); }); }"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "description": "Access: roles: admin",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admin/reviews/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "reviews",
+                ":id"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "{{orderId}}"
+                }
+              ]
             }
           }
         },

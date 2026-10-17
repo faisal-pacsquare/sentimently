@@ -1,4 +1,13 @@
-import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpCode,
+  Param,
+  Patch,
+  Post,
+} from '@nestjs/common';
 import {
   IsIn,
   IsInt,
@@ -44,6 +53,14 @@ export class ReviewsController {
   @Roles('staff', 'admin')
   all() {
     return this.reviews.all();
+  }
+
+  /** Permanent. Hiding is reversible; this is not, so it is for administrators only. */
+  @Delete('admin/reviews/:id')
+  @Roles('admin')
+  @HttpCode(204)
+  remove(@Param('id') id: string) {
+    return this.reviews.remove(id);
   }
 
   @Patch('admin/reviews/:id')

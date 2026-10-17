@@ -725,6 +725,46 @@ export class OrdersService {
     };
   }
 
+  /**
+   * Deletes a cancelled order for good, with the records that only make sense with it: its payments, returns,
+   * refunds, gift link and digital gifts. Any other order is refused: cancel it first. Stock needs no handling,
+   * because cancelling already put it back. Sales reports no longer count the order. A card payment is not
+   * refunded here: refund it with the payment provider.
+   */
+  async adminDelete(id: string, by: string) {
+    const order = await this.store.get<Order>('orders', id);
+    if (!order) throw new NotFoundException('Order not found');
+    if (order.status !== 'cancelled')
+      throw new ConflictException(
+        'Only cancelled orders can be deleted. Cancel this order first if you want to remove it.',
+      );
+    if (!(await this.store.remove('orders', id)))
+      throw new NotFoundException('Order not found');
+    const gone: Record<string, number> = {};
+    for (const collection of [
+      'payments',
+      'digitalGifts',
+      'returns',
+      'refunds',
+    ] as const) {
+      gone[collection] = await this.store.mutate(collection, (docs) => {
+        let n = 0;
+        for (let i = docs.length - 1; i >= 0; i--)
+          if ((docs[i] as { orderId?: string }).orderId === id) {
+            docs.splice(i, 1);
+            n++;
+          }
+        return n;
+      });
+    }
+    if (order.giftLinkId)
+      await this.store.remove('giftLinks', order.giftLinkId);
+    this.logger.warn(
+      `Cancelled order ${order.number} deleted by ${by}; removed ${JSON.stringify(gone)}`,
+    );
+    return { number: order.number, removed: gone };
+  }
+
   async adminGet(id: string) {
     const o = await this.store.get<Order>('orders', id);
     if (!o) throw new NotFoundException('Order not found');

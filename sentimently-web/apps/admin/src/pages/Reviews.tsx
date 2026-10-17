@@ -1,8 +1,9 @@
 import { shortDate } from '@sentimently/api';
-import { Badge, Button, Chip, EmptyState } from '@sentimently/ui';
+import { Alert, Badge, Button, Chip, EmptyState } from '@sentimently/ui';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import { adminApi } from '../lib/admin-api';
+import { useAuth } from '../lib/auth';
 import type { AdminReview } from '../lib/admin-api';
 import { ActionError, QueryError } from '../lib/present';
 
@@ -12,6 +13,9 @@ function Row({ r }: { r: AdminReview }) {
     mutationFn: (status: 'published' | 'hidden') => adminApi.moderate(r.id, status),
     onSuccess: () => qc.invalidateQueries({ queryKey: ['reviews'] }),
   });
+  const { isAdmin } = useAuth();
+  const [confirm, setConfirm] = useState(false);
+  const erase = useMutation({ mutationFn: () => adminApi.deleteReview(r.id), onSuccess: () => qc.invalidateQueries({ queryKey: ['reviews'] }) });
   const hidden = r.status === 'hidden';
   return (
     <li className="card">
@@ -21,7 +25,17 @@ function Row({ r }: { r: AdminReview }) {
       <Button size="small" variant="secondary" loading={set.isPending} onClick={() => set.mutate(hidden ? 'published' : 'hidden')}>
         {hidden ? 'Show on the shop' : 'Hide from the shop'}
       </Button>
-      <ActionError error={set.error} />
+      {isAdmin && !confirm && <Button size="small" variant="ghost" onClick={() => setConfirm(true)} aria-label={`Delete this ${r.rating} star review`}>Delete</Button>}
+      {confirm && (
+        <Alert tone="error">
+          <p><strong>Delete this review for good?</strong> It is removed from the shop and from the gift's rating. This cannot be undone. Hide it instead to keep it.</p>
+          <div className="actions">
+            <Button size="small" loading={erase.isPending} onClick={() => erase.mutate()}>Yes, delete it</Button>
+            <Button size="small" variant="ghost" onClick={() => setConfirm(false)}>Keep it</Button>
+          </div>
+        </Alert>
+      )}
+      <ActionError error={set.error ?? erase.error} />
     </li>
   );
 }

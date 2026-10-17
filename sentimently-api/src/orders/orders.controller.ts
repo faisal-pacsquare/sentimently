@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Headers,
   HttpCode,
@@ -102,6 +103,14 @@ export class AdminOrdersController {
   @Get('orders/:id')
   one(@Param('id') id: string) {
     return this.orders.adminGet(id);
+  }
+
+  /** Permanent, with its payments, returns, refunds and digital gifts. Administrators only. */
+  @Delete('orders/:id')
+  @Roles('admin')
+  @HttpCode(200)
+  remove(@CurrentUser() user: AuthUser, @Param('id') id: string) {
+    return this.orders.adminDelete(id, user.id);
   }
 
   /** Moves an order along. Confirming a bank transfer is a move to "paid". */

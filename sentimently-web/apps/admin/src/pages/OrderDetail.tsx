@@ -3,8 +3,9 @@ import type { OrderStatus } from '@sentimently/api';
 import { Alert, Button, Container, ErrorState, TextArea, TextField } from '@sentimently/ui';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { adminApi } from '../lib/admin-api';
+import { useAuth } from '../lib/auth';
 import type { AdminOrder, AdminOrderDetail } from '../lib/admin-api';
 import { ActionError, PAYMENT_LABEL, QueryError, STATUS_LABEL, StatusBadge } from '../lib/present';
 
@@ -104,7 +105,42 @@ function Moves({ order }: { order: AdminOrder }) {
   );
 }
 
+function DeleteOrder({ o }: { o: AdminOrder }) {
+  const qc = useQueryClient();
+  const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
+  const [typed, setTyped] = useState('');
+  const erase = useMutation({
+    mutationFn: () => adminApi.deleteOrder(o.id),
+    onSuccess: () => {
+      qc.removeQueries({ queryKey: ['order', o.id] });
+      qc.invalidateQueries({ queryKey: ['orders'] });
+      qc.invalidateQueries({ queryKey: ['production'] });
+      navigate('/');
+    },
+  });
+  return (
+    <section aria-labelledby="danger" className="danger-zone">
+      <h2 id="danger">Delete this order</h2>
+      <p className="muted">Only cancelled orders can be deleted. This removes the order for good, with its payments, returns, refunds, gift link and any digital gifts. The customer no longer sees it, and sales reports no longer count it. It cannot be undone.</p>
+      {o.paymentMethod === 'card' && <Alert tone="warn">If the customer paid by card, deleting does not refund them: refund it with the payment provider first.</Alert>}
+      {!open && <Button variant="secondary" onClick={() => setOpen(true)}>Delete this order…</Button>}
+      {open && (
+        <Alert tone="error">
+          <TextField label={`Type ${o.number} to confirm`} value={typed} onChange={(e) => setTyped(e.target.value)} autoComplete="off" />
+          <div className="actions">
+            <Button loading={erase.isPending} disabled={typed.trim().toUpperCase() !== o.number.toUpperCase()} onClick={() => erase.mutate()}>Delete {o.number} for good</Button>
+            <Button variant="ghost" onClick={() => { setOpen(false); setTyped(''); }}>Keep it</Button>
+          </div>
+        </Alert>
+      )}
+      <ActionError error={erase.error} />
+    </section>
+  );
+}
+
 function Detail({ d }: { d: AdminOrderDetail }) {
+  const { isAdmin } = useAuth();
   const o = d.order;
   const qc = useQueryClient();
   const retry = useMutation({ mutationFn: (id: string) => adminApi.retryDigital(id), onSuccess: () => qc.invalidateQueries({ queryKey: ['order', o.id] }) });
@@ -196,6 +232,7 @@ function Detail({ d }: { d: AdminOrderDetail }) {
           </dl>
         </aside>
       </div>
+      {isAdmin && (o.status === 'cancelled' ? <DeleteOrder o={o} /> : <p className="muted">Only cancelled orders can be deleted. To remove this order, cancel it first.</p>)}
     </>
   );
 }
