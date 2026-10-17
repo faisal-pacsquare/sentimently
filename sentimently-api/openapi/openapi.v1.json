@@ -616,6 +616,26 @@
         ],
         "type": "object"
       },
+      "ImportCatalogueDto": {
+        "properties": {
+          "dryRun": {
+            "description": "Check the files and report, without saving anything.",
+            "type": "boolean"
+          },
+          "productsCsv": {
+            "maxLength": 90000,
+            "type": "string"
+          },
+          "taxonomyCsv": {
+            "maxLength": 90000,
+            "type": "string"
+          }
+        },
+        "required": [
+          "productsCsv"
+        ],
+        "type": "object"
+      },
       "LoginDto": {
         "properties": {
           "email": {
@@ -1242,6 +1262,37 @@
   },
   "openapi": "3.0.0",
   "paths": {
+    "/api/v1/admin/catalogue/import": {
+      "post": {
+        "operationId": "AdminCatalogueController_importSpreadsheet",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImportCatalogueDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "AdminCatalogueController.importSpreadsheet",
+        "tags": [
+          "AdminCatalogue"
+        ],
+        "x-access": "roles: staff, admin"
+      }
+    },
     "/api/v1/admin/contact": {
       "get": {
         "operationId": "ContactController_list",

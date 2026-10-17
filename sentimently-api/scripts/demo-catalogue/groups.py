@@ -22,6 +22,8 @@ OCCASIONS = {
     "eid": ("eid", "Eid"),
     "anniv": ("anniversary", "Anniversary"),
     "wedding": ("wedding", "Wedding"),
+    "mehndi": ("mehndi", "Mehndi"),
+    "engage": ("engagement", "Engagement"),
     "baby": ("new-baby", "New baby"),
     "grad": ("graduation", "Graduation"),
     "mom": ("mothers-day", "Mother's Day"),
@@ -49,4 +51,7 @@ CATEGORIES = {
     "tech": ("tech", "Tech"),
     "keepsakes": ("keepsakes", "Keepsakes"),
     "digital": ("digital", "Digital gifts"),
+    "ribbon": ("ribbon-flower-bouquets", "Ribbon flower bouquets"),
+    "gajray": ("gajray-and-floral-jewellery", "Gajray and floral jewellery"),
+    "chocbq": ("chocolate-bouquets", "Chocolate bouquets"),
 }

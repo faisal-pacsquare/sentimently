@@ -7,7 +7,9 @@ Output:  samples/demo-taxonomy.csv, samples/demo-products.csv
 These are placeholders for development. Replace the names, prices and pictures with the studio's real ones.
 """
 import csv
+import math
 import os
+import random
 import re
 import sys
 
@@ -32,6 +34,7 @@ PALETTES = [
     ("#efeae6", "#d5ccc4", "#6b5d52", "#ffffff"),
     ("#fde4e1", "#f6b3ab", "#cf4a3d", "#ffffff"),
     ("#e3e7f3", "#b4bfde", "#2e3f7a", "#ffffff"),
+    ("#f5e1e4", "#e2b3bd", "#8c1f3b", "#ffffff"),
 ]
 HEART = "M0 38c-30-22-40-38-40-54a22 22 0 0 1 40-11 22 22 0 0 1 40 11c0 16-10 32-40 54z"
 
@@ -56,8 +59,186 @@ def scene(body, pal, label):
 '''
 
 
+# ---------------------------------------------------------------- ribbon flowers, gajray and chocolate bouquets
+def _mix(hex_color, target, f):
+    h = hex_color.lstrip("#")
+    c = [int(h[i:i + 2], 16) for i in (0, 2, 4)]
+    return "#%02x%02x%02x" % tuple(round(v + (target - v) * f) for v in c)
+
+
+def _dark(hex_color, f):
+    return _mix(hex_color, 0, f)
+
+
+def _light(hex_color, f):
+    return _mix(hex_color, 255, f)
+
+
+def _rose(cx, cy, r, col, glitter=False, seed=0):
+    rnd = random.Random(seed)
+    parts = [f'<circle cx="{cx:.0f}" cy="{cy:.0f}" r="{r:.0f}" fill="{_dark(col, .28)}"/>']
+    for k, (scale, shade) in enumerate([(.92, 0), (.74, .1), (.55, .0), (.36, .12)]):
+        rr = r * scale
+        ox, oy = r * .05 * (k % 2 or -1), r * .04 * (-1 if k % 3 else 1)
+        fill = _light(col, shade) if k % 2 == 0 else _dark(col, .12)
+        parts.append(f'<circle cx="{cx + ox:.0f}" cy="{cy + oy:.0f}" r="{rr:.0f}" fill="{fill}" stroke="{_dark(col, .35)}" stroke-width="{max(r * .03, 1):.1f}"/>')
+    s = r * .17
+    parts.append(f'<path d="M{cx:.0f} {cy - s:.0f}a{s:.0f} {s:.0f} 0 1 1 {s:.0f} {s:.0f}a{s * 2:.0f} {s * 2:.0f} 0 1 1 {-s * 3:.0f} {-s:.0f}" fill="none" stroke="{_dark(col, .4)}" stroke-width="{max(r * .035, 1):.1f}" stroke-linecap="round"/>')
+    parts.append(f'<ellipse cx="{cx - r * .3:.0f}" cy="{cy - r * .4:.0f}" rx="{r * .3:.0f}" ry="{r * .14:.0f}" fill="#fff" opacity=".28" transform="rotate(-30 {cx - r * .3:.0f} {cy - r * .4:.0f})"/>')
+    if glitter:
+        for _ in range(max(int(r * .5), 6)):
+            a, d = rnd.uniform(0, 6.283), r * .9 * rnd.random() ** .5
+            parts.append(f'<circle cx="{cx + d * math.cos(a):.0f}" cy="{cy + d * math.sin(a):.0f}" r="{rnd.choice([1.2, 1.8, 2.4]) * max(r / 60, .6):.1f}" fill="#fff" opacity="{rnd.choice([.55, .8, .95])}"/>')
+    return "".join(parts)
+
+
+def _bow(cx, cy, col, size=1.0):
+    s = size
+    return (f'<path d="M{cx} {cy}c-{80 * s:.0f}-{70 * s:.0f}-{150 * s:.0f}-{20 * s:.0f}-{100 * s:.0f} {26 * s:.0f}z" fill="{col}"/>'
+            f'<path d="M{cx} {cy}c{80 * s:.0f}-{70 * s:.0f} {150 * s:.0f}-{20 * s:.0f} {100 * s:.0f} {26 * s:.0f}z" fill="{col}"/>'
+            f'<path d="M{cx} {cy}c-{80 * s:.0f}-{70 * s:.0f}-{150 * s:.0f}-{20 * s:.0f}-{100 * s:.0f} {26 * s:.0f}z" fill="#000" opacity=".1"/>'
+            f'<path d="M{cx - 6} {cy + 10}l-{50 * s:.0f} {120 * s:.0f}l{34 * s:.0f}-{14 * s:.0f}l{16 * s:.0f} {28 * s:.0f}zM{cx + 6} {cy + 10}l{50 * s:.0f} {120 * s:.0f}l-{34 * s:.0f}-{14 * s:.0f}l-{16 * s:.0f} {28 * s:.0f}z" fill="{_dark(col, .15)}"/>'
+            f'<circle cx="{cx}" cy="{cy + 6}" r="{22 * s:.0f}" fill="{_dark(col, .08)}"/>')
+
+
+def _breath(rnd, cx, cy, spread, n):
+    out = []
+    for _ in range(n):
+        a, d = rnd.uniform(0, 6.283), spread * (.55 + .5 * rnd.random())
+        x, y = cx + d * math.cos(a), cy + d * math.sin(a) * .85
+        out.append(f'<circle cx="{x:.0f}" cy="{y:.0f}" r="{rnd.choice([4, 5, 6]):.0f}" fill="#fff" opacity=".92"/>')
+    return "".join(out)
+
+
+def _butterfly(x, y, s, col, rot):
+    return (f'<g transform="translate({x} {y}) rotate({rot}) scale({s})"><ellipse cx="-22" cy="-12" rx="26" ry="18" fill="{col}" transform="rotate(-25 -22 -12)"/>'
+            f'<ellipse cx="22" cy="-12" rx="26" ry="18" fill="{col}" transform="rotate(25 22 -12)"/><ellipse cx="-16" cy="14" rx="17" ry="12" fill="{_dark(col, .2)}" transform="rotate(20 -16 14)"/>'
+            f'<ellipse cx="16" cy="14" rx="17" ry="12" fill="{_dark(col, .2)}" transform="rotate(-20 16 14)"/><rect x="-3" y="-20" width="6" height="42" rx="3" fill="#1d2433"/></g>')
+
+
+def ribbon_bouquet(kind, pal):
+    """rr<count><k|w><b: butterflies><x: ivory roses><g: glitter><s: birthday sash>  (k = black wrap, w = cream wrap)"""
+    m = re.fullmatch(r"rr(\d+)([kw])([bxgs]*)", kind)
+    n, wrap, flags = int(m.group(1)), m.group(2), m.group(3)
+    c1, c2, a, b = pal
+    rose_col = "#f6efe6" if "x" in flags else a
+    rnd = random.Random(n * 7 + len(flags))
+    dark_wrap, light_wrap = ("#2a2330", "#4a4052") if wrap == "k" else ("#efe5d6", "#fbf6ee")
+    cx, cy = 400, 330
+    rc = min(215, 60 + 50 * math.sqrt(n)) if n > 1 else 0
+    c = rc / math.sqrt(n) if n > 1 else 0
+    rr = min(105, c * 1.18) if n > 1 else 105
+    cone_top = cy - 28 + rc * .35
+    out = [f'<path d="M400 705L{max(150, 400 - rc - rr - 30):.0f} {cone_top + 60:.0f}Q400 {cone_top - 90:.0f} {min(650, 400 + rc + rr + 30):.0f} {cone_top + 60:.0f}Z" fill="{dark_wrap}"/>',
+           f'<path d="M400 705L{max(190, 400 - rc * .8 - rr):.0f} {cone_top + 120:.0f}L400 {cone_top + 40:.0f}L{min(610, 400 + rc * .8 + rr):.0f} {cone_top + 120:.0f}Z" fill="{light_wrap}" opacity=".55"/>',
+           f'<path d="M400 705l-26-170M400 705l26-170M400 705l-70-150M400 705l70-150" stroke="{_light(dark_wrap, .15)}" stroke-width="3" opacity=".45"/>']
+    if wrap == "k":
+        out.append(_breath(rnd, cx, cy + 10, rc + rr, 26 if n > 1 else 18))
+    pts = [(cx + c * math.sqrt(i + .5) * math.cos(i * 2.39996), cy + c * math.sqrt(i + .5) * math.sin(i * 2.39996) * .92) for i in range(n)] if n > 1 else [(cx, cy)]
+    for i in reversed(range(len(pts))):
+        out.append(_rose(pts[i][0], pts[i][1], rr, rose_col, glitter="g" in flags, seed=i))
+    if "b" in flags:
+        for x, y, s, rot in [(330, 250, 1.1, -18), (480, 290, .95, 22), (400, 190, .8, 8), (545, 215, .7, 30)]:
+            out.append(_butterfly(x, y, s, "#1f5fd0", rot))
+    if "s" in flags:
+        out.append('<g transform="rotate(-9 400 340)"><rect x="110" y="300" width="580" height="86" fill="#1c1820"/><rect x="110" y="300" width="580" height="86" fill="none" stroke="#d9b45a" stroke-width="3"/>'
+                   '<text x="400" y="358" text-anchor="middle" font-family="Georgia, serif" font-weight="bold" font-size="42" letter-spacing="6" fill="#e6c068">HAPPY BIRTHDAY</text></g>')
+    out.append(_bow(400, 585, "#d9304a" if wrap == "k" and "x" not in flags else _dark(a, .05), 1.0))
+    return "".join(out)
+
+
+def gajray(kind, pal):
+    """gj0 corsage, gj1 simple, gj2 with stamens, gj3 with pearl latkans, gj4 crown; trailing x = ivory roses"""
+    m = re.fullmatch(r"gj(\d)(x?)", kind)
+    t, ivory = int(m.group(1)), bool(m.group(2))
+    c1, c2, a, b = pal
+    col = "#f6efe6" if ivory else a
+    rnd = random.Random(t * 13)
+    out = []
+
+    def stamens(x, y, n=7, spread=46):
+        s = []
+        for _ in range(n):
+            ang = rnd.uniform(-2.6, -.5)
+            ln = rnd.uniform(40, spread + 40)
+            ex, ey = x + ln * math.cos(ang), y + ln * math.sin(ang)
+            s.append(f'<path d="M{x:.0f} {y:.0f}L{ex:.0f} {ey:.0f}" stroke="#c9a54c" stroke-width="4" stroke-linecap="round"/><circle cx="{ex:.0f}" cy="{ey:.0f}" r="7" fill="{rnd.choice(["#e6c068", "#d8d8e0", "#c9a54c"])}"/>')
+        return "".join(s)
+
+    if t == 4:  # crown
+        import math as _m
+        pts = [(400 + 270 * _m.cos(_m.radians(ang)), 560 + 270 * _m.sin(_m.radians(ang))) for ang in range(205, 336, 22)]
+        out.append(f'<path d="M{pts[0][0]:.0f} {pts[0][1]:.0f}A270 270 0 0 1 {pts[-1][0]:.0f} {pts[-1][1]:.0f}" fill="none" stroke="#3f8a63" stroke-width="18" stroke-linecap="round"/>')
+        out.append(_breath(rnd, 400, 310, 250, 34))
+        for i, (x, y) in enumerate(pts):
+            out.append(_rose(x, y, 58 if 0 < i < len(pts) - 1 else 46, col, seed=i))
+            for dx in (-34, 34):
+                out.append(f'<ellipse cx="{x + dx:.0f}" cy="{y - 54:.0f}" rx="12" ry="26" fill="#4fa77a" transform="rotate({dx} {x + dx:.0f} {y - 54:.0f})"/>')
+        out.append(_bow(626, 520, _dark(a, .1), .7))
+        return "".join(out)
+
+    if t == 0:  # wrist corsage
+        out.append(f'<ellipse cx="400" cy="470" rx="230" ry="110" fill="none" stroke="{_light(a, .45)}" stroke-width="40"/><ellipse cx="400" cy="470" rx="230" ry="110" fill="none" stroke="{a}" stroke-width="10" opacity=".35"/>')
+        for x, y, r in [(320, 330, 90), (470, 360, 100)]:
+            out.append(_rose(x, y, r, col, seed=x))
+            out.append(stamens(x + 20, y - 10, 6, 36))
+        for x, y in [(400, 440)]:
+            out.append(f'<ellipse cx="{x}" cy="{y}" rx="40" ry="20" fill="#4fa77a"/>')
+        out.append('<g fill="#fff" opacity=".9">' + "".join(f'<circle cx="{rnd.randint(250, 550)}" cy="{rnd.randint(240, 300)}" r="{rnd.choice([4, 5])}"/>' for _ in range(14)) + "</g>")
+        return "".join(out)
+
+    xs = [175, 290, 400, 510, 625]
+    out.append(f'<path d="M110 330Q400 250 690 330" fill="none" stroke="{_dark(b, .1) if b != "#ffffff" else _light(a, .5)}" stroke-width="46" stroke-linecap="round"/>')
+    for x in xs:
+        out.append(f'<ellipse cx="{x - 50}" cy="{300}" rx="14" ry="38" fill="#4fa77a" transform="rotate(-50 {x - 50} 300)"/><ellipse cx="{x + 50}" cy="{300}" rx="14" ry="38" fill="#4fa77a" transform="rotate(50 {x + 50} 300)"/>')
+    for i, x in enumerate(xs):
+        y = 320 - (60 if i in (0, 4) else 0) * 0 + (-18 if i == 2 else 0) + (14 if i in (0, 4) else 0)
+        out.append(_rose(x, y, 66 if i != 2 else 78, col, seed=i))
+    if t >= 2:
+        for x in (232, 345, 455, 568, 400):
+            out.append(stamens(x, 270, 5, 30))
+    if t >= 3:
+        for i, x in enumerate(xs):
+            ln = 250 if i % 2 == 0 else 190
+            y = 390
+            out.append(f'<path d="M{x} {y}L{x} {y + ln}" stroke="#d8d4cc" stroke-width="3"/>')
+            for k in range(int(ln / 26)):
+                out.append(f'<circle cx="{x}" cy="{y + 14 + k * 26}" r="9" fill="#fbf6ee" stroke="#cfc6b8" stroke-width="2"/>')
+            ey = y + ln + 18
+            out.append(f'<circle cx="{x}" cy="{ey}" r="26" fill="{col}"/><circle cx="{x - 14}" cy="{ey + 8}" r="20" fill="{_dark(col, .12)}"/><circle cx="{x + 14}" cy="{ey + 8}" r="20" fill="{_light(col, .1)}"/><circle cx="{x}" cy="{ey - 6}" r="11" fill="#e6c068"/>')
+    return "".join(out)
+
+
+def chocolate_bouquet(kind, pal):
+    """cq0 small, cq1 large"""
+    big = kind == "cq1"
+    c1, c2, a, b = pal
+    n = 7 if big else 5
+    wraps = ["#5a2c83", "#7a3b1e", "#c0312e", "#5a2c83", "#4a2a1c"]
+    out = []
+    angs = [(-34 + i * 68 / (n - 1)) for i in range(n)]
+    for i in sorted(range(n), key=lambda k: -abs(angs[k])):
+        ang = angs[i]
+        col = wraps[i % len(wraps)]
+        w, h = (92, 330) if big else (100, 340)
+        out.append(f'<g transform="translate(400 600) rotate({ang:.1f}) translate({-w / 2} {-h - 20})"><rect width="{w}" height="{h}" rx="10" fill="{col}"/>'
+                   f'<rect width="{w}" height="{h * .09:.0f}" fill="#e6c068"/><rect x="{w * .12:.0f}" y="{h * .16:.0f}" width="{w * .76:.0f}" height="{h * .22:.0f}" rx="6" fill="#fff" opacity=".9"/>'
+                   f'<rect x="{w * .24:.0f}" y="{h * .25:.0f}" width="{w * .52:.0f}" height="9" rx="4" fill="{col}"/>'
+                   f'<path d="M{w * .5:.0f} {h * .45:.0f}V{h:.0f}M{w * .12:.0f} {h * .6:.0f}H{w * .88:.0f}M{w * .12:.0f} {h * .78:.0f}H{w * .88:.0f}" stroke="#000" stroke-opacity=".2" stroke-width="3"/></g>')
+    out.append('<path d="M400 715L215 470Q400 380 585 470Z" fill="#fbf7f0"/><path d="M400 715L300 470 400 430 500 470Z" fill="#fff" opacity=".8"/>'
+               f'<path d="M400 715L215 470M400 715L585 470" stroke="{c2}" stroke-width="5" fill="none"/>')
+    out.append(_bow(400, 560, "#d9a21e", 1.05))
+    return "".join(out)
+
+
 def draw(kind, pal, price, name):
     c1, c2, a, b = pal
+    if kind.startswith("rr"):
+        return ribbon_bouquet(kind, pal)
+    if kind.startswith("gj"):
+        return gajray(kind, pal)
+    if kind.startswith("cq"):
+        return chocolate_bouquet(kind, pal)
     if kind == "mug":
         return f'''<path d="M250 270h300v250a110 110 0 0 1-110 110h-80a110 110 0 0 1-110-110z" fill="{b}"/>
   <path d="M550 330h40a60 60 0 0 1 0 140h-40" fill="none" stroke="{b}" stroke-width="34" stroke-linecap="round"/>
@@ -213,7 +394,7 @@ def main():
             if not mto:
                 extras += "|express_same_day"
         rows.append([
-            slug, name, desc, price, offer if offer else "", "digital" if digital else "physical", kind_digital, stock, cat,
+            slug, name, desc, price, offer if offer else "", "digital" if digital else "physical", kind_digital, stock, CATEGORIES[cat][0],
             feelings, occasions, recipients, extras, yes(bool(mto)), lo, hi, yes("p" in fl), "yes", f"/images/demo/{slug}.svg",
         ])
         with open(os.path.join(IMG_DIR, slug + ".svg"), "w", encoding="utf-8", newline="\n") as f:

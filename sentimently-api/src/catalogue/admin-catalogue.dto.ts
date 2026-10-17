@@ -79,3 +79,11 @@ export class TaxonomyDto {
 }
 
 export class UpdateTaxonomyDto extends PartialType(TaxonomyDto) {}
+
+/** The catalogue spreadsheets, as text. The same two files the `import:catalogue` command reads. */
+export class ImportCatalogueDto {
+  @IsOptional() @IsString() @MaxLength(90_000) taxonomyCsv?: string;
+  @IsString() @MaxLength(90_000) productsCsv!: string;
+  /** Check the files and report, without saving anything. */
+  @IsOptional() @IsBoolean() dryRun?: boolean;
+}

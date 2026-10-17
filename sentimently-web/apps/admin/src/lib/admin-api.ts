@@ -3,6 +3,14 @@ import { client } from './core';
 
 type Opts = { signal?: AbortSignal };
 
+export interface ImportReport {
+  saved: boolean;
+  addedGifts: string[];
+  skippedGifts: string[];
+  addedGroups: string[];
+  warnings: string[];
+}
+
 export interface OrderRow {
   id: string; number: string; status: OrderStatus; createdAt: string;
   contactName?: string; contactEmail: string; city?: string; deliveryDate?: string;
@@ -142,6 +150,7 @@ export const adminApi = {
   addTeamMember: (body: { email: string; name?: string; password: string; role: 'staff' | 'admin' }) => client.post<TeamMember>('/admin/staff', body),
   removeTeamMember: (id: string) => client.delete<TeamMember>(`/admin/staff/${encodeURIComponent(id)}`),
   erasePerson: (email: string) => client.post<{ erased: boolean }>('/admin/privacy/erase', { email }),
+  importCatalogue: (body: { taxonomyCsv?: string; productsCsv: string; dryRun?: boolean }) => client.post<ImportReport>('/admin/catalogue/import', body),
   testEmail: (to: string) => client.post<{ sent: boolean; provider: string; message: string }>('/admin/mail/test', { to }),
   runJobs: () => client.post<Record<string, unknown>>('/admin/scheduler/run'),
 

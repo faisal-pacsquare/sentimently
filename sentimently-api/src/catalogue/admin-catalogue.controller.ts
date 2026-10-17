@@ -12,6 +12,7 @@ import { Roles } from '../auth/auth.decorators';
 import { AdminCatalogueService } from './admin-catalogue.service';
 import {
   CreateProductDto,
+  ImportCatalogueDto,
   TaxonomyDto,
   UpdateProductDto,
   UpdateTaxonomyDto,
@@ -42,6 +43,13 @@ export class AdminCatalogueController {
   @HttpCode(204)
   deactivate(@Param('id') id: string) {
     return this.admin.deactivate(id);
+  }
+
+  /** Adds the gifts and groups in two spreadsheets. Gifts already in the shop (same slug) are never changed. */
+  @Post('catalogue/import')
+  @HttpCode(200)
+  importSpreadsheet(@Body() dto: ImportCatalogueDto) {
+    return this.admin.importSpreadsheet(dto);
   }
 
   @Post('taxonomy')

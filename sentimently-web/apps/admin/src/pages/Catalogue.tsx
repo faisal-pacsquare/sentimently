@@ -36,6 +36,7 @@ export function Catalogue() {
       <div className="actions">
         <Button as={Link} to="/catalogue/new">New gift</Button>
         <Button as={Link} to="/catalogue/groups" variant="secondary">Feelings, occasions and categories</Button>
+        <Button as={Link} to="/catalogue/import" variant="secondary">Add from a spreadsheet</Button>
       </div>
       <div className="presets" role="group" aria-label="Show">
         {FILTERS.map(([k, label]) => <Chip key={k} pressed={filter === k} onClick={() => setFilter(k)}>{label}</Chip>)}

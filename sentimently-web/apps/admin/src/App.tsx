@@ -9,6 +9,7 @@ import { AuthProvider } from './lib/auth';
 import { Catalogue } from './pages/Catalogue';
 import { Dispatch } from './pages/Dispatch';
 import { Groups } from './pages/Groups';
+import { ImportGifts } from './pages/ImportGifts';
 import { Inbox } from './pages/Inbox';
 import { Login } from './pages/Login';
 import { OrderDetail } from './pages/OrderDetail';
@@ -48,6 +49,7 @@ export function App() {
             <Route path="production" element={<Production />} />
             <Route path="catalogue" element={<Catalogue />} />
             <Route path="catalogue/groups" element={<Groups />} />
+            <Route path="catalogue/import" element={<ImportGifts />} />
             <Route path="catalogue/new" element={<ProductForm />} />
             <Route path="catalogue/:id" element={<ProductForm />} />
             <Route path="dispatch" element={<Dispatch />} />

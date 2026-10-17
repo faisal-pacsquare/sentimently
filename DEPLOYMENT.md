@@ -95,6 +95,17 @@ Scheduled digital gifts, reminders, overdue-refund alerts and expiring gift link
 - In Vercel, delete `ADMIN_EMAIL` and `ADMIN_PASSWORD` from the API project and redeploy. The admin account stays in the database. Add other staff from the console's **Team and tools** page.
 - Change the sample content: gifts, prices, delivery rates, the announcement bar and the bank-transfer text (**Settings**).
 
+## Adding many gifts at once (spreadsheet)
+A live shop keeps its own database, so new gifts added to the code do not appear by themselves. Add them from the studio console:
+
+1. **Catalogue > Add from a spreadsheet**.
+2. Choose the **Groups file** (new categories and occasions) and the **Gifts file**, then press **Check the files**. Nothing is saved yet. Every wrong row is listed with its line number.
+3. Press **Add to the shop**.
+
+Gifts already in the shop (same slug) are never changed, so photos and prices you edited stay as they are, and uploading the same files twice does nothing. A file can be about 90 KB (around 150 gifts); split a bigger one.
+
+The ribbon flower bouquets, gajray and chocolate bouquets are ready as `sentimently-api/samples/new-gifts/new-groups.csv` and `new-gifts.csv`. Their placeholder pictures are served by the shop (`/images/demo/...`), so deploy the shop first, then upload the two files. Replace the pictures with real photos from each gift's **Photos** panel.
+
 ## Gift photos (free): upload from the studio console
 In the studio console, a gift's **Photos** panel lets staff upload pictures from a computer or phone, drop several at once, choose the main photo, reorder, and remove. Big photos are shrunk in the browser first (to at most 1600 pixels), so a 10 MB phone photo uploads in seconds. Photos live in **Vercel Blob** (free plan: 1 GB), which needs a one-time setup:
 

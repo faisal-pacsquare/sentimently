@@ -17,10 +17,12 @@ occasion,birthday,Birthday,,,1
 occasion,eid,Eid,,,2
 occasion,anniversary,Anniversary,,,3
 occasion,wedding,Wedding,,,4
-occasion,new-baby,New baby,,,5
-occasion,graduation,Graduation,,,6
-occasion,mothers-day,Mother's Day,,,7
-occasion,fathers-day,Father's Day,,,8
+occasion,mehndi,Mehndi,,,5
+occasion,engagement,Engagement,,,6
+occasion,new-baby,New baby,,,7
+occasion,graduation,Graduation,,,8
+occasion,mothers-day,Mother's Day,,,9
+occasion,fathers-day,Father's Day,,,10
 recipient,friend,Friend,,,1
 recipient,partner,Partner,,,2
 recipient,parent,Parent,,,3
@@ -38,3 +40,6 @@ category,stationery,Books and stationery,,,8
 category,tech,Tech,,,9
 category,keepsakes,Keepsakes,,,10
 category,digital,Digital gifts,,,11
+category,ribbon-flower-bouquets,Ribbon flower bouquets,,,12
+category,gajray-and-floral-jewellery,Gajray and floral jewellery,,,13
+category,chocolate-bouquets,Chocolate bouquets,,,14
