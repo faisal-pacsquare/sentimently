@@ -106,6 +106,23 @@ Gifts already in the shop (same slug) are never changed, so photos and prices yo
 
 The ribbon flower bouquets, gajray and chocolate bouquets are ready as `sentimently-api/samples/new-gifts/new-groups.csv` and `new-gifts.csv`. Their placeholder pictures are served by the shop (`/images/demo/...`), so deploy the shop first, then upload the two files. Replace the pictures with real photos from each gift's **Photos** panel.
 
+## Putting real photos on many gifts at once
+For a handful of gifts, use each gift's **Photos** panel. For dozens, use the bulk uploader (it needs Node 18 or newer, and the API must already show `"images":"blob"` at `/api/v1/health`).
+
+1. Take your own photos. The shot list for the ribbon flower, gajray and chocolate gifts is `sentimently-api/samples/new-gifts/photo-checklist.csv`. Use photos you took or that your own team made; pictures from other shops or from TikTok are not yours to sell with.
+2. Put them in one folder and name each after its gift: `ribbon-rose-bouquet-10_1.jpg` is the main photo, `ribbon-rose-bouquet-10_2.jpg` the second. A gift's name is its slug, shown under its name in **Catalogue**. A folder named after the gift (`ribbon-rose-bouquet-10/1.jpg`, `2.jpg`) works too.
+3. In `sentimently-api`, run (Windows PowerShell shown; the password stays out of the command):
+
+```
+$env:STUDIO_EMAIL = "you@example.com"
+$env:STUDIO_PASSWORD = "your studio password"
+npm run photos:upload -- --api https://YOUR-API/api/v1 --folder C:\path\to\photos --dry-run
+```
+
+4. Read what it plans to do. If it is right, run the same command without `--dry-run`.
+
+It replaces each gift's current photos with the uploaded ones; add `--mode add` to put them after the current ones instead. Files whose names match no gift are listed and skipped. A photo over 4 MB is skipped unless you run `npm i sharp` once, which lets the tool shrink it. To list the gifts that still have no real photo, use `--checklist photos-needed.csv` instead of `--folder`.
+
 ## Gift photos (free): upload from the studio console
 In the studio console, a gift's **Photos** panel lets staff upload pictures from a computer or phone, drop several at once, choose the main photo, reorder, and remove. Big photos are shrunk in the browser first (to at most 1600 pixels), so a 10 MB phone photo uploads in seconds. Photos live in **Vercel Blob** (free plan: 1 GB), which needs a one-time setup:
 

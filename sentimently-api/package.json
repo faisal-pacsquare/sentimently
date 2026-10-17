@@ -23,6 +23,7 @@
     "openapi:check": "node dist/openapi-cli.js --check",
     "load": "node scripts/load-test.mjs",
     "import:catalogue": "node dist/cli/import-catalogue.js",
+    "photos:upload": "node scripts/upload-photos.mjs",
     "postman": "node scripts/make-postman.mjs"
   },
   "dependencies": {
