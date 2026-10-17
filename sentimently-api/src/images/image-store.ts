@@ -154,11 +154,24 @@ export class NoImageStore implements ImageStore {
   async remove() {}
 }
 
+/**
+ * Vercel names the Blob token BLOB_READ_WRITE_TOKEN, but a "custom prefix" typed when connecting the store renames
+ * it (e.g. STORAGE_READ_WRITE_TOKEN). Any variable ending in _READ_WRITE_TOKEN is accepted.
+ */
+export function findBlobToken(
+  env: NodeJS.ProcessEnv = process.env,
+): string | undefined {
+  if (env.BLOB_READ_WRITE_TOKEN) return env.BLOB_READ_WRITE_TOKEN;
+  return Object.entries(env).find(
+    ([name, value]) => /_READ_WRITE_TOKEN$/.test(name) && value,
+  )?.[1];
+}
+
 export function createImageStore(
   env: NodeJS.ProcessEnv = process.env,
 ): ImageStore {
-  if (env.BLOB_READ_WRITE_TOKEN)
-    return new VercelBlobStore(env.BLOB_READ_WRITE_TOKEN);
+  const token = findBlobToken(env);
+  if (token) return new VercelBlobStore(token);
   if (env.VERCEL) return new NoImageStore();
   return new LocalDiskStore(env.UPLOAD_DIR ?? join(process.cwd(), 'uploads'));
 }

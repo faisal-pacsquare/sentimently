@@ -157,6 +157,17 @@ describe('createImageStore', () => {
   it('uses Vercel Blob when its token is present', () => {
     expect(createImageStore({ BLOB_READ_WRITE_TOKEN: 'x' }).kind).toBe('blob');
   });
+  it('also finds the token when it was connected with a custom prefix', () => {
+    expect(createImageStore({ STORAGE_READ_WRITE_TOKEN: 'x' }).kind).toBe(
+      'blob',
+    );
+    expect(
+      createImageStore({ VERCEL: '1', MY_PHOTOS_READ_WRITE_TOKEN: 'x' }).kind,
+    ).toBe('blob');
+    expect(createImageStore({ VERCEL: '1', SOMETHING_ELSE: 'x' }).kind).toBe(
+      'none',
+    );
+  });
   it('saves to a folder when developing on a computer', () => {
     expect(createImageStore({}).kind).toBe('local');
   });
