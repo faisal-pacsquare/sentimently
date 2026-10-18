@@ -18,12 +18,17 @@ export const useStoreSettings = () =>
   useQuery({ queryKey: ['store'], queryFn: ({ signal }) => api.store({ signal }), staleTime: 5 * 60_000 });
 
 export const useTaxonomy = (kind: KindRoute) =>
-  useQuery({ queryKey: ['taxonomy', kind], queryFn: ({ signal }) => api.taxonomy(KINDS[kind].api, { signal }), staleTime: 5 * 60_000 });
+  useQuery({
+    queryKey: ['taxonomy', kind],
+    queryFn: ({ signal }) => api.taxonomy(KINDS[kind].api, { signal }),
+    select: (items) => (kind === 'categories' ? items.filter((t) => t.slug !== 'digital') : items), // no "Digital gifts" category
+    staleTime: 5 * 60_000,
+  });
 
 export const useProducts = (q: ProductQuery) =>
   useQuery({
     queryKey: ['products', q],
-    queryFn: ({ signal }) => api.products(q, { signal }),
+    queryFn: ({ signal }) => api.products({ ...q, type: 'physical' }, { signal }), // digital gifts are not sold on the shop
     placeholderData: keepPreviousData, // keep showing the last results while the next page loads
   });
 

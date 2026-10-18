@@ -28,7 +28,8 @@ function load(): BoxLine[] {
   try {
     const raw = localStorage.getItem(KEY);
     const parsed: unknown = raw ? JSON.parse(raw) : [];
-    return Array.isArray(parsed) ? (parsed as BoxLine[]).filter((l) => l && typeof l.productId === 'string' && l.quantity >= 1) : [];
+    // Digital gifts are no longer sold, so one left in an old basket is dropped.
+    return Array.isArray(parsed) ? (parsed as BoxLine[]).filter((l) => l && typeof l.productId === 'string' && l.quantity >= 1 && l.type !== 'digital') : [];
   } catch {
     return [];
   }

@@ -1,4 +1,4 @@
-import { ApiError, shortDate } from '@sentimently/api';
+import { ApiError } from '@sentimently/api';
 import { Alert, Button, Container, TextArea, TextField } from '@sentimently/ui';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
@@ -77,38 +77,6 @@ export function GiftLink() {
             <Button type="submit" block loading={claim.isPending}>Send my gift here</Button>
           </form>
         </>
-      )}
-    </Container>
-  );
-}
-
-/** Is this e-gift card or greeting card code real, and what is on it? */
-export function CheckCard() {
-  const [code, setCode] = useState('');
-  const check = useMutation({ mutationFn: () => api.checkGiftCard(code.trim()) });
-  const r = check.data;
-  const submit = (e: FormEvent) => {
-    e.preventDefault();
-    if (code.trim()) check.mutate();
-  };
-  return (
-    <Container className="page page--narrow">
-      <title>Check a gift card | Bloomora</title>
-      <h1>Check a gift card</h1>
-      <form className="auth-form" onSubmit={submit}>
-        <TextField label="Gift card code" value={code} onChange={(e) => setCode(e.target.value)} autoCapitalize="characters" autoComplete="off" />
-        <Button type="submit" loading={check.isPending} disabled={!code.trim()}>Check</Button>
-      </form>
-      {check.error && <QueryError error={check.error} onRetry={() => check.mutate()} retrying={check.isPending} what="that code" />}
-      {r && r.valid && (
-        <Alert tone="info">
-          This {r.kind === 'greeting' ? 'greeting card' : 'e-gift card'} is valid
-          {r.amount ? ` for Rs ${r.amount.toLocaleString('en-PK')}` : ''}
-          {r.expiresAt ? `, until ${shortDate(r.expiresAt)}` : ''}.
-        </Alert>
-      )}
-      {r && !r.valid && (
-        <Alert tone="warn">{r.reason === 'expired' ? 'This code has expired.' : 'We could not find that code. Check it and try again.'}</Alert>
       )}
     </Container>
   );

@@ -1,4 +1,4 @@
-import type { Kind, ProductQuery, ProductType, Sort } from '@sentimently/api';
+import type { Kind, ProductQuery, Sort } from '@sentimently/api';
 
 /** The browse groups. The URL says "feelings"; the API says "sentiments". */
 export const KINDS = {
@@ -38,13 +38,11 @@ const text = (v: string | null) => (v && v.trim() ? v.trim() : undefined);
 /** The address bar is the source of truth for filters, so results can be shared and the back button works. */
 export function readFilters(sp: URLSearchParams): ProductQuery {
   const sort = sp.get('sort');
-  const type = sp.get('type');
   const q: ProductQuery = {
     sentiment: text(sp.get('sentiment')),
     occasion: text(sp.get('occasion')),
     recipient: text(sp.get('recipient')),
     category: text(sp.get('category')),
-    type: type === 'physical' || type === 'digital' ? (type as ProductType) : undefined,
     minPrice: int(sp.get('minPrice')),
     maxPrice: int(sp.get('maxPrice')),
     q: text(sp.get('q')),

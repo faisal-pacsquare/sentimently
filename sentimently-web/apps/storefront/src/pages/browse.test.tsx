@@ -57,8 +57,9 @@ describe('home', () => {
 describe('shop', () => {
   it('lists the gifts and says how many', async () => {
     renderApp('/shop');
-    expect(await screen.findAllByRole('article')).toHaveLength(5);
-    expect(screen.getByText('Showing 1 to 5 of 5 gifts')).toBeInTheDocument();
+    expect(await screen.findAllByRole('article')).toHaveLength(4);
+    expect(screen.getByText('Showing 1 to 4 of 4 gifts')).toBeInTheDocument();
+    expect(screen.queryByRole('link', { name: 'E-gift card' })).toBeNull(); // digital gifts are not sold
   });
 
   it('filters by feeling through the address, so the result can be shared', async () => {
@@ -70,19 +71,20 @@ describe('shop', () => {
     expect(lastProductsRequest().get('page')).toBe('1'); // changing a filter always starts again at page 1
   });
 
-  it('starts filtered when the address already says so', async () => {
+  it('keeps the other filters from the address, and never shows digital gifts even if the address asks for them', async () => {
     renderApp('/shop?type=digital&sort=price_desc');
-    expect(await screen.findAllByRole('article')).toHaveLength(1);
-    expect(lastProductsRequest().get('type')).toBe('digital');
+    expect(await screen.findAllByRole('article')).toHaveLength(4);
+    expect(lastProductsRequest().get('type')).toBe('physical');
     expect(lastProductsRequest().get('sort')).toBe('price_desc');
-    expect(screen.getByRole('button', { name: 'Digital' })).toHaveAttribute('aria-pressed', 'true');
+    expect(screen.queryByRole('button', { name: 'Digital' })).toBeNull();
+    expect(screen.queryByRole('link', { name: 'E-gift card' })).toBeNull();
   });
 
   it('ignores nonsense in the address instead of breaking', async () => {
     renderApp('/shop?type=banana&sort=bogus&page=-3&minPrice=abc');
-    expect(await screen.findAllByRole('article')).toHaveLength(5);
+    expect(await screen.findAllByRole('article')).toHaveLength(4);
     const q = lastProductsRequest();
-    expect(q.get('type')).toBeNull();
+    expect(q.get('type')).toBe('physical');
     expect(q.get('sort')).toBeNull();
     expect(q.get('minPrice')).toBeNull();
   });
@@ -95,7 +97,7 @@ describe('shop', () => {
     expect(lastProductsRequest().get('maxPrice')).toBe('999');
     expect(screen.getByRole('link', { name: 'Photo mug' })).toBeInTheDocument(); // Rs 999 offer price
     await userEvent.click(screen.getByRole('button', { name: 'Under Rs 1,000' })); // toggles off
-    await waitFor(() => expect(screen.getAllByRole('article')).toHaveLength(5));
+    await waitFor(() => expect(screen.getAllByRole('article')).toHaveLength(4));
   });
 
   it('searches, and offers to clear when nothing matches', async () => {
@@ -105,7 +107,7 @@ describe('shop', () => {
     expect(await screen.findByRole('heading', { name: 'No gifts match' })).toBeInTheDocument();
     expect(screen.getByText('No gifts match', { selector: 'p' })).toBeInTheDocument(); // the live count
     await userEvent.click(screen.getByRole('button', { name: 'Clear filters' }));
-    expect(await screen.findAllByRole('article')).toHaveLength(5);
+    expect(await screen.findAllByRole('article')).toHaveLength(4);
   });
 
   it('pages through long results', async () => {
@@ -170,7 +172,8 @@ describe('browse groups', () => {
     expect(await screen.findAllByRole('article')).toHaveLength(2);
     expect(lastProductsRequest().get('sentiment')).toBe('i-miss-you');
     expect(await screen.findByLabelText('Feeling')).toBeDisabled();
-    await userEvent.click(screen.getByRole('button', { name: 'Digital' }));
+    expect(screen.queryByRole('button', { name: 'Digital' })).toBeNull();
+    await userEvent.click(screen.getByRole('button', { name: 'Under Rs 1,000' }));
     await waitFor(() => expect(lastProductsRequest().get('sentiment')).toBe('i-miss-you')); // the fixed filter stays
   });
 

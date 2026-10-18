@@ -53,11 +53,11 @@ describe('checkout', () => {
     expect(localStorage.getItem('sentimently.box.v1')).toBe('[]');
   });
 
-  it('does not offer cash on delivery with a digital gift, and asks for each recipient', async () => {
+  it('a digital gift left in an old box is dropped: cash on delivery stays available and no recipient is asked for', async () => {
     fill([mug, card]);
     renderApp('/checkout');
-    expect(await screen.findByLabelText(/Cash on delivery/)).toBeDisabled();
-    expect(screen.getAllByLabelText('Recipient email')).toHaveLength(2);
+    expect(await screen.findByLabelText(/Cash on delivery/)).toBeEnabled();
+    expect(screen.queryByLabelText('Recipient email')).toBeNull();
   });
 
   it('keeps the box and shows the server reasons when the order is refused', async () => {

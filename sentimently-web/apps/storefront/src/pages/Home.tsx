@@ -37,7 +37,7 @@ function Trust() {
     { icon: '✦', title: 'Made personal', text: 'Your words, your card, your packaging.' },
     { icon: '➶', title: 'Same-day delivery', text: 'In our biggest cities, when you order early.' },
     { icon: '◈', title: data ? `Free over ${rupees(data.freeDeliveryThreshold)}` : 'Free delivery', text: 'Cash on delivery available.' },
-    { icon: '✉', title: 'Digital in minutes', text: 'E-gift and greeting cards by email.' },
+    { icon: '❀', title: 'Handmade with care', text: 'Ribbon flowers and keepsakes made to order.' },
   ];
   return (
     <section className="trust" aria-label="Why Bloomora">
@@ -144,7 +144,7 @@ export function Home() {
             <p className="hero__lead">Start with what you want to say. We help you find the gift, write it in your words, and deliver it with care.</p>
             <div className="hero__cta">
               <Button as={Link} to="/shop">Browse all gifts</Button>
-              <Button as={Link} to="/shop?type=digital" variant="secondary">Send a digital gift</Button>
+              <Button as={Link} to="/browse/categories" variant="secondary">Browse by category</Button>
             </div>
           </div>
           <Collage />
@@ -174,7 +174,7 @@ export function Home() {
             <li>
               <span className="steps__n" aria-hidden="true">3</span>
               <h3>Gifts across distance</h3>
-              <p>An e-gift card or an animated greeting card reaches them by email in minutes, or at the exact time you choose.</p>
+              <p>We deliver to cities across Pakistan, packed with care and tracked all the way, so a gift can travel as far as the feeling.</p>
             </li>
           </ol>
         </Container>

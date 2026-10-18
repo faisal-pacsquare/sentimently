@@ -8,7 +8,7 @@ import { AuthProvider } from './lib/auth';
 import { Account, Details, OrderDetail, Orders, Reminders, Wishlist } from './pages/Account';
 import { ForgotPassword, Login, Register, ResetPassword, VerifyEmail } from './pages/Auth';
 import { Box } from './pages/Box';
-import { CheckCard, GiftLink } from './pages/Gift';
+import { GiftLink } from './pages/Gift';
 import { CancelOrder, ReturnOrder } from './pages/OrderHelp';
 import { Checkout } from './pages/Checkout';
 import { Contact, Delivery, Track } from './pages/Help';
@@ -67,7 +67,6 @@ export function App() {
             <Route path="details" element={<Details />} />
           </Route>
           <Route path="gift/:token" element={<GiftLink />} />
-          <Route path="gift-card" element={<CheckCard />} />
           <Route path="cancel-order" element={<CancelOrder />} />
           <Route path="returns" element={<ReturnOrder />} />
           <Route path="delivery" element={<Delivery />} />

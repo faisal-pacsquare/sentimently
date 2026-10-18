@@ -119,7 +119,7 @@ export function ReturnOrder() {
         </>
       ) : (
         <>
-          <p>Changed your mind? Returns are for unused items within 7 days of delivery (not personalised or digital gifts). Something arrived damaged? Tell us within 48 hours, with a photo. <Link to="/delivery">Read the full policy</Link>.</p>
+          <p>Changed your mind? Returns are for unused items within 7 days of delivery (not personalised gifts). Something arrived damaged? Tell us within 48 hours, with a photo. <Link to="/delivery">Read the full policy</Link>.</p>
           <form className="auth-form" onSubmit={submit} noValidate>
             <fieldset className="rating-pick">
               <legend>What is this about?</legend>

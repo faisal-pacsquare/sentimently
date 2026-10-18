@@ -161,5 +161,6 @@ export function Product() {
     return <Container className="page"><QueryError error={error} onRetry={() => refetch()} retrying={isFetching} what="this gift" /></Container>;
   }
   if (isPending) return <Container className="page"><div className="sy-skeleton" style={{ height: '22rem' }} aria-busy="true" aria-label="Loading gift" /></Container>;
+  if (data.type === 'digital') return <NotFound what="that gift" />; // digital gifts are not sold on the shop
   return <ProductView product={data} />;
 }

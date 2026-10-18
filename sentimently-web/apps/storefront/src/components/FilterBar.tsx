@@ -90,11 +90,6 @@ export function FilterBar({ query, onChange, locked }: Props) {
         </div>
 
         <div className="filters__row filters__chips">
-          <div role="group" aria-label="Kind of gift">
-            <Chip pressed={!query.type} onClick={() => onChange(withFilter(query, { type: undefined }))}>All</Chip>
-            <Chip pressed={query.type === 'physical'} onClick={() => onChange(withFilter(query, { type: 'physical' }))}>Posted gifts</Chip>
-            <Chip pressed={query.type === 'digital'} onClick={() => onChange(withFilter(query, { type: 'digital' }))}>Digital</Chip>
-          </div>
           <div role="group" aria-label="Budget">
             {BUDGETS.map((b) => (
               <Chip

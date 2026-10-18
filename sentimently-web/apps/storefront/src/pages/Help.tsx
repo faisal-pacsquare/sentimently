@@ -38,7 +38,6 @@ export function Delivery() {
                 <tr key={city}><th scope="row">{city}</th><td>{rupees(r.fee)}</td><td>{timing(r)}</td></tr>
               ))}
               <tr><th scope="row">Rest of Pakistan</th><td>{rupees(data.restOfPakistan.fee)}</td><td>{timing(data.restOfPakistan)}</td></tr>
-              <tr><th scope="row">Digital gifts</th><td>Free</td><td>Instant, or at the time you choose</td></tr>
             </tbody>
           </table>
         </>
@@ -49,7 +48,7 @@ export function Delivery() {
       <p>You can cancel for free until we start preparing your order. Once a personalised item is being made, it can no longer be cancelled. <Link to="/cancel-order">Cancel an order</Link>.</p>
       <h2>Returns and damage</h2>
       <ul>
-        <li>Changed your mind? Return an unused item in its original packaging within 7 days of delivery. Personalised and digital gifts cannot be returned. The cost of sending it back is yours unless it was faulty.</li>
+        <li>Changed your mind? Return an unused item in its original packaging within 7 days of delivery. Personalised gifts cannot be returned. The cost of sending it back is yours unless it was faulty.</li>
         <li>Arrived damaged? Send us a photo within 48 hours. We will replace it or refund you in full, including delivery.</li>
         <li><Link to="/returns">Start a return or report damage</Link>.</li>
         <li>Refunds are processed within 3 working days of approval. Bank transfers then take 5 to 7 working days to arrive.</li>

@@ -1,7 +1,7 @@
 import { Container, Logo, SkipLink } from '@sentimently/ui';
 import { useState } from 'react';
 import type { FormEvent } from 'react';
-import { Link, NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useAuth } from '../lib/auth';
 import { useBasket } from '../lib/basket';
 import { useStoreSettings } from '../lib/queries';
@@ -42,7 +42,6 @@ function Header() {
   const { count } = useBasket();
   const { status, customer, signOut } = useAuth();
   const navigate = useNavigate();
-  const digitalOnly = new URLSearchParams(useLocation().search).get('type') === 'digital';
   return (
     <header className="site-header">
       <Container className="site-header__bar">
@@ -72,12 +71,11 @@ function Header() {
       </Container>
       <Container>
         <nav className="main-nav" aria-label="Main">
-          <NavLink to="/shop" end className={({ isActive }) => (isActive && !digitalOnly ? 'active' : undefined)}>Shop all</NavLink>
+          <NavLink to="/shop" end>Shop all</NavLink>
           <NavLink to="/browse/feelings">By feeling</NavLink>
           <NavLink to="/browse/occasions">By occasion</NavLink>
           <NavLink to="/browse/recipients">By recipient</NavLink>
           <NavLink to="/browse/categories">Categories</NavLink>
-          <NavLink to="/shop?type=digital" className={({ isActive }) => (isActive && digitalOnly ? 'active' : undefined)}>Digital gifts</NavLink>
         </nav>
       </Container>
     </header>
@@ -100,7 +98,6 @@ function Footer() {
             <li><Link to="/delivery">Delivery and returns</Link></li>
             <li><Link to="/track">Track an order</Link></li>
             <li><Link to="/returns">Returns and damage</Link></li>
-            <li><Link to="/gift-card">Check a gift card</Link></li>
             <li><Link to="/contact">Contact us</Link></li>
           </ul>
         </nav>

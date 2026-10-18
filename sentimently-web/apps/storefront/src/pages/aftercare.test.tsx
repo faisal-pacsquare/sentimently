@@ -147,21 +147,3 @@ describe('returns', () => {
     expect(await screen.findByText('The 7 day return window has passed')).toBeInTheDocument();
   });
 });
-
-describe('checking a gift card', () => {
-  it('shows the value and expiry of a real code', async () => {
-    server.use(http.post(`${BASE}/gift-cards/check`, () => HttpResponse.json({ valid: true, kind: 'egift', amount: 5000, expiresAt: '2027-10-16T00:00:00.000Z' })));
-    renderApp('/gift-card');
-    await userEvent.type(await screen.findByLabelText('Gift card code'), 'ABCD-1234');
-    await userEvent.click(screen.getByRole('button', { name: 'Check' }));
-    expect(await screen.findByText(/e-gift card is valid for Rs 5,000/)).toBeInTheDocument();
-  });
-
-  it('does not reveal more than "not found" for a wrong code', async () => {
-    server.use(http.post(`${BASE}/gift-cards/check`, () => HttpResponse.json({ valid: false, reason: 'not_found' })));
-    renderApp('/gift-card');
-    await userEvent.type(await screen.findByLabelText('Gift card code'), 'nope');
-    await userEvent.click(screen.getByRole('button', { name: 'Check' }));
-    expect(await screen.findByText(/could not find that code/)).toBeInTheDocument();
-  });
-});

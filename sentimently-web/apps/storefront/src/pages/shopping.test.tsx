@@ -58,11 +58,10 @@ describe('product page', () => {
     expect(screen.getByRole('link', { name: 'Personalise' })).toBeInTheDocument();
   });
 
-  it('a digital gift is added straight to the box and explains how it arrives', async () => {
+  it('a digital gift has no page on the shop: it is not sold here', async () => {
     renderApp('/gifts/egift-card');
-    expect(await screen.findByText(/sent by email in minutes/i)).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Add to gift box' })).toBeInTheDocument();
-    expect(screen.queryByRole('link', { name: 'Personalise' })).toBeNull();
+    expect(await screen.findByRole('heading', { name: /could not find that gift/i })).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: 'Add to gift box' })).toBeNull();
   });
 
   it('a gift that does not exist is a real "not found"', async () => {
@@ -126,14 +125,14 @@ describe('gift box', () => {
     expect(body.delivery).toEqual({ city: 'Karachi' });
   });
 
-  it('a digital-only box needs no city and no delivery', async () => {
-    seedBox(line({ id: 'd1', productId: 'id-egift-card', slug: 'egift-card', name: 'E-gift card', type: 'digital', hintPrice: 5000, quantity: 1 }));
+  it('a digital gift left in an old box is dropped, and the rest of the box stays', async () => {
+    seedBox(
+      line({ id: 'd1', productId: 'id-egift-card', slug: 'egift-card', name: 'E-gift card', type: 'digital', hintPrice: 5000, quantity: 1 }),
+      line(),
+    );
     renderApp('/box');
-    const totals = await screen.findByText('Total');
-    expect(totals.parentElement).toHaveTextContent('Rs 5,000');
-    expect(screen.queryByLabelText('Deliver to')).toBeNull();
-    expect(screen.queryByText(/delivery to/i)).toBeNull();
-    expect(lastQuote().delivery).toBeUndefined();
+    expect(await screen.findByText('Photo mug')).toBeInTheDocument();
+    expect(screen.queryByText('E-gift card')).toBeNull();
   });
 
   it('lists every problem the server finds, in its own words, and stops checkout', async () => {
