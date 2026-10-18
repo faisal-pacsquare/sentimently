@@ -1,5 +1,13 @@
 import { Type } from 'class-transformer';
-import { IsIn, IsInt, IsOptional, IsString, Max, Min } from 'class-validator';
+import {
+  IsIn,
+  IsInt,
+  IsOptional,
+  IsString,
+  Max,
+  MaxLength,
+  Min,
+} from 'class-validator';
 
 export const SORTS = [
   'popularity',
@@ -9,6 +17,12 @@ export const SORTS = [
   'newest',
 ] as const;
 export type Sort = (typeof SORTS)[number];
+
+/** What the search box sends as a person types. */
+export class SuggestQueryDto {
+  @IsOptional() @IsString() @MaxLength(60) q?: string;
+  @IsOptional() @IsIn(['physical', 'digital']) type?: 'physical' | 'digital';
+}
 
 export class ProductQueryDto {
   @IsOptional() @IsString() sentiment?: string;

@@ -3816,6 +3816,45 @@
         "x-access": "public"
       }
     },
+    "/api/v1/search/suggest": {
+      "get": {
+        "operationId": "CatalogueController_suggest",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "q",
+            "required": false,
+            "schema": {
+              "maxLength": 60,
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "type",
+            "required": false,
+            "schema": {
+              "enum": [
+                "physical",
+                "digital"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [],
+        "summary": "CatalogueController.suggest",
+        "tags": [
+          "Catalogue"
+        ],
+        "x-access": "public"
+      }
+    },
     "/api/v1/store": {
       "get": {
         "operationId": "StoreController_settings",

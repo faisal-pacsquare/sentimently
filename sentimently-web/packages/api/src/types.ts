@@ -48,6 +48,11 @@ export interface Page<T> {
   total: number;
 }
 
+export interface SuggestResult {
+  products: { slug: string; name: string; price: number; onOffer: boolean; imageUrl: string | null }[];
+  groups: { kind: 'sentiment' | 'occasion' | 'recipient' | 'category'; slug: string; name: string; gifts: number }[];
+}
+
 export interface TaxonomyItem {
   id: string;
   kind: 'sentiment' | 'occasion' | 'recipient' | 'category';

@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { JsonStore } from '../storage/json-store.service';
-import { ProductQueryDto } from './product-query.dto';
+import { ProductQueryDto, SuggestQueryDto } from './product-query.dto';
 import {
   Page,
   Product,
@@ -45,6 +45,12 @@ function inGroup(p: Product, kind: TaxonomyKind, slug: string): boolean {
   }
 }
 
+/** Words a person typed, lower-cased. Every word must match, in any order ("rose ribbon" finds "ribbon rose"). */
+const words = (s: string) =>
+  s.toLowerCase().split(/\s+/).filter(Boolean).slice(0, 6);
+const hasAll = (text: string, tokens: string[]) =>
+  tokens.every((t) => text.includes(t));
+
 @Injectable()
 export class CatalogueService {
   constructor(private readonly store: JsonStore) {}
@@ -52,7 +58,7 @@ export class CatalogueService {
   async list(q: ProductQueryDto): Promise<Page<ProductView>> {
     const page = q.page ?? 1;
     const pageSize = q.pageSize ?? 24;
-    const needle = q.q?.trim().toLowerCase();
+    const tokens = words(q.q ?? '');
 
     return this.store.read<Product, Page<ProductView>>('products', (all) => {
       const items = all.filter(
@@ -65,8 +71,8 @@ export class CatalogueService {
           (!q.type || p.type === q.type) &&
           (q.minPrice === undefined || effectivePrice(p) >= q.minPrice) &&
           (q.maxPrice === undefined || effectivePrice(p) <= q.maxPrice) &&
-          (!needle ||
-            `${p.name} ${p.description}`.toLowerCase().includes(needle)),
+          (!tokens.length ||
+            hasAll(`${p.name} ${p.description}`.toLowerCase(), tokens)),
       );
 
       const sorters: Record<string, (a: Product, b: Product) => number> = {
@@ -86,6 +92,63 @@ export class CatalogueService {
         total: items.length,
       };
     });
+  }
+
+  /**
+   * What to offer while someone is still typing: the gifts whose name or description match, best matches first,
+   * and the categories, feelings, occasions and recipients whose name matches (only those that have gifts to show).
+   * Only gifts on the shop are offered. One or no letters offer nothing.
+   */
+  async suggest(q: SuggestQueryDto) {
+    const needle = (q.q ?? '').trim().toLowerCase();
+    const tokens = words(needle);
+    if (needle.length < 2) return { products: [], groups: [] };
+
+    const live = await this.store.read<Product, Product[]>('products', (all) =>
+      all.filter((p) => p.isActive !== false && (!q.type || p.type === q.type)),
+    );
+    const rank = (p: Product) => {
+      const name = p.name.toLowerCase();
+      if (name.startsWith(needle)) return 0;
+      if (name.split(/[^a-z0-9]+/).some((w) => w.startsWith(tokens[0])))
+        return 1;
+      return hasAll(name, tokens) ? 2 : 3; // 3: only the description matches
+    };
+    const products = live
+      .filter((p) => hasAll(`${p.name} ${p.description}`.toLowerCase(), tokens))
+      .sort(
+        (a, b) =>
+          rank(a) - rank(b) ||
+          (b.reviewCount ?? 0) - (a.reviewCount ?? 0) ||
+          a.name.localeCompare(b.name),
+      )
+      .slice(0, 6)
+      .map((p) => ({
+        slug: p.slug,
+        name: p.name,
+        price: effectivePrice(p),
+        onOffer: p.offerPrice != null && p.offerPrice < p.price,
+        imageUrl: p.imageUrls?.[0] ?? null,
+      }));
+
+    const groups = (
+      await this.store.find<TaxonomyItem>('taxonomy', (t) =>
+        hasAll(t.name.toLowerCase(), tokens),
+      )
+    )
+      .map((t) => ({
+        kind: t.kind,
+        slug: t.slug,
+        name: t.name,
+        gifts: live.filter((p) => inGroup(p, t.kind, t.slug)).length,
+        starts: t.name.toLowerCase().startsWith(needle) ? 0 : 1,
+      }))
+      .filter((g) => g.gifts > 0)
+      .sort((a, b) => a.starts - b.starts || b.gifts - a.gifts)
+      .slice(0, 5)
+      .map(({ kind, slug, name, gifts }) => ({ kind, slug, name, gifts }));
+
+    return { products, groups };
   }
 
   async bySlug(slug: string): Promise<ProductView> {

@@ -2,7 +2,7 @@ import type { ApiClient, RequestOptions } from './client';
 import type {
   CheckoutRequest, CheckoutResponse, CodeCheck, Customer, GiftLinkPreview, Hub, Kind, Order, Page,
   PersonalisationOptions, Product, ProductQuery, Quote, QuoteRequest, Reminder, Review, Session,
-  StoreSettings, TaxonomyItem, TrackResult,
+  StoreSettings, SuggestResult, TaxonomyItem, TrackResult,
 } from './types';
 
 type Opts = Pick<RequestOptions, 'signal'>;
@@ -12,6 +12,8 @@ export function createApi(c: ApiClient) {
   return {
     // ----- catalogue (public) -----
     products: (q: ProductQuery = {}, o?: Opts) => c.get<Page<Product>>('/products', { query: { ...q }, ...o }),
+    /** Search-as-you-type: gifts and groups matching what has been typed so far. Posted gifts only: the shop does not sell digital gifts. */
+    suggest: (q: string, o?: Opts) => c.get<SuggestResult>('/search/suggest', { query: { q, type: 'physical' }, ...o }),
     product: (slug: string, o?: Opts) => c.get<Product>(`/products/${encodeURIComponent(slug)}`, o),
     taxonomy: (kind: Kind, o?: Opts) => c.get<TaxonomyItem[]>(`/taxonomy/${kind}`, o),
     hub: (kind: Kind, slug: string, q: ProductQuery = {}, o?: Opts) =>

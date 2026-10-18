@@ -32,6 +32,7 @@ const EXPECTED_PUBLIC = [
   'GET /api/v1/personalisation/options',
   'GET /api/v1/uploads/:file', // photos saved on this computer while developing
   'GET /api/v1/products',
+  'GET /api/v1/search/suggest', // search-as-you-type: reads the public catalogue only
   'GET /api/v1/products/:slug',
   'GET /api/v1/products/:slug/reviews',
   'GET /api/v1/store',

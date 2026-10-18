@@ -105,6 +105,7 @@ export const handlers = [
     const pageSize = Number(url.searchParams.get('pageSize') ?? 24);
     return HttpResponse.json({ data: all.slice((page - 1) * pageSize, page * pageSize), page, pageSize, total: all.length });
   }),
+  http.get(`${BASE}/search/suggest`, () => HttpResponse.json({ products: [], groups: [] })),
   http.get(`${BASE}/products/:slug/reviews`, () => HttpResponse.json([])),
   http.get(`${BASE}/products/:slug`, ({ params }) => {
     const p = PRODUCTS.find((x) => x.slug === params.slug);

@@ -1,10 +1,9 @@
 import { Container, Logo, SkipLink } from '@sentimently/ui';
-import { useState } from 'react';
-import type { FormEvent } from 'react';
 import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useAuth } from '../lib/auth';
 import { useBasket } from '../lib/basket';
 import { useStoreSettings } from '../lib/queries';
+import { SearchBox } from './SearchBox';
 
 function AnnouncementBar() {
   const { data } = useStoreSettings();
@@ -14,27 +13,6 @@ function AnnouncementBar() {
     <div className="announce" role="note">
       <Container>{data.announcement}</Container>
     </div>
-  );
-}
-
-function SearchBox() {
-  const navigate = useNavigate();
-  const [value, setValue] = useState('');
-  const submit = (e: FormEvent) => {
-    e.preventDefault();
-    const q = value.trim();
-    navigate(q ? `/shop?q=${encodeURIComponent(q)}` : '/shop');
-  };
-  return (
-    <form className="search" role="search" aria-label="Search the shop" onSubmit={submit}>
-      <label className="sy-sr-only" htmlFor="site-search">
-        Search the shop
-      </label>
-      <input id="site-search" className="sy-input" type="search" placeholder="Search gifts" value={value} onChange={(e) => setValue(e.target.value)} />
-      <button className="search__go" type="submit" aria-label="Search">
-        <span aria-hidden="true">⌕</span>
-      </button>
-    </form>
   );
 }
 
